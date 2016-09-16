@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LibDataFile.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SourceScanDefault" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="TransferReport" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TransferReport</Value>
+    </Setting>
+    <Setting Name="ActWritingDown" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ActWritingDown</Value>
+    </Setting>
+    <Setting Name="CloseKassa" Type="System.String" Scope="User">
+      <Value Profile="(Default)">CloseKassa</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

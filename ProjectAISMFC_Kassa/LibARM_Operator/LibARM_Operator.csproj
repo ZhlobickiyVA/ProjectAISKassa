@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1C078B52-AECA-4437-A543-1F55C8515E0A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LibARM_Operator</RootNamespace>
+    <AssemblyName>LibARM_Operator</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ARMOperatorV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ARMOperatorV2.Designer.cs">
+      <DependentUpon>ARMOperatorV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="clOperation.cs" />
+    <Compile Include="Operation\Doub.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operation\Doub.designer.cs">
+      <DependentUpon>Doub.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operation\FsettingPrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operation\FsettingPrice.Designer.cs">
+      <DependentUpon>FsettingPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operation\Price.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operation\Price.designer.cs">
+      <DependentUpon>Price.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Operation\UPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Operation\UPanel.Designer.cs">
+      <DependentUpon>UPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operation\UpanelService.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Operation\UpanelService.Designer.cs">
+      <DependentUpon>UpanelService.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ARMOperatorV2.resx">
+      <DependentUpon>ARMOperatorV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operation\Doub.resx">
+      <DependentUpon>Doub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operation\FsettingPrice.resx">
+      <DependentUpon>FsettingPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operation\Price.resx">
+      <DependentUpon>Price.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operation\UPanel.resx">
+      <DependentUpon>UPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operation\UpanelService.resx">
+      <DependentUpon>UpanelService.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CashLib\CashLib.csproj">
+      <Project>{c99f578e-3323-4e7b-967c-75dcd7dd7307}</Project>
+      <Name>CashLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Connect\ConnectDLL.csproj">
+      <Project>{08e777cd-f8e3-4638-8cca-06875a4ec84b}</Project>
+      <Name>ConnectDLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libCategory\libCategory.csproj">
+      <Project>{c577ceed-f311-404d-8df9-8b528a29ba20}</Project>
+      <Name>libCategory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibClient\LibClient.csproj">
+      <Project>{7a2917f4-9cea-4056-bdcc-cf57fbf320d2}</Project>
+      <Name>LibClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibEmployees\LibEmployees.csproj">
+      <Project>{4ceb2d2e-13ee-4dd0-a960-d7bfd11a8f77}</Project>
+      <Name>LibEmployees</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibEventLog\LibEventLog.csproj">
+      <Project>{0014482b-db75-4e3b-a400-105f1823395c}</Project>
+      <Name>LibEventLog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibReport\LibReport.csproj">
+      <Project>{bda7639c-ff0c-4648-bd4a-c4655d00f351}</Project>
+      <Name>LibReport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibTickets\LibTickets.csproj">
+      <Project>{ef603015-e974-4b72-906e-52191af18ba9}</Project>
+      <Name>LibTickets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UtilDLL\UtilDLL.csproj">
+      <Project>{74e01662-9099-4b97-8bf2-4695035f4af7}</Project>
+      <Name>UtilDLL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emblem-people_5471.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_add_4044.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kedit_9527.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_remove_8961.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ticket_6351.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fileopen_5111.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gtk-quit_9107.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kwallet_1896.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\information_5662.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application_view_list_1643.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\configure_9933.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_word_4545.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cashbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dubl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newticket.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file-manager.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deletered_2069.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\app-jqaa.cs_50616small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Addwar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\camera_test_1751.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_cancel_6569.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

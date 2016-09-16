@@ -1,0 +1,18 @@
+﻿<Window x:Class="AISKassaWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AISKassaWPF"
+        mc:Ignorable="d"
+        Title="Карточка роли" Height="258" Width="288">
+    <Grid>
+
+        <TextBox x:Name="tNAme" Width="250" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,45,0,0"></TextBox>
+        <Label x:Name="label" Content="Наименование" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="tLevel" Width="250" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,113,0,0"/>
+        <Label x:Name="label_Copy" Content="Уровень допуска" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button x:Name="button" Content="ОК" HorizontalAlignment="Left" Margin="90,154,0,0" VerticalAlignment="Top" Width="75" ClickMode="Press" Click="button_Click"/>
+        <Button x:Name="btCancel" Content="Cancel" HorizontalAlignment="Left" Margin="185,154,0,0" VerticalAlignment="Top" Width="75"/>
+    </Grid>
+</Window>

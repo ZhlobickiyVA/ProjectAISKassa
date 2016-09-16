@@ -1,0 +1,143 @@
+Чтение и запись двоичных файлов в базу данных MS SQL 2005 из C# используя OleDb
+Опубликовано 18.03.2011 автором Ведомир
+Задача - хранить в базе данных MS SQL двоичные файлы. Это могут быть исполняемые файлы (для обновления приложения при запуске), документы Word или иные важные и нужные данные. Как и многие подобные задачи решается она просто, если знаешь за какие именно методы и свойства библиотечных классов надо дергать.
+
+Двоичный данные в MS SQL 2005 хранятся в колонках типа VARBINARY(MAX). В более новых версиях сервера появились дополнительные средства, но на многих предприятиях до сих пор успешно работает 2005 версия, вполне удовлетворяя их потребности. В программе мы будем хранить их в массиве байтов byte[] - просто потому, что именно его поддерживаются соответствующие классы.
+
+Что нам надо?
+
+1. Прочитать файл с диска
+2. Записать его в базу данных либо добавляя новую строку таблицы либо обновляя уже существующую
+3. Прочитать с базы данных (под коду конкретного файла)
+4. Записать на диск
+
+Приступим!
+
+0. Для хранения файлов в таблице базы данных надо эту таблицу создать. Какая неожиданность! Для тестовых целей можно создать такую таблицу
+
+CREATE TABLE TEST_BINARY_FILES
+(
+ID_FILE INT IDENTITY NOT NULL PRIMARY KEY,
+NAME_FILE VARCHAR(100) NOT NULL,
+DATE_LOAD DATETIME NOT NULL,
+BINARY_FILE VARBINARY(MAX) NOT NULL,
+SIZE_KBYTES FLOAT NOT NULL
+)
+1. Читаем двоичный файл с диска.
+
+Наша задача очень проста - получить массив всех байтов файла по его пути. заодно получим имя файла и расширение - запас карман не тянет. Специально для этого в библиотеке Net есть несколько простых и приятных методов класса Path - GetFileName, GetExtension; и класа File - ReadAllBytes. Скорее всего размер в килобайтах тоже можно получить стандартным методом - лень смотреть.
+
+string name = Path.GetFileName(path);
+string type = Path.GetExtension(path);
+byte[] fileByteArray = File.ReadAllBytes(path);
+double kbSize = Math.Round(Convert.ToDouble(fileByteArray.Length) / 1024, 2);
+Откуда мы возьмем путь? В приложении WinForms можно воспользоваться стандартным диалогом открытия файлов - это класс OpenFileDialog
+
+OpenFileDialog openFileDialog = new OpenFileDialog();
+openFileDialog.InitialDirectory = "d:\\";
+// подразумевается выполнение кода внутри функции, например по клику на кнопке         
+if (openFileDialog.ShowDialog() != DialogResult.OK) { return; }
+string filePath = openFileDialog.FileName;
+2. Пишем массив байтов byte[] в колонку VARBINARY(MAX) базы данных MS SQL
+
+Делается это абсолютно стандартными методами OleDbCommand с набором параметров и вставкой текущей даты функцией GETDATE() sql сервера
+
+OleDbCommand dbCommand = dbConn.CreateCommand();
+ 
+dbCommand.CommandText = "INSERT INTO TEST_BINARY_FILES (NAME_FILE, DATE_LOAD, BINARY_FILE, SIZE_KBYTES) VALUES (?, GETDATE(), ?, ?)";
+ 
+dbCommand.Parameters.Add("name", OleDbType.VarChar, 100).Value = name;
+ 
+dbCommand.Parameters.Add("binaryData", OleDbType.VarBinary).Value = fileByteArray;
+ 
+dbCommand.Parameters.Add("kbSize", OleDbType.Double).Value = kbSize;
+ 
+dbCommand.ExecuteNonQuery();
+или для обновления файла по коду
+
+dbCommand.CommandText = "UPDATE TEST_BINARY_FILES SET NAME_FILE = ?, DATE_LOAD = GETDATE(), BINARY_FILE = ?, SIZE_KBYTES = ? FROM TEST_BINARY_FILES WHERE ID_FILE = ?";
+ 
+dbCommand.Parameters.Add("name", OleDbType.VarChar, 100).Value = name;
+ 
+dbCommand.Parameters.Add("binaryData", OleDbType.VarBinary).Value = fileByteArray;
+ 
+dbCommand.Parameters.Add("kbSize", OleDbType.Double).Value = kbSize;
+ 
+dbCommand.Parameters.Add("idFile", OleDbType.Integer).Value = dbFileKod;
+ 
+dbCommand.ExecuteNonQuery();
+3.Читаем содержимое поля VARBINARY(MAX) в массив байтов byte[]
+
+OleDbCommand dbCommand = dbConn.CreateCommand();
+dbCommand.CommandText = "SELECT BINARY_FILE FROM TEST_BINARY_FILES WHERE ID_FILE = ?";
+ 
+dbCommand.Parameters.Add("idFile", OleDbType.Integer).Value = dbFileID;
+ 
+byte[] fileByteArray = (byte[]) dbCommand.ExecuteScalar();
+4. Записать на диск. Для решения этой задачи используем классы BinaryWriter и FileStream
+
+FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.ReadWrite);
+BinaryWriter binWriter = new BinaryWriter(fileStream);
+binWriter.Write(fileByteArray);
+binWriter.Close();
+Для получения пути к файлу в приложении WinForms можно точно так же использовать стандартный диалог сохранения файла - класс SaveFileDialog
+
+SaveFileDialog saveFileDialog = new SaveFileDialog();
+saveFileDialog.InitialDirectory = "d:\\";
+if (saveFileDialog.ShowDialog() != DialogResult.OK) { return; }
+string filePath = saveFileDialog.FileName;
+И в завершение напишем простенький класс для работы с двоичными файлами
+
+class BinaryFile
+{
+    string name;
+    byte[] byteArray;
+    string extension;
+    double kbSize;
+    DateTime lastChanged;
+ 
+    public string Name { get { return this.name; } }
+    public string Extension { get { return this.extension; } }
+    public Byte[] ByteArray { get { return this.byteArray; } }
+    public double KbSize { get { return this.kbSize; } }
+    public DateTime LastChanged { get { return this.lastChanged; } }
+ 
+    public BinaryFile(string path)
+    {
+        this.loadFromDisk(path);
+    }
+ 
+    public BinaryFile(byte[] inputByteArray, string fileName, DateTime lastChanged)
+    {
+        this.loadFromByteArray(inputByteArray, fileName, lastChanged);
+    }
+ 
+ 
+    public void loadFromDisk(string path)
+    {
+        name = Path.GetFileName(path);
+        extension = Path.GetExtension(path);
+        byteArray = File.ReadAllBytes(path);
+        kbSize = Math.Round(Convert.ToDouble(byteArray.Length) / 1024, 2);
+        lastChanged = File.GetLastWriteTime(path);
+    }
+ 
+    public void saveToDisk(string path)
+    {
+        FileStream fileStream = new FileStream(path, FileMode.Create, FileAccess.ReadWrite);
+        BinaryWriter binWriter = new BinaryWriter(fileStream);
+        binWriter.Write(this.byteArray);
+        binWriter.Close();
+    }
+ 
+    public void loadFromByteArray(byte[] inputByteArray, string fileName, DateTime inputLastChanged)
+    {
+        name = fileName;
+        extension = Path.GetExtension(fileName);
+        byteArray = inputByteArray;
+        kbSize = Math.Round(Convert.ToDouble(byteArray.Length) / 1024, 2);
+        lastChanged = inputLastChanged;
+    }
+ 
+    // завершение class BinaryFile
+}

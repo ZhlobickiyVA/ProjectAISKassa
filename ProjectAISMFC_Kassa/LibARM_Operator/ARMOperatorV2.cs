@@ -1,0 +1,183 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using LibEmployees;
+using LibClient;
+using CashLib;
+using System.Data.SqlClient;
+using LibTickets;
+using ConnectLib;
+
+namespace LibARM_Operator
+{
+    public partial class ARMOperatorV2 : Form
+    {
+        clEmployees empl;
+        clKassa Kas;
+        string sea;
+        int SelectRow;
+
+        
+        public ARMOperatorV2(string idEmpl)
+        {
+            InitializeComponent();
+            empl = new clEmployees(idEmpl);
+            Kas = new clKassa(idEmpl);
+            NameEmpl.Text = clEmployees.GetNameRole(idEmpl) +": "+empl.GetSmallFIO().ToString();
+            ListCli.DataSource = clClient.GetListClient("");
+            clClient.ActiveStyleDataGridViewToClient(ListCli);
+            if (Kas.ActiveKassa == 0) { OpenKassaItem.Enabled = true; CloseKassaItem.Enabled = false; }
+            if (Kas.ActiveKassa == 1) { OpenKassaItem.Enabled = false; CloseKassaItem.Enabled = true; }
+
+            timer.Enabled = true;
+
+        }
+
+        private void SearchTB_KeyUp(object sender, KeyEventArgs e)
+        {
+            sea = SearchTB.Text;
+            ListCli.DataSource = clClient.GetListClient(sea);
+        }
+
+        private void AddClient_Click(object sender, EventArgs e)
+        {
+            SelectRow = ListCli.CurrentRow.Index;
+            clClient.AddClient();
+            ListCli.DataSource = clClient.GetListClient(sea);
+            ListCli.Rows[SelectRow].Selected = true;
+            ListCli.CurrentCell = ListCli[1, SelectRow];
+            ListCli.Select();
+        }
+
+        private void EditClient_Click(object sender, EventArgs e)
+        {
+            SelectRow = ListCli.CurrentRow.Index;
+            clClient.UpdateClient(ListCli.CurrentRow.Cells[0].Value.ToString());
+            ListCli.DataSource = clClient.GetListClient(sea);
+            ListCli.Rows[SelectRow].Selected = true;
+            ListCli.CurrentCell = ListCli[1, SelectRow];
+            ListCli.Select();
+        }
+
+        private void OpenClient_Click(object sender, EventArgs e)
+        {
+            SelectRow = ListCli.CurrentRow.Index;
+            clClient.OpenClient(ListCli.CurrentRow.Cells[0].Value.ToString());
+            ListCli.DataSource = clClient.GetListClient(sea);
+            ListCli.Rows[SelectRow].Selected = true;
+            ListCli.CurrentCell = ListCli[1, SelectRow];
+            ListCli.Select();
+        }
+
+        private void PriceTIkBT_Click(object sender, EventArgs e)
+        {
+            clOperation.RunPriceTik(empl,ListCli.CurrentRow.Cells[0].Value.ToString());
+        }
+
+        private void DoubTikBT_Click(object sender, EventArgs e)
+        {
+            clDoubPriceTik.RunDoubPriceTik(empl.id, ListCli.CurrentRow.Cells[0].Value.ToString());
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            table = clControlSer.GetListSerPrice(empl.id);
+            DG.Rows.Clear();
+            for (int i = 0; i <= table.Rows.Count - 1; i++)
+            {
+                string name = table.Rows[i].ItemArray[1].ToString();
+                string nameSer = table.Rows[i].ItemArray[2].ToString();
+                string count = table.Rows[i].ItemArray[3].ToString();
+                DG.Rows.Add(nameSer,name,count);
+                for (int j = 0; j <= DG.Columns.Count - 1; j++)
+                {
+                    Color col = clSeries.getColorFromChar(table.Rows[i].ItemArray[0].ToString());
+                    DG.Rows[DG.Rows.Count - 1].Cells[j].Style.BackColor = col;
+                    DG.Rows[DG.Rows.Count - 1].Cells[j].Style.SelectionBackColor = col;
+                    DG.Rows[DG.Rows.Count - 1].Cells[j].Style.SelectionForeColor = Color.Black;
+                }
+
+            }
+            
+            NowTimeDate.Text =  Connect.GetDateServer().ToString();
+            SummainKassa.Text = "Сумма в Кассе: "+ String.Format("{0:C2}", Kas.SummaInKassa);
+
+
+
+            //if (myCommand.Parameters["@ret"].Value.ToString() != "")
+            //    return String.Format("{0:C2}",Convert.ToDouble( myCommand.Parameters["@ret"].Value.ToString()));
+            //else return String.Format("{0:C2}",0.00);
+
+
+            //clControlSer con = new clControlSer();
+            //con.GetListSerPrice(ParentLAbel, this.Tag.ToString(), DateTime.Now.Date);
+
+            //clKassa kas = new clKassa();
+            //decimal summma = 0;
+            //SumKas.Text = kas.GetMoneyToKassa(this.Tag.ToString(), ref summma);
+            //SumKas.Tag = summma;
+            //con.GetListSerPrice(ParentLAbel, this.Tag.ToString(), Convert.ToDateTime("16.02.2016"));
+        }
+
+        private void DG_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void transferTikOperation_Click(object sender, EventArgs e)
+        {
+            clTransferTickets.RunTransferTik(empl.id);
+        }
+
+        private void кассаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OpenKassaItem_Click(object sender, EventArgs e)
+        {
+            if (Kas.ControlActiveKassa(1))
+            {
+                OpenKassaItem.Enabled = false;
+                CloseKassaItem.Enabled = true;
+
+
+                // открываем кассу
+            }
+            
+        }
+
+        private void CloseKassaItem_Click(object sender, EventArgs e)
+        {
+            if (Kas.ControlActiveKassa(0))
+            {
+                CloseKassaItem.Enabled = false;
+                OpenKassaItem.Enabled = true;
+                //закрываем кассу
+            }
+            
+        }
+
+        private void InsertMoneyToKassa_Click(object sender, EventArgs e)
+        {
+            Kas.InsertMoneyToKassa();
+        }
+
+        private void ReturnMoneyToKassa_Click(object sender, EventArgs e)
+        {
+            Kas.ReturnMoneyToKassa();
+        }
+
+        private void ShowKassaOperItem_Click(object sender, EventArgs e)
+        {
+            Kas.RunSpKassa();
+        }
+    }
+}
