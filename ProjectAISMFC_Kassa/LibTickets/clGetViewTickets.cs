@@ -168,7 +168,27 @@ namespace LibTickets
             return ds.Tables[0];
         }
 
-
+        public static DataTable GetListTicketsToIdClient(string idClient, int Mon = 0, int Year = 0)
+        {
+            SqlConnection connection = new SqlConnection(Connect.GetConn());
+            SqlCommand Command;
+            Command = new SqlCommand();
+            Command.Connection = connection;
+            Command.CommandType = CommandType.StoredProcedure;
+            Command.CommandText = "[SelectTickeksToCli]";
+            Command.Parameters.Add("@id", SqlDbType.UniqueIdentifier);
+            Command.Parameters["@id"].Value = new Guid(idClient);
+            Command.Parameters.Add("@Year", SqlDbType.Int);
+            Command.Parameters["@Year"].Value = Year;
+            Command.Parameters.Add("@Month", SqlDbType.NVarChar, 10);
+            Command.Parameters["@Month"].Value = Mon;
+            SqlDataAdapter data = new SqlDataAdapter();
+            data.SelectCommand = Command;
+            DataSet ds = new DataSet();
+            connection.Close();
+            data.Fill(ds);
+            return ds.Tables[0];
+        }
 
 
     }

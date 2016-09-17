@@ -11,6 +11,7 @@ using ListAccess;
 using ConnectLib;
 using System.Data.SqlClient;
 using System.Data;
+using LibTickets;
 
 namespace LibARM_Operator
 {
@@ -40,6 +41,14 @@ namespace LibARM_Operator
         public DataTable DataMonth { get; set; }
         public DataTable DataSeria { get; set; }
         public DataTable DataNumber { get; set; }
+
+        int[] MasMonth;
+        string[] MasSeria;
+        string[] MasNumber;
+        string[] MasIdClient;
+        int[] MasYear;
+
+
 
         public clOperation(string idEmployess)
         {
@@ -124,7 +133,7 @@ namespace LibARM_Operator
         }
 
 
-        public void GetControlPrice(Control Sender,Label ReturnSender)
+        public bool GetControlPrice(Control Sender,Label ReturnSender)
         {
             // Повторная продажа -- Красный
             // Два одинаковых билета -- Красный
@@ -132,44 +141,108 @@ namespace LibARM_Operator
             // Успех -- Зеленый
 
             int CountS = Sender.Controls.Count;
-            string[] MasMonth = new string[CountS];
-            string[] MasSeria = new string[CountS];
-            string[] MasNumber = new string[CountS];
-            string[] MasIdClient = new string[CountS];
 
-            bool DoubPriceValid = false; // Повторная продажа проверка 
+            MasMonth = new int[CountS];
+            MasYear = new int[CountS];
+            MasSeria = new string[CountS];
+            MasNumber = new string[CountS];
+            MasIdClient = new string[CountS];
+
+            bool DoubPriceValid = true; // Повторная продажа проверка 
             bool DoubTik = false; // Повторяющиеся билеты
             bool CountControlPrice = false; // Нехватка билетов
 
+            bool RetDoubPriceValid = false; // Повторная продажа проверка 
+            bool RetDoubTik = false; // Повторяющиеся билеты
+            bool RetCountControlPrice = false; // Нехватка билетов
 
             for (int i = 0; i <= CountS - 1; i++)
             {
                 UPanel pan = (Sender.Controls[i] as UPanel);
-                MasMonth[i] = pan.MonthCB.SelectedValue.ToString();
+                MasMonth[i] = Convert.ToInt32(pan.MonthCB.SelectedValue.ToString());
                 MasSeria[i] = pan.SeriaCB.SelectedValue.ToString();
                 MasNumber[i] = pan.NumberCB.SelectedValue.ToString();
                 MasIdClient[i] = pan.IdClient;
+                MasYear[i] = Convert.ToInt32(pan.Year);
             
             }
             // Определяем виды проверок
-            if (CountS == 1) DoubPriceValid = true;
-            else { DoubTik = true; CountControlPrice = true; }
+            if (CountS != 1) 
+            { DoubTik = true; CountControlPrice = true; }
 
 
+            // проверка на повторную продажу по заданным параметрам
+            if (DoubPriceValid)
+            {
+                for (int i = 0; i <= CountS - 1; i++)
+                {
+                    if ((Sender.Controls[i] as UPanel).TypeTik != 3) // непроверяем и отсекаем испорченные
+                    {
+                        if ((clGetViewTickets.GetListTicketsToIdClient(MasIdClient[i], MasMonth[i], MasYear[i]).Rows.Count) == 0)
+                        {
+                            (Sender.Controls[i] as UPanel).ValidControl = 0;
+                            (Sender.Controls[i] as UPanel).ResreshTypeTik();
+                            
+                        }
+                        else
+                        {
+                            (Sender.Controls[i] as UPanel).ValidControl = 1;
+                            (Sender.Controls[i] as UPanel).ResreshTypeTik();
+                            RetDoubPriceValid = true;
+                        }
+                    }
+                    else
+                    {
+                        (Sender.Controls[i] as UPanel).ValidControl = 2;
+                        (Sender.Controls[i] as UPanel).ResreshTypeTik();
+                    }
+                }
+            }
+            // Проверка повторияющихся билетов
+
+            if (DoubTik)
+            {
+                string Se;
+                string Nu;
+
+                for (int i = 0; i <= CountS - 1; i++)
+                {
+                    Se = MasSeria[i];
+                    Nu = MasNumber[i];
+
+                    
+
+                    for (int j = i+1; j <= CountS - 1; j++)
+                    {
+                        if (Se == MasSeria[j] && Nu == MasNumber[j])
+                        {
+                            (Sender.Controls[j] as UPanel).ValidControl = 1;
+                            (Sender.Controls[j] as UPanel).ResreshTypeTik();
+                            RetDoubTik = true;
+                        }
+                    }
+
+                    
+                }
 
 
+            }
 
-
-
-
-            ReturnSender.Text = "Успех";
+            if (RetDoubPriceValid) { ReturnSender.Text = "Повтор продажи"; return false; }
+            else
+            if (RetDoubTik) { ReturnSender.Text = "Равные билеты"; return false; }
+            else
+            {
+                ReturnSender.Text = "Успех";
+                return true;
+            }
 
 
 
             
         }
 
-
+        
 
     }
 }

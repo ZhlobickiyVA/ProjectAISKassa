@@ -264,7 +264,6 @@
             this.ColorLabel.Name = "ColorLabel";
             this.ColorLabel.Size = new System.Drawing.Size(67, 18);
             this.ColorLabel.TabIndex = 0;
-            this.ColorLabel.Text = "Ошибка";
             this.ColorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // UPanel

@@ -13,6 +13,9 @@ using LibARM_Operator;
 using libCategory;
 using LibClient;
 using ListAccess;
+using LibTickets;
+using CashLib;
+using UtilDLL;
 
 namespace LibARM_Operator
 {
@@ -194,7 +197,7 @@ namespace LibARM_Operator
             if (FormSetting.ShowDialog() == DialogResult.OK)
             {
                 Setting = FormSetting.GetData();
-
+                // TODO: Переписать алгоритм удаления билетов
                 while (FSender.Controls.Count!=1) { FSender.Controls.Remove(FSender.Controls[FSender.Controls.Count-1]); }
 
                 if (Setting.DoubTik)
@@ -246,9 +249,60 @@ namespace LibARM_Operator
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Operation.GetControlPrice(FSender, controllabel);
+            if (Operation.GetControlPrice(FSender, controllabel))
+            {
+                if (MessageBox.Show("Проверка пройденна!", "Вы уверенны, что хотите выполнить операцию?"
+                    , MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+
+                    clKassa Kas = new clKassa();
+                    clEventTickets Event = new clEventTickets();
+                    Event.id_Empl = Empl.id;
+                    Event.Id_CategoryOper = Cat.id;
+                    
+
+                    for (int i = 0; i <= FSender.Controls.Count - 1; i++)
+                    {
+                        UPanel Pan = (FSender.Controls[i] as UPanel);
+                        if (Pan.TypeTik != 3)
+                        {
+                            Event.id_Client = Pan.IdClient;
+                            Event.Month = Convert.ToInt32( Pan.MonthCB.SelectedValue.ToString());
+                            Event.Year = Convert.ToInt32( Pan.Year);
+                            Event.id_Bilet = Pan.NumberCB.SelectedValue.ToString();
+                            Event.Price = Pan.Price;
+                            Event.NomOper = clFix.GetFix();
+                            Event.InsertEvent();
+                        }
+                        else
+                        {
+                            // Обработка испорченных билетов
+                        }
+                    }
+                    Kas.NomOper = Event.NomOper;
+                    Kas.Debet = (double)this.SumPrice.Tag;
+                    Kas.Kredit = 0;
+                    Kas.idEmpl = Empl.id;
+                    Kas.InsertMoneyToKassa();
+                }
+
+            }
         }
     }
 
 
 }
+
+
+
+
+//Command.Parameters.Add("@Status", SqlDbType.Int);
+//            Command.Parameters["@Status"].Value = this.Status;
+//            // Продажа
+//            if (this.id_Client != null)
+//            {
+
+
+//    Command.Parameters.Add("@nomoper", SqlDbType.Int);
+//    Command.Parameters["@nomoper"].Value = this.NomOper;
+//}

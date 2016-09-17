@@ -113,7 +113,7 @@ namespace LibARM_Operator
             }
 
             if (ValidControl == -1) { ColorLabel.Text = ""; }
-            if (ValidControl == 0) { ColorLabel.Text = "Успех"; ColorLabel.ForeColor = Color.Lime; }
+            if (ValidControl == 0) { ColorLabel.Text = "Успех"; ColorLabel.ForeColor = Color.Green; }
             if (ValidControl == 1) { ColorLabel.Text = "Ошибка"; ColorLabel.ForeColor = Color.DarkRed; }
             if (ValidControl == 2) { ColorLabel.Text = "Пропуск"; ColorLabel.ForeColor = Color.DarkRed; }
         }
@@ -122,17 +122,6 @@ namespace LibARM_Operator
 
         private void BrakButton_Click(object sender, EventArgs e)
         {
-            this.TypeTik = 3;
-            ResreshTypeTik();
-            BrakTrig = !BrakTrig;
-
-            UPanel Pan = new UPanel();
-            Pan.IdClient = IdClient;
-            Pan.idCategor = idCategor;
-            Pan.IdEmpl = IdEmpl;
-            Pan.TypeTik = this.TypeTik;
-            Pan.LoadUPanel();
-            Pan.Parent = this.Parent;
 
         }
 
@@ -150,12 +139,8 @@ namespace LibARM_Operator
             // Загружаем серии по выбранному месяцу
             if (OnDataSeria != null)
             {
-
-
                 SeriaCB.DataSource = OnDataSeria.Invoke(Convert.ToInt32(MonthCB.SelectedValue.ToString()));
-
                 SeriaCB.SelectedIndex = 0;
-                
             }
 
 

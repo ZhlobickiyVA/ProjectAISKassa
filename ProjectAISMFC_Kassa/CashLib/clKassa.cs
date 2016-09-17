@@ -23,7 +23,7 @@ namespace CashLib
 
 
         public string id { get; set; }
-        public Decimal NomOper { get; set; }
+        public long? NomOper { get; set; }
         public DateTime DateOperation { get; set; }
         public Double Debet { get; set; }
         public Double Kredit { get; set; }

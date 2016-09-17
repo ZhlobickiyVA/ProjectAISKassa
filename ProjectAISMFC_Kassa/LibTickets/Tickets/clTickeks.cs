@@ -155,33 +155,16 @@ namespace LibTickets
                 Command.Parameters.Add("@idparBil", SqlDbType.Int);
                 Command.Parameters["@idparBil"].Value = this.Status;
             }
-
-
-
-
-
-
-
-
             connection.Open();
                 Command.ExecuteNonQuery();
             connection.Close();
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
+
+
+
+
 
     public class clTickeks
     {
