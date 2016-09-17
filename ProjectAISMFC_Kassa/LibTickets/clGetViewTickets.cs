@@ -180,7 +180,7 @@ namespace LibTickets
             Command.Parameters["@id"].Value = new Guid(idClient);
             Command.Parameters.Add("@Year", SqlDbType.Int);
             Command.Parameters["@Year"].Value = Year;
-            Command.Parameters.Add("@Month", SqlDbType.NVarChar, 10);
+            Command.Parameters.Add("@Month", SqlDbType.Int, 10);
             Command.Parameters["@Month"].Value = Mon;
             SqlDataAdapter data = new SqlDataAdapter();
             data.SelectCommand = Command;

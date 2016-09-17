@@ -251,15 +251,16 @@ namespace LibARM_Operator
         {
             if (Operation.GetControlPrice(FSender, controllabel))
             {
-                if (MessageBox.Show("Проверка пройденна!", "Вы уверенны, что хотите выполнить операцию?"
+                if (MessageBox.Show("Вы уверенны, что хотите выполнить операцию?","Проверка пройденна!"
                     , MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
 
                     clKassa Kas = new clKassa();
                     clEventTickets Event = new clEventTickets();
-                    Event.id_Empl = Empl.id;
+                    Event.Id_Empl_Komy = Empl.id;
                     Event.Id_CategoryOper = Cat.id;
-                    
+                    int Pr = 0;
+                    int Iz = 0;
 
                     for (int i = 0; i <= FSender.Controls.Count - 1; i++)
                     {
@@ -272,18 +273,31 @@ namespace LibARM_Operator
                             Event.id_Bilet = Pan.NumberCB.SelectedValue.ToString();
                             Event.Price = Pan.Price;
                             Event.NomOper = clFix.GetFix();
+                            Event.Status = 1;
                             Event.InsertEvent();
+                            Pr++;
                         }
                         else
                         {
                             // Обработка испорченных билетов
+                            Iz++;
                         }
                     }
                     Kas.NomOper = Event.NomOper;
                     Kas.Debet = (double)this.SumPrice.Tag;
                     Kas.Kredit = 0;
                     Kas.idEmpl = Empl.id;
-                    Kas.InsertMoneyToKassa();
+                    Kas.addEventMoneytoKass();
+
+                    MessageInfo Me = new MessageInfo();
+                    Me.Lin.Add("Операция выполнена, Успешно!");
+                    Me.Lin.Add("Продано  : "+Pr.ToString());
+                    Me.Lin.Add("Испорчено: " + Iz.ToString());
+                    Me.Lin.Add("Сумма операции: " + SumPrice.Text);
+                    Me.ShowDialog();
+                    Close();
+
+
                 }
 
             }

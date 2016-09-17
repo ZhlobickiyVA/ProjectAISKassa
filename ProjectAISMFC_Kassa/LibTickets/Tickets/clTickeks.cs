@@ -137,9 +137,9 @@ namespace LibTickets
             if (this.id_Client != null)
             {
                 Command.Parameters.Add("@id_Client", SqlDbType.UniqueIdentifier);
-                Command.Parameters["@id_Client"].Value = this.id_Client;
+                Command.Parameters["@id_Client"].Value = new Guid( this.id_Client);
                 Command.Parameters.Add("@idcatoper", SqlDbType.UniqueIdentifier);
-                Command.Parameters["@idcatoper"].Value = this.Id_CategoryOper;
+                Command.Parameters["@idcatoper"].Value = new Guid( this.Id_CategoryOper);
                 Command.Parameters.Add("@priceoper", SqlDbType.Float);
                 Command.Parameters["@priceoper"].Value = this.Price;
                 Command.Parameters.Add("@Month", SqlDbType.Int);

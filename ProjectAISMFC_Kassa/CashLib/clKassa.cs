@@ -157,7 +157,7 @@ namespace CashLib
         // добавляем запись в кассовую книгу и возврашаем номер операции
         public void addEventMoneytoKass()
         {
-            this.NomOper = clFix.GetFix();
+
             Command = connection.CreateCommand();
             Command.CommandType = CommandType.StoredProcedure;
             Command.CommandText = "[_InsertEventMoneyKassa]";
