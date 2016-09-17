@@ -13,13 +13,6 @@ namespace ConnectLib
 
         public static string GetConn()
         {
-            //string IpBD = "192.168.88.90";
-            //string Password = "12345";
-            //string User = "sa";
-
-            //string IpBD = "10.49.1.14";
-            //string Password = "12345";
-            //string User = "c3user";
 
             string IpBD = "10.49.1.31";
             string Password = "Frdfhbev89@";
