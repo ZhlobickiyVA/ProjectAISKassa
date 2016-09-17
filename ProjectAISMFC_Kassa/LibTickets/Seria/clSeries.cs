@@ -73,6 +73,8 @@ namespace LibTickets
         }
 
 
+
+
         public static void RunSpSeria()
         {
             spSeries ser = new spSeries();
@@ -101,6 +103,11 @@ namespace LibTickets
             }
         }
 
+        public static Color GetColorToID(string id)
+        {
+            clSeries S = new clSeries(id);
+            return clSeries.getColorFromChar(S.Color.ToString());
+        }
 
         public static string GetColor(string id)
         {

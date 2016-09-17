@@ -41,7 +41,7 @@ namespace LibARM_Operator
             
             FormSetting = new FsettingPrice(Cat.id, Cli.id);
             this.Text += " ... Клиент: " + cli.GetSmallNameClient(); 
-
+            
 
         }
         // Загружаем массив возможных билетов для сотрудника для данной продажи
@@ -82,7 +82,14 @@ namespace LibARM_Operator
             Pan.MonthCB.DisplayMember = "Name";
             Pan.MonthCB.ValueMember = "id";
             Pan.MonthCB.SelectedIndex = 0;
+            Pan.OnDataSeria += Operation.GetDefaultSeria;
+            Pan.OnDataNumber += Operation.GetDefaultNumber;
             Pan.LoadUPanel();
+
+            Pan.OnDataSeria -= Operation.GetDefaultSeria;
+            Pan.OnDataNumber -= Operation.GetDefaultNumber;
+            Pan.OnDataSeria += Operation.GetSeriaToPrice;
+            Pan.OnDataNumber += Operation.GetNumberTikToPrice;
             FSender.Controls.Add(Pan);
         }
 // --------------------Информационный билет------------------------------------------------
@@ -216,17 +223,30 @@ namespace LibARM_Operator
         private void FSender_ControlAdded(object sender, ControlEventArgs e)
         {
             double SummaPrice = 0;
+            
             for (int i = 0; i <= FSender.Controls.Count - 1; i++)
             {
                 SummaPrice += (FSender.Controls[i] as UPanel).Price;
+                
             }
             this.SumPrice.Text = SummaPrice.ToString("C2");
             this.SumPrice.Tag = SummaPrice;
+
         }
 
         private void SetPrice_KeyUp(object sender, KeyEventArgs e)
         {
                 OutPrice.Text = (Convert.ToDouble(SetPrice.Value) - Convert.ToDouble(SumPrice.Tag)).ToString("C2");          
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Operation.GetControlPrice(FSender, controllabel);
         }
     }
 

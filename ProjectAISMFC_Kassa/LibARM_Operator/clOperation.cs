@@ -28,23 +28,30 @@ namespace LibARM_Operator
         }        
     }
 
-    public  class clOperation
+    public class clOperation
     {
 
 
         SqlConnection connection = new SqlConnection(Connect.GetConn());
-        SqlCommand Command = new SqlCommand();
+        SqlCommand Command;
 
         string idEmpl;
 
         public DataTable DataMonth { get; set; }
-        
+        public DataTable DataSeria { get; set; }
+        public DataTable DataNumber { get; set; }
 
         public clOperation(string idEmployess)
         {
             this.idEmpl = idEmployess;
             DataMonth = GetMonthToPrice();
+            DataSeria = GetSeriaToPrice(Convert.ToInt32( DataMonth.Rows[0].ItemArray[0].ToString()));
+            DataNumber = GetNumberTikToPrice(DataSeria.Rows[0].ItemArray[0].ToString());
         }
+
+        public DataTable GetDefaultSeria(int idMon) { return DataSeria; }
+        public DataTable GetDefaultNumber(string idSer) { return DataNumber; }
+
         public static void RunPriceTik(clEmployees empl, string idClient)
         {
             clClient cli = new clClient(idClient);
@@ -61,7 +68,8 @@ namespace LibARM_Operator
         // GetNumberTikToPrice param @idEmpl,@idSeria - Возврашает список билетов доступных для продажи по заданной серии
 
         public DataTable GetMonthToPrice()
-        { 
+        {
+            Command = new SqlCommand();
             Command.Connection = connection;
             Command.CommandType = CommandType.StoredProcedure;
             Command.CommandText = "[GetMonthToPrice]";
@@ -78,6 +86,8 @@ namespace LibARM_Operator
 
         public DataTable GetSeriaToPrice(int MonPrice)
         {
+
+            Command = new SqlCommand();
             Command.Connection = connection;
             Command.CommandType = CommandType.StoredProcedure;
             Command.CommandText = "[GetSeriaToPrice]";
@@ -96,6 +106,7 @@ namespace LibARM_Operator
 
         public DataTable GetNumberTikToPrice(string idSeria)
         {
+            Command = new SqlCommand();
             Command.Connection = connection;
             Command.CommandType = CommandType.StoredProcedure;
             Command.CommandText = "[GetNumberTikToPrice]";
@@ -110,6 +121,52 @@ namespace LibARM_Operator
             connection.Close();
             return ds.Tables[0];
             // id,Number
+        }
+
+
+        public void GetControlPrice(Control Sender,Label ReturnSender)
+        {
+            // Повторная продажа -- Красный
+            // Два одинаковых билета -- Красный
+            // Нехватка билетов -- Красный
+            // Успех -- Зеленый
+
+            int CountS = Sender.Controls.Count;
+            string[] MasMonth = new string[CountS];
+            string[] MasSeria = new string[CountS];
+            string[] MasNumber = new string[CountS];
+            string[] MasIdClient = new string[CountS];
+
+            bool DoubPriceValid = false; // Повторная продажа проверка 
+            bool DoubTik = false; // Повторяющиеся билеты
+            bool CountControlPrice = false; // Нехватка билетов
+
+
+            for (int i = 0; i <= CountS - 1; i++)
+            {
+                UPanel pan = (Sender.Controls[i] as UPanel);
+                MasMonth[i] = pan.MonthCB.SelectedValue.ToString();
+                MasSeria[i] = pan.SeriaCB.SelectedValue.ToString();
+                MasNumber[i] = pan.NumberCB.SelectedValue.ToString();
+                MasIdClient[i] = pan.IdClient;
+            
+            }
+            // Определяем виды проверок
+            if (CountS == 1) DoubPriceValid = true;
+            else { DoubTik = true; CountControlPrice = true; }
+
+
+
+
+
+
+
+
+            ReturnSender.Text = "Успех";
+
+
+
+            
         }
 
 

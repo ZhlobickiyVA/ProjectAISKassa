@@ -41,6 +41,13 @@ namespace LibARM_Operator
         public Double Price { get; set; }
         public bool BrakTrig { get { return !this.Enabled; } set { this.Enabled = !value; } }
 
+        public delegate DataTable dDataSeria(int idMon);
+        public event dDataSeria OnDataSeria;
+
+        public delegate DataTable dDataNumber(string idSer);
+        public event dDataNumber OnDataNumber;
+
+        public int ValidControl { get; set; }
 
 
         clCateegory CategoryPrice;
@@ -60,7 +67,7 @@ namespace LibARM_Operator
             CategoryPrice = new clCateegory(idCategor);
             Empl = new clEmployees(IdEmpl);
             Client = new clClient(IdClient);
-
+            ValidControl = -1;
             // 1- Продажа
             // 11 - Продажа сопровождающий
             // 12 - Продажа по категории
@@ -71,9 +78,28 @@ namespace LibARM_Operator
             this.Price = CategoryPrice.Price;
             PriceLab.Text = Price.ToString("C2");
             Year = DateTime.Now.Year.ToString();
-            
+            ValidControl = -1;
+            if (OnDataSeria != null)
+            {
+                SeriaCB.DataSource = OnDataSeria.Invoke(Convert.ToInt32(MonthCB.SelectedValue.ToString()));
+                SeriaCB.DisplayMember = "Name";
+                SeriaCB.ValueMember = "idSeria";
+                SeriaCB.SelectedIndex = 0;
+
+                
+            }
+            if (OnDataNumber != null)
+            {
+                NumberCB.DataSource = OnDataNumber.Invoke(SeriaCB.SelectedValue.ToString());
+                NumberCB.DisplayMember = "Number";
+                NumberCB.ValueMember = "id";
+                NumberCB.SelectedIndex = 0;
+            }
+
+            ColorLabel.BackColor = clSeries.GetColorToID(SeriaCB.SelectedValue.ToString());
+
         }
-        void ResreshTypeTik()
+        public void ResreshTypeTik()
         {
             
             switch (this.TypeTik)
@@ -85,6 +111,11 @@ namespace LibARM_Operator
                 case 3: this.Status = "Испорчен"; this.Price = 0.00;this.PriceLab.Text = this.Price.ToString("C2"); break;
                 default: this.Status = "Без статуса"; break;
             }
+
+            if (ValidControl == -1) { ColorLabel.Text = ""; }
+            if (ValidControl == 0) { ColorLabel.Text = "Успех"; ColorLabel.ForeColor = Color.Lime; }
+            if (ValidControl == 1) { ColorLabel.Text = "Ошибка"; ColorLabel.ForeColor = Color.DarkRed; }
+            if (ValidControl == 2) { ColorLabel.Text = "Пропуск"; ColorLabel.ForeColor = Color.DarkRed; }
         }
 
 
@@ -116,17 +147,43 @@ namespace LibARM_Operator
                 }
             }
             catch { }
-            
-            
+            // Загружаем серии по выбранному месяцу
+            if (OnDataSeria != null)
+            {
 
 
-            //try
-            //{
-            //    ColorTik.BackColor = clSeries.getColorFromChar(clSeries.GetColorToName(SeriaCB.SelectedText.ToString()));
-            //}
-            //catch { MessageBox.Show("Не могу получить Цвет!"); }
+                SeriaCB.DataSource = OnDataSeria.Invoke(Convert.ToInt32(MonthCB.SelectedValue.ToString()));
+
+                SeriaCB.SelectedIndex = 0;
+                
+            }
+
+
+
+
+
+
         }
 
+        private void SeriaCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (OnDataNumber != null)
+            {
+                NumberCB.DataSource = OnDataNumber.Invoke(SeriaCB.SelectedValue.ToString()).DefaultView;
+                NumberCB.SelectedIndex = 0;
 
+            }
+
+            try
+            {
+                ColorLabel.BackColor = clSeries.GetColorToID(SeriaCB.SelectedValue.ToString());
+            }
+            catch { }
+        }
+
+        private void NumberCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

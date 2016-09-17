@@ -44,6 +44,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.MonthCB = new System.Windows.Forms.ComboBox();
             this.ColorTik = new System.Windows.Forms.GroupBox();
+            this.ColorLabel = new System.Windows.Forms.Label();
             this.ParentPanel.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -52,6 +53,7 @@
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.ColorTik.SuspendLayout();
             this.SuspendLayout();
             // 
             // ParentPanel
@@ -168,6 +170,7 @@
             this.NumberCB.Name = "NumberCB";
             this.NumberCB.Size = new System.Drawing.Size(110, 23);
             this.NumberCB.TabIndex = 1;
+            this.NumberCB.SelectedIndexChanged += new System.EventHandler(this.NumberCB_SelectedIndexChanged);
             // 
             // groupBox5
             // 
@@ -190,6 +193,7 @@
             this.SeriaCB.Name = "SeriaCB";
             this.SeriaCB.Size = new System.Drawing.Size(101, 23);
             this.SeriaCB.TabIndex = 1;
+            this.SeriaCB.SelectedIndexChanged += new System.EventHandler(this.SeriaCB_SelectedIndexChanged);
             // 
             // groupBox4
             // 
@@ -239,14 +243,29 @@
             // 
             // ColorTik
             // 
+            this.ColorTik.Controls.Add(this.ColorLabel);
             this.ColorTik.Dock = System.Windows.Forms.DockStyle.Left;
             this.ColorTik.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ColorTik.Location = new System.Drawing.Point(4, 19);
             this.ColorTik.Name = "ColorTik";
+            this.ColorTik.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
             this.ColorTik.Size = new System.Drawing.Size(87, 43);
             this.ColorTik.TabIndex = 0;
             this.ColorTik.TabStop = false;
             this.ColorTik.Text = "Цвет Билета";
+            // 
+            // ColorLabel
+            // 
+            this.ColorLabel.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.ColorLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ColorLabel.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ColorLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ColorLabel.Location = new System.Drawing.Point(10, 20);
+            this.ColorLabel.Name = "ColorLabel";
+            this.ColorLabel.Size = new System.Drawing.Size(67, 18);
+            this.ColorLabel.TabIndex = 0;
+            this.ColorLabel.Text = "Ошибка";
+            this.ColorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // UPanel
             // 
@@ -269,6 +288,7 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
+            this.ColorTik.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -283,13 +303,14 @@
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Label PriceLab;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.ComboBox NumberCB;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.ComboBox SeriaCB;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label YearLab;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox ColorTik;
         public System.Windows.Forms.ComboBox MonthCB;
+        private System.Windows.Forms.Label ColorLabel;
+        public System.Windows.Forms.ComboBox NumberCB;
+        public System.Windows.Forms.ComboBox SeriaCB;
     }
 }

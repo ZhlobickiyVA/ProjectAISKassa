@@ -87,6 +87,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.SearchTB = new System.Windows.Forms.TextBox();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.CountTik = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel2.SuspendLayout();
             this.ListValid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DG)).BeginInit();
@@ -518,12 +519,12 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NameEmpl,
             this.SummainKassa,
+            this.CountTik,
             this.NowTimeDate});
             this.statusStrip1.Location = new System.Drawing.Point(4, 504);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1196, 24);
             this.statusStrip1.TabIndex = 7;
-            this.statusStrip1.Text = "statusStrip1";
             // 
             // NameEmpl
             // 
@@ -623,6 +624,11 @@
             this.timer.Interval = 1000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // CountTik
+            // 
+            this.CountTik.Name = "CountTik";
+            this.CountTik.Size = new System.Drawing.Size(0, 19);
+            // 
             // ARMOperatorV2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -705,5 +711,6 @@
         private System.Windows.Forms.ToolStripMenuItem InsertMoneyToKassa;
         private System.Windows.Forms.ToolStripMenuItem ReturnMoneyToKassa;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripStatusLabel CountTik;
     }
 }

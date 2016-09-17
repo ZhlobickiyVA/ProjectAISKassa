@@ -42,21 +42,20 @@
             this.SettingPrice = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.OutPrice = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.SumPrice = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.SetPrice = new System.Windows.Forms.NumericUpDown();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.controllabel = new System.Windows.Forms.LinkLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ListDov = new System.Windows.Forms.ListBox();
             this.AddWar2 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.controllabel = new System.Windows.Forms.LinkLabel();
             this.toolStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SenderPanel.SuspendLayout();
@@ -68,9 +67,9 @@
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SetPrice)).BeginInit();
-            this.groupBox8.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -223,32 +222,23 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 5;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.905957F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.85894F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.62334F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.054152F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.02166F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.07837F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.07837F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.07837F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox8, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.groupBox6, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.groupBox7, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox8, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(20, 22);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(831, 64);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 19);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
             // 
             // groupBox1
             // 
@@ -302,9 +292,9 @@
             // 
             this.groupBox7.Controls.Add(this.SetPrice);
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox7.Location = new System.Drawing.Point(208, 3);
+            this.groupBox7.Location = new System.Drawing.Point(233, 3);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(202, 58);
+            this.groupBox7.Size = new System.Drawing.Size(177, 58);
             this.groupBox7.TabIndex = 4;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Дано";
@@ -320,32 +310,11 @@
             0,
             0});
             this.SetPrice.Name = "SetPrice";
-            this.SetPrice.Size = new System.Drawing.Size(196, 39);
+            this.SetPrice.Size = new System.Drawing.Size(171, 39);
             this.SetPrice.TabIndex = 6;
             this.SetPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.SetPrice.ThousandsSeparator = true;
             this.SetPrice.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SetPrice_KeyUp);
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.controllabel);
-            this.groupBox8.Location = new System.Drawing.Point(85, 3);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(88, 58);
-            this.groupBox8.TabIndex = 5;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Контроль";
-            // 
-            // controllabel
-            // 
-            this.controllabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.controllabel.Font = new System.Drawing.Font("Times New Roman", 15.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.controllabel.LinkColor = System.Drawing.Color.Green;
-            this.controllabel.Location = new System.Drawing.Point(3, 22);
-            this.controllabel.Name = "controllabel";
-            this.controllabel.Size = new System.Drawing.Size(82, 33);
-            this.controllabel.TabIndex = 0;
-            this.controllabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox2
             // 
@@ -411,6 +380,7 @@
             this.button2.TabIndex = 0;
             this.button2.Text = "      Провести оплату";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -426,6 +396,32 @@
             this.button1.Text = "Отмена операции";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // groupBox8
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.groupBox8, 2);
+            this.groupBox8.Controls.Add(this.controllabel);
+            this.groupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox8.Location = new System.Drawing.Point(3, 3);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(224, 58);
+            this.groupBox8.TabIndex = 7;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Контроль";
+            // 
+            // controllabel
+            // 
+            this.controllabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.controllabel.Font = new System.Drawing.Font("Times New Roman", 15.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.controllabel.LinkColor = System.Drawing.Color.Green;
+            this.controllabel.Location = new System.Drawing.Point(3, 22);
+            this.controllabel.Name = "controllabel";
+            this.controllabel.Size = new System.Drawing.Size(218, 33);
+            this.controllabel.TabIndex = 0;
+            this.controllabel.TabStop = true;
+            this.controllabel.Text = "Удачного дня";
+            this.controllabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Price
             // 
@@ -452,14 +448,13 @@
             this.panel1.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SetPrice)).EndInit();
-            this.groupBox8.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -474,15 +469,12 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        public System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label OutPrice;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label SumPrice;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.NumericUpDown SetPrice;
-        private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.LinkLabel controllabel;
         private System.Windows.Forms.GroupBox groupBox2;
         public System.Windows.Forms.Button AddWar2;
         private System.Windows.Forms.Panel panel3;
@@ -495,5 +487,7 @@
         public System.Windows.Forms.ListBox ListDov;
         private System.Windows.Forms.FlowLayoutPanel FSender;
         private System.Windows.Forms.ToolStripButton OpenListAccess;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.LinkLabel controllabel;
     }
 }
