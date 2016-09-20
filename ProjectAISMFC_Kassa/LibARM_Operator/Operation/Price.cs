@@ -85,6 +85,7 @@ namespace LibARM_Operator
             Pan.MonthCB.DisplayMember = "Name";
             Pan.MonthCB.ValueMember = "id";
             Pan.MonthCB.SelectedIndex = 0;
+            
             Pan.OnDataSeria += Operation.GetDefaultSeria;
             Pan.OnDataNumber += Operation.GetDefaultNumber;
             Pan.LoadUPanel();
@@ -115,9 +116,9 @@ namespace LibARM_Operator
         private void ListCat_SelectedIndexChanged(object sender, EventArgs e)
         {
             Setting = new clSettingPrice();
-
+            // Удаляем все билеты
             FSender.Controls.Clear();
-
+            // Получаем id Категории выбранной
             IdSelectedCat = Cli.ListCategory[ListCat.SelectedIndex].ToString();
             Cat = new clCateegory(IdSelectedCat);
             infocat.Text = Cat.Note;
@@ -198,17 +199,18 @@ namespace LibARM_Operator
             {
                 Setting = FormSetting.GetData();
                 // TODO: Переписать алгоритм удаления билетов
-                while (FSender.Controls.Count!=1) { FSender.Controls.Remove(FSender.Controls[FSender.Controls.Count-1]); }
+                while (FSender.Controls.Count != 1) { FSender.Controls.Remove(FSender.Controls[FSender.Controls.Count - 1]); }
 
                 if (Setting.DoubTik)
-                    {
-                        GetPriceTikToFsender(Cli.id,11);
-                    }
-                    for (int i = 0; i <= Setting.ListClientAdd.Count - 1; i++)
-                    {
-                        GetPriceTikToFsender(Setting.ListClientAdd[i].ToString(),12);
-                    }                
+                {
+                    GetPriceTikToFsender(Cli.id, 11);
+                }
+                for (int i = 0; i <= Setting.ListClientAdd.Count - 1; i++)
+                {
+                    GetPriceTikToFsender(Setting.ListClientAdd[i].ToString(), 12);
+                }
             }
+            else Setting.ListClientAdd.Clear();
 
 
         }
@@ -226,14 +228,20 @@ namespace LibARM_Operator
         private void FSender_ControlAdded(object sender, ControlEventArgs e)
         {
             double SummaPrice = 0;
-            
+
             for (int i = 0; i <= FSender.Controls.Count - 1; i++)
             {
                 SummaPrice += (FSender.Controls[i] as UPanel).Price;
-                
             }
             this.SumPrice.Text = SummaPrice.ToString("C2");
             this.SumPrice.Tag = SummaPrice;
+
+            if (FSender.Controls.Count != 0 && FSender.Controls.Count != 1)
+            {
+                (FSender.Controls[FSender.Controls.Count - 1] as UPanel).NumberCB.SelectedIndex =
+                    FSender.Controls.Count - 1
+                    ;
+            }
 
         }
 

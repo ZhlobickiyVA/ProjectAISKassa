@@ -93,9 +93,10 @@ namespace LibARM_Operator
             // id,Name
         }
 
+
+
         public DataTable GetSeriaToPrice(int MonPrice)
         {
-
             Command = new SqlCommand();
             Command.Connection = connection;
             Command.CommandType = CommandType.StoredProcedure;

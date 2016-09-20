@@ -149,14 +149,13 @@ namespace LibARM_Operator
 
 
         }
-
+        // 
         private void SeriaCB_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (OnDataNumber != null)
             {
                 NumberCB.DataSource = OnDataNumber.Invoke(SeriaCB.SelectedValue.ToString()).DefaultView;
-                NumberCB.SelectedIndex = 0;
-
+                NumberCB.SelectedIndex = 0;                
             }
 
             try
