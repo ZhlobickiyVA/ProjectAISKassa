@@ -1,0 +1,13 @@
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibDataFile\bin\Debug\LibDataFile.dll.config
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibDataFile\bin\Debug\LibDataFile.dll
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibDataFile\bin\Debug\LibDataFile.pdb
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibDataFile\bin\Debug\Connect.dll
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibDataFile\bin\Debug\UtilDLL.dll
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibDataFile\bin\Debug\Connect.pdb
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibDataFile\bin\Debug\UtilDLL.pdb
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibDataFile\obj\Debug\LibDataFile.csprojResolveAssemblyReference.cache
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibDataFile\obj\Debug\LibDataFile.FormFileReport.resources
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibDataFile\obj\Debug\LibDataFile.Properties.Resources.resources
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibDataFile\obj\Debug\LibDataFile.csproj.GenerateResource.Cache
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibDataFile\obj\Debug\LibDataFile.dll
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibDataFile\obj\Debug\LibDataFile.pdb

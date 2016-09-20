@@ -1,0 +1,13 @@
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\libCategory\bin\Debug\libCategory.dll
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\libCategory\bin\Debug\libCategory.pdb
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\libCategory\bin\Debug\Connect.dll
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\libCategory\bin\Debug\UtilDLL.dll
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\libCategory\bin\Debug\Connect.pdb
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\libCategory\bin\Debug\UtilDLL.pdb
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\libCategory\obj\Debug\libCategory.Properties.Resources.resources
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\libCategory\obj\Debug\libCategory.RedCat.resources
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\libCategory\obj\Debug\libCategory.spCategory.resources
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\libCategory\obj\Debug\libCategory.csproj.GenerateResource.Cache
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\libCategory\obj\Debug\libCategory.dll
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\libCategory\obj\Debug\libCategory.pdb
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\libCategory\obj\Debug\libCategory.csprojResolveAssemblyReference.cache

@@ -1,0 +1,8 @@
+﻿select ca.Mon ,dt.id_Series,dt.Number from EventTickets as et
+join KassaBilet..DataTickets as DT on et.id_Bilet = dt.id
+join (select id_series,Mon from KassaBilet..ContolAccess as CA where CA.bdate <= GETDATE() and CA.edate >= GETDATE() and CA.Active = 1 ) as CA
+on dt.id_Series = ca.id_series
+
+where et.trig = 1 and et.id_Empl = '2BA2A578-A7B0-47C4-98EC-0DFFCD52734F'
+
+order by mon,id_series

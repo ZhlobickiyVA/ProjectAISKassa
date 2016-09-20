@@ -46,6 +46,8 @@
             this.Event = new System.Windows.Forms.ToolStripMenuItem();
             this.кассовыеОперацииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Report = new System.Windows.Forms.ToolStripMenuItem();
+            this.SP = new System.Windows.Forms.ToolStripMenuItem();
+            this.RunSPser = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.panel3 = new System.Windows.Forms.Panel();
             this.splitter1 = new System.Windows.Forms.Splitter();
@@ -82,8 +84,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.btSearch = new System.Windows.Forms.Button();
             this.btClear = new System.Windows.Forms.Button();
-            this.SP = new System.Windows.Forms.ToolStripMenuItem();
-            this.RunSPser = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
@@ -204,6 +204,21 @@
             this.Report.Name = "Report";
             this.Report.Size = new System.Drawing.Size(60, 20);
             this.Report.Text = "Отчеты";
+            // 
+            // SP
+            // 
+            this.SP.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.RunSPser});
+            this.SP.Name = "SP";
+            this.SP.Size = new System.Drawing.Size(94, 20);
+            this.SP.Text = "Справочники";
+            // 
+            // RunSPser
+            // 
+            this.RunSPser.Name = "RunSPser";
+            this.RunSPser.Size = new System.Drawing.Size(109, 22);
+            this.RunSPser.Text = "Серии";
+            this.RunSPser.Click += new System.EventHandler(this.серииToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
@@ -732,21 +747,6 @@
             this.btClear.TabIndex = 0;
             this.btClear.Text = "Очистить";
             this.btClear.UseVisualStyleBackColor = true;
-            // 
-            // SP
-            // 
-            this.SP.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.RunSPser});
-            this.SP.Name = "SP";
-            this.SP.Size = new System.Drawing.Size(94, 20);
-            this.SP.Text = "Справочники";
-            // 
-            // RunSPser
-            // 
-            this.RunSPser.Name = "RunSPser";
-            this.RunSPser.Size = new System.Drawing.Size(152, 22);
-            this.RunSPser.Text = "Серии";
-            this.RunSPser.Click += new System.EventHandler(this.серииToolStripMenuItem_Click);
             // 
             // ARMBuh2v
             // 

@@ -1,0 +1,16 @@
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEmployees\bin\Debug\LibEmployees.dll
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEmployees\bin\Debug\LibEmployees.pdb
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEmployees\bin\Debug\Connect.dll
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEmployees\bin\Debug\UtilDLL.dll
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEmployees\bin\Debug\Connect.pdb
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEmployees\bin\Debug\UtilDLL.pdb
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEmployees\obj\Debug\LibEmployees.csprojResolveAssemblyReference.cache
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEmployees\obj\Debug\LibEmployees.spRedOrg.resources
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEmployees\obj\Debug\LibEmployees.Properties.Resources.resources
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEmployees\obj\Debug\LibEmployees.FeditSPEmpl.resources
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEmployees\obj\Debug\LibEmployees.RedRole.resources
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEmployees\obj\Debug\LibEmployees.FspEmployees.resources
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEmployees\obj\Debug\LibEmployees.spRole.resources
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEmployees\obj\Debug\LibEmployees.csproj.GenerateResource.Cache
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEmployees\obj\Debug\LibEmployees.dll
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEmployees\obj\Debug\LibEmployees.pdb

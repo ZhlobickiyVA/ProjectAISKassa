@@ -1,0 +1,11 @@
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\UtilDLL\bin\Debug\UtilDLL.dll.config
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\UtilDLL\bin\Debug\UtilDLL.dll
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\UtilDLL\bin\Debug\UtilDLL.pdb
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\UtilDLL\bin\Debug\Connect.dll
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\UtilDLL\bin\Debug\Connect.pdb
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\UtilDLL\obj\Debug\UtilDLL.csprojResolveAssemblyReference.cache
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\UtilDLL\obj\Debug\UtilDLL.MessageInfo.resources
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\UtilDLL\obj\Debug\UtilDLL.Properties.Resources.resources
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\UtilDLL\obj\Debug\UtilDLL.csproj.GenerateResource.Cache
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\UtilDLL\obj\Debug\UtilDLL.dll
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\UtilDLL\obj\Debug\UtilDLL.pdb

@@ -1,0 +1,4 @@
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\Connect\bin\Debug\Connect.dll
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\Connect\bin\Debug\Connect.pdb
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\Connect\obj\Debug\Connect.dll
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\Connect\obj\Debug\Connect.pdb

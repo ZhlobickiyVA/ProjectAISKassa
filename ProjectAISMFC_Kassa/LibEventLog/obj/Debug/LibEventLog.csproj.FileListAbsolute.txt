@@ -1,0 +1,7 @@
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEventLog\bin\Debug\LibEventLog.dll
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEventLog\bin\Debug\LibEventLog.pdb
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEventLog\bin\Debug\Connect.dll
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEventLog\bin\Debug\Connect.pdb
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEventLog\obj\Debug\LibEventLog.csprojResolveAssemblyReference.cache
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEventLog\obj\Debug\LibEventLog.dll
+C:\RepoSitoryProject\ProjectAISMFC_Kassa\LibEventLog\obj\Debug\LibEventLog.pdb

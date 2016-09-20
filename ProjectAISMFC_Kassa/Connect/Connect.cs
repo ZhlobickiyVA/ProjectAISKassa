@@ -11,8 +11,8 @@ namespace ConnectLib
         public static string GetConn()
         {
 
-            string IpBD = "10.49.1.31";
-            string Password = "Frdfhbev89@";
+            string IpBD = "127.0.0.1";
+            string Password = "12345";
             string User = "sa";
 
             return "Password =" + Password + " ; Persist Security Info = True; User ID =" + User
