@@ -222,7 +222,7 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 639);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 640);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(970, 22);
             this.statusStrip1.TabIndex = 2;
@@ -236,7 +236,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(300, 24);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(670, 615);
+            this.panel3.Size = new System.Drawing.Size(670, 616);
             this.panel3.TabIndex = 4;
             // 
             // splitter1
@@ -281,7 +281,7 @@
             this.grid.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.grid.RowTemplate.ReadOnly = true;
             this.grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grid.Size = new System.Drawing.Size(482, 615);
+            this.grid.Size = new System.Drawing.Size(482, 616);
             this.grid.TabIndex = 11;
             this.grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellContentClick);
             this.grid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellContentClick);
@@ -321,7 +321,7 @@
             this.ListTik.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.ListTik.RowTemplate.ReadOnly = true;
             this.ListTik.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ListTik.Size = new System.Drawing.Size(566, 615);
+            this.ListTik.Size = new System.Drawing.Size(566, 616);
             this.ListTik.TabIndex = 10;
             this.ListTik.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListTik_CellContentClick_1);
             this.ListTik.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListTik_CellContentClick_1);
@@ -342,7 +342,7 @@
             this.panel2.MinimumSize = new System.Drawing.Size(300, 0);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.panel2.Size = new System.Drawing.Size(300, 615);
+            this.panel2.Size = new System.Drawing.Size(300, 616);
             this.panel2.TabIndex = 3;
             // 
             // groupBox8
@@ -395,7 +395,7 @@
             this.groupBox7.Controls.Add(this.panel9);
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox7.Font = new System.Drawing.Font("Times New Roman", 12.25F, System.Drawing.FontStyle.Bold);
-            this.groupBox7.Location = new System.Drawing.Point(5, 337);
+            this.groupBox7.Location = new System.Drawing.Point(5, 338);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(10, 3, 5, 3);
@@ -515,7 +515,7 @@
             this.groupBox2.Controls.Add(this.panel6);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 12.25F, System.Drawing.FontStyle.Bold);
-            this.groupBox2.Location = new System.Drawing.Point(5, 451);
+            this.groupBox2.Location = new System.Drawing.Point(5, 452);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(10, 3, 5, 3);
@@ -723,7 +723,7 @@
             this.panel4.Controls.Add(this.btSearch);
             this.panel4.Controls.Add(this.btClear);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(5, 565);
+            this.panel4.Location = new System.Drawing.Point(5, 566);
             this.panel4.MinimumSize = new System.Drawing.Size(300, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(300, 50);
@@ -752,7 +752,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(970, 661);
+            this.ClientSize = new System.Drawing.Size(970, 662);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.statusStrip1);

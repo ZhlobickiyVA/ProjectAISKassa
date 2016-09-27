@@ -96,20 +96,27 @@ namespace LibEmployees
                 Command.Parameters["@PredComDolzh"].Value = this.PredComDolzh.ToString();
                 Command.Parameters.Add("@PredComFio", SqlDbType.NVarChar, 100);
                 Command.Parameters["@PredComFio"].Value = this.PredComFio.ToString();
+
                 Command.Parameters.Add("@cl1ComDolzh", SqlDbType.NVarChar, 100);
                 Command.Parameters["@cl1ComDolzh"].Value = this.cl1ComDolzh.ToString();
+
                 Command.Parameters.Add("@cl1ComFio", SqlDbType.NVarChar, 100);
                 Command.Parameters["@cl1ComFio"].Value = this.cl1ComFIo.ToString();
+
                 Command.Parameters.Add("@cl2ComDolzh", SqlDbType.NVarChar, 100);
                 Command.Parameters["@cl2ComDolzh"].Value = this.cl2ComDolzh.ToString();
+
                 Command.Parameters.Add("@cl2ComFio", SqlDbType.NVarChar, 100);
                 Command.Parameters["@cl2ComFio"].Value = this.cl2ComFIo.ToString();
+
                 Command.Parameters.Add("@cl3ComDolzh", SqlDbType.NVarChar, 100);
                 Command.Parameters["@cl3ComDolzh"].Value = this.cl3ComDolzh.ToString();
+
                 Command.Parameters.Add("@cl3ComFio", SqlDbType.NVarChar, 100);
                 Command.Parameters["@cl3ComFio"].Value = this.cl3ComFIo.ToString();
+
                 Command.Parameters.Add("@Director", SqlDbType.NVarChar, 100);
-                Command.Parameters["@Director"].Value = this.cl3ComFIo.ToString();
+                Command.Parameters["@Director"].Value = this.Director.ToString();
                 connection.Open();
                     Command.ExecuteNonQuery();
                 connection.Close();

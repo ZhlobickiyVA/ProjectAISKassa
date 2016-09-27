@@ -33,8 +33,8 @@ namespace GeneralMidule
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ARMBuh2v("2BA2A578-A7B0-47C4-98EC-0DFFCD52734F"));
-            
+            //Application.Run(new ARMBuh2v("2BA2A578-A7B0-47C4-98EC-0DFFCD52734F"));
+            Application.Run(new Form1());
 
 
 

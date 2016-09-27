@@ -25,10 +25,13 @@ namespace LibEmployees
             this.PredFio.Text = org.PredComFio.Trim();
             this.cl1Dolzh.Text = org.cl1ComDolzh.Trim();
             this.cl1Fio.Text = org.cl1ComFIo.Trim();
+
             this.cl2Dolzh.Text = org.cl2ComDolzh.Trim();
             this.cl2Fio.Text = org.cl2ComFIo.Trim();
+
             this.cl3Dolzh.Text = org.cl3ComDolzh.Trim();
             this.cl3Fio.Text = org.cl3ComFIo.Trim();
+
             this.DirectName.Text = org.Director.Trim();
         }
 

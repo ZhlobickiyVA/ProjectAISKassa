@@ -112,6 +112,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="app.config" />
@@ -174,6 +180,10 @@
       <Project>{7a2917f4-9cea-4056-bdcc-cf57fbf320d2}</Project>
       <Name>LibClient</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LibDataFile\LibDataFile.csproj">
+      <Project>{ce160d26-d29b-4286-967a-87907dac6f67}</Project>
+      <Name>LibDataFile</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LibEmployees\LibEmployees.csproj">
       <Project>{4ceb2d2e-13ee-4dd0-a960-d7bfd11a8f77}</Project>
       <Name>LibEmployees</Name>
@@ -199,7 +209,11 @@
       <Name>UtilDLL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
