@@ -11,11 +11,7 @@ using ConnectLib;
 
 namespace LibTickets
 {
-    /* 
-     
-         
-         
-     */
+   
     public class clPackTick // Класс Создание нового пакета билетов
     {
         public static void CreatePackTik(string id_empl, string idSeria, int BeginValue, int Count) // Создать пакет билетов
@@ -77,6 +73,7 @@ namespace LibTickets
         // Дополнительно
         public string Id_Seria { get; set; }
         public string Id_Empl_Komy { get; set; }
+        public clTickeks Tickets { get; set; }
 
 
         public clEventTickets()
@@ -89,6 +86,7 @@ namespace LibTickets
             this.id_Client = null;
             this.NomOper = null;
             this.Status = 0;
+            this.Tickets = new clTickeks();
         }
     
         public clEventTickets(string id)
@@ -107,7 +105,7 @@ namespace LibTickets
                 reader.Read();
                 this.id = reader["id"].ToString();
                 this.id_Bilet = reader["idBilet"].ToString();
-                this.Id_CategoryOper = reader["CatOper"].ToString();
+                this.Id_CategoryOper = reader["idCatOper"].ToString();
                 this.id_Client = reader["idclient"].ToString();
                 this.id_Empl = reader["idempl"].ToString();
                 this.Id_ParentTick = reader["idParent"].ToString();
@@ -119,6 +117,8 @@ namespace LibTickets
             }
             else MessageBox.Show("Пустой запрос!");
             connection.Close();
+
+            this.Tickets = new clTickeks(this.id_Bilet);
 
         }
         public void InsertEvent()
@@ -137,9 +137,9 @@ namespace LibTickets
             if (this.id_Client != null)
             {
                 Command.Parameters.Add("@id_Client", SqlDbType.UniqueIdentifier);
-                Command.Parameters["@id_Client"].Value = this.id_Client;
+                Command.Parameters["@id_Client"].Value = new Guid( this.id_Client);
                 Command.Parameters.Add("@idcatoper", SqlDbType.UniqueIdentifier);
-                Command.Parameters["@idcatoper"].Value = this.Id_CategoryOper;
+                Command.Parameters["@idcatoper"].Value = new Guid( this.Id_CategoryOper);
                 Command.Parameters.Add("@priceoper", SqlDbType.Float);
                 Command.Parameters["@priceoper"].Value = this.Price;
                 Command.Parameters.Add("@Month", SqlDbType.Int);
@@ -152,405 +152,68 @@ namespace LibTickets
             // Выдача дубликата
             if (this.Id_ParentTick !=null)
             {
-                Command.Parameters.Add("@idparBil", SqlDbType.Int);
-                Command.Parameters["@idparBil"].Value = this.Status;
+                Command.Parameters.Add("@idparBil", SqlDbType.UniqueIdentifier);
+                Command.Parameters["@idparBil"].Value = new Guid( this.Id_ParentTick);
             }
-
-
-
-
-
-
-
-
             connection.Open();
                 Command.ExecuteNonQuery();
             connection.Close();
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
+
+
+
+
 
     public class clTickeks
     {
 
-        public string id { get; set; }
-        public string id_Bilet { get; set; }
-        public string id_Seria { get; set; }
-        public string Number { get; set; }
-        public string id_Empl { get; set; }
-        public string id_Client { get; set; }
-        public DateTime DateOperation { get; set; }
-        public int Month { get; set; }
-        public int Year { get; set; }
-        public string id_BiletParent { get; set; }
-        public int Status { get; set; }
-        public bool triger { get; set; }
-        public long NomerOperation { get; set; }
-        public float PriceOperation { get; set; }
-        public string id_CatOperation { get; set; }
-
-
+        string id { get; set; }
+        string Number { get; set; }
+        string IdSeria { get; set; }
 
         public clTickeks() { } //Пустой конструктор...
-
-
-
-
 
 
         SqlConnection connection = new SqlConnection(Connect.GetConn());
         SqlCommand Command;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //------------------------------------------------------------------------------------------------------------------------------------        
-
-
-
-
-        // Для нового АРМ Бухгалтера
-
-
-
-
-
-
-
-
-
-
-        // --------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-        public void GetListGroupTik_(ComboBox sender)
+        public clTickeks(string idBilet)
         {
-            SqlConnection connection = new SqlConnection(Connect.GetConn());
-            SqlCommand Command = new SqlCommand();
+            this.id = id;
+            Command = new SqlCommand();
             Command.Connection = connection;
             Command.CommandType = CommandType.StoredProcedure;
-            Command.CommandText = "[SelectGroupTik]";
-
-            SqlDataAdapter data = new SqlDataAdapter();
-            data.SelectCommand = Command;
-            DataSet ds = new DataSet();
-
-            data.Fill(ds);
-
-            sender.DataSource = ds.Tables[0].DefaultView;
-
-
-            sender.DisplayMember = "Name";
-            sender.ValueMember = "id";
-
-
-
-            connection.Close();
-            sender.Select();
-
-        }
-
-        public void GetListTickeks_(DataGridView sender, BindingNavigator sender2, string series, string idEmpl, Int32 status, Int32 level, DateTime bdate, DateTime edate, int page, int count)
-        {
-
-            sender.Columns.Clear();
-
-            if (sender.Rows.Count != 0) sender.Rows.Clear();
-
-            SqlConnection connection = new SqlConnection(Connect.GetConn());
-            SqlCommand Command = new SqlCommand();
-            Command.Connection = connection;
-            Command.CommandType = CommandType.StoredProcedure;
-            Command.CommandText = "[SelectTickeks]";
-
-            Command.Parameters.Add("@series", SqlDbType.NVarChar, 40);
-            Command.Parameters["@series"].Value = series;
-
-            Command.Parameters.Add("@idEmpl", SqlDbType.UniqueIdentifier);
-
-            Command.Parameters["@idEmpl"].Value = new Guid(idEmpl);
-
-
-            Command.Parameters.Add("@status", SqlDbType.Int);
-            Command.Parameters["@status"].Value = status;
-
-            Command.Parameters.Add("@Level", SqlDbType.Int);
-            Command.Parameters["@level"].Value = level;
-
-            Command.Parameters.Add("@bdate", SqlDbType.DateTime);
-            Command.Parameters["@bdate"].Value = bdate.Date;
-
-            Command.Parameters.Add("@edate", SqlDbType.DateTime);
-            Command.Parameters["@edate"].Value = edate.Date;
-
-            Command.Parameters.Add("@page", SqlDbType.Int);
-            Command.Parameters["@page"].Value = page;
-
-            Command.Parameters.Add("@count", SqlDbType.Int);
-            Command.Parameters["@count"].Value = count;
-
-            SqlDataAdapter data = new SqlDataAdapter();
-            data.SelectCommand = Command;
-            DataSet ds = new DataSet();
-
-            data.Fill(ds);
-            connection.Close();
-
-            BindingSource bs1 = new BindingSource();
-            bs1.DataSource = ds.Tables[0].DefaultView;
-
-            sender.DataSource = bs1;
-
-            if (sender2 != null) sender2.BindingSource = bs1;
-
-            sender.Columns[0].Visible = false;
-            sender.Columns[1].Visible = false;
-            //sender.Columns[4].Visible = false;
-            //sender.Columns[5].Visible = false;
-            sender.Columns[3].Width = 200;
-            clSeries.RepaintCellgrid(sender, 2, 1);
-            sender.Select();
-        }
-
-        public void GetListTickeks_(DataGridView sender, char[] stringsql)
-        {
-
-
-            SqlConnection connection = new SqlConnection(Connect.GetConn());
-            SqlCommand Command = new SqlCommand();
-            Command.Connection = connection;
-            Command.CommandType = CommandType.Text;
-            Command.CommandText = new string(stringsql);
-
-            SqlDataAdapter data = new SqlDataAdapter();
-            data.SelectCommand = Command;
-            DataSet ds = new DataSet();
-
-            data.Fill(ds);
-            connection.Close();
-
-            BindingSource bs1 = new BindingSource();
-            bs1.DataSource = ds.Tables[0].DefaultView;
-
-            sender.DataSource = bs1;
-
-            sender.Columns[0].Visible = false;
-            sender.Columns[1].Visible = false;
-            sender.Columns[3].Width = 200;
-
-            clSeries ser = new clSeries();
-
-            for (int i = 0; i < sender.Rows.Count; i++)
-            {
-                DataGridViewRow row = new DataGridViewRow();
-
-                row = sender.Rows[i];
-
-                row.Cells[2].Style.BackColor = clSeries.getColorFromChar(row.Cells[1].Value.ToString());
-
-            }
-
-            sender.Select();
-
-
-        }
-        public void GetListPrice(DataGridView sender, string id)
-        {
-            SqlConnection connection = new SqlConnection(Connect.GetConn());
-            SqlCommand Command = new SqlCommand();
-            Command.Connection = connection;
-            Command.CommandType = CommandType.StoredProcedure;
-            Command.CommandText = "[SelectPriceFromCat]";
-
-            Command.Parameters.Add("@id", SqlDbType.NVarChar, 50);
-            Command.Parameters["@id"].Value = id;
-
-            SqlDataAdapter data = new SqlDataAdapter();
-            data.SelectCommand = Command;
-            DataSet ds = new DataSet();
-
-            data.Fill(ds);
-
-            sender.DataSource = ds.Tables[0].DefaultView;
-            sender.Columns[0].Visible = false;
-            connection.Close();
-
-        }
-
-
-        public void GetListTickeksToClient(DataGridView sender, string id)
-        {
-            SqlConnection connection = new SqlConnection(Connect.GetConn());
-            SqlCommand Command = new SqlCommand();
-            Command.Connection = connection;
-            Command.CommandType = CommandType.StoredProcedure;
-            Command.CommandText = "[SelectTickeksToCli]";
-
+            Command.CommandText = "[GetDataTicketsToID]";
             Command.Parameters.Add("@id", SqlDbType.UniqueIdentifier);
-            Command.Parameters["@id"].Value = new Guid(id);
-
-            SqlDataAdapter data = new SqlDataAdapter();
-            data.SelectCommand = Command;
-            DataSet ds = new DataSet();
-
-            data.Fill(ds);
-
-            sender.DataSource = ds.Tables[0].DefaultView;
-            sender.Columns[0].Visible = false;
-            sender.Columns[1].Visible = false;
-
-            sender.Columns[2].Width = 50;
-            sender.Columns[3].Width = 120;
-            sender.Columns[4].Width = 120;
-            sender.Columns[5].Width = 70;
-            sender.Columns[6].Width = 70;
-
-            connection.Close();
-
-
-            clSeries ser = new clSeries();
-
-            for (int i = 0; i < sender.Rows.Count; i++)
+            Command.Parameters["@id"].Value = new Guid(idBilet);
+            connection.Open();
+            SqlDataReader reader = Command.ExecuteReader();
+            if (reader.HasRows)
             {
-                DataGridViewRow row = new DataGridViewRow();
-
-                row = sender.Rows[i];
-
-                row.Cells[2].Style.BackColor = clSeries.getColorFromChar(row.Cells[1].Value.ToString());
-
+                reader.Read();
+                this.id = idBilet;
+                this.IdSeria = reader["id_Series"].ToString();
+                this.Number = reader["Number"].ToString();
             }
-
-        }
-
-
-
-        public void GetListTickeksForCal(DataGridView sender, int idtrig, string idempl, int status, int indate, DateTime bdate, DateTime edate)
-        {
-
-
-            SqlConnection connection = new SqlConnection(Connect.GetConn());
-            SqlCommand Command = new SqlCommand();
-            Command.Connection = connection;
-            Command.CommandType = CommandType.StoredProcedure;
-            Command.CommandText = "[SelectTickeksToClear]";
-
-
-            Command.Parameters.Add("@idtrig", SqlDbType.Bit);
-            Command.Parameters["@idtrig"].Value = idtrig;
-
-            Command.Parameters.Add("@idempl", SqlDbType.UniqueIdentifier);
-            Command.Parameters["@idempl"].Value = new Guid(idempl);
-
-            Command.Parameters.Add("@status", SqlDbType.Int);
-            Command.Parameters["@status"].Value = status;
-
-            Command.Parameters.Add("@indate", SqlDbType.Int);
-            Command.Parameters["@indate"].Value = indate;
-
-            Command.Parameters.Add("@bdate", SqlDbType.DateTime);
-            Command.Parameters["@bdate"].Value = bdate;
-
-            Command.Parameters.Add("@edate", SqlDbType.DateTime);
-            Command.Parameters["@edate"].Value = edate;
-
-
-            SqlDataAdapter data = new SqlDataAdapter();
-            data.SelectCommand = Command;
-            DataSet ds = new DataSet();
-
-            data.Fill(ds);
+            else MessageBox.Show("Пустой запрос!");
             connection.Close();
-
-            BindingSource bs1 = new BindingSource();
-            bs1.DataSource = ds.Tables[0].DefaultView;
-
-            sender.DataSource = bs1;
-
-            sender.Columns[0].Visible = false;
-            sender.Columns[1].Visible = false;
-            sender.Columns[3].Width = 200;
-
-
-            clSeries ser = new clSeries();
-
-            for (int i = 0; i < sender.Rows.Count; i++)
-            {
-                DataGridViewRow row = new DataGridViewRow();
-
-                row = sender.Rows[i];
-
-                row.Cells[2].Style.BackColor = clSeries.getColorFromChar(row.Cells[1].Value.ToString());
-
-            }
-
-            sender.Select();
-
-
         }
 
-
-
-        public void GetListTikToDoub(ListBox sender, string id)
+        public string GetFullName()
         {
-            SqlConnection connection = new SqlConnection(Connect.GetConn());
-            SqlCommand Command = new SqlCommand();
-            Command.Connection = connection;
-            Command.CommandType = CommandType.StoredProcedure;
-            Command.CommandText = "[SelectTikPrToDoub]";
-
-            Command.Parameters.Add("@cli", SqlDbType.UniqueIdentifier);
-            Command.Parameters["@cli"].Value = new Guid(id);
-
-            SqlDataAdapter data = new SqlDataAdapter();
-            data.SelectCommand = Command;
-            DataSet ds = new DataSet();
-
-            data.Fill(ds);
-
-            sender.DataSource = ds.Tables[0].DefaultView;
-
-
-            sender.DisplayMember = "Name";
-            sender.ValueMember = "id";
-            if (sender.Items.Count != 0) sender.SelectedIndex = 0;
-            connection.Close();
-
-
+            clSeries se = new clSeries(this.IdSeria);
+            return se.Name + this.Number;
         }
+        
+
+
+
+
+
+
+
+
     }
-
 }

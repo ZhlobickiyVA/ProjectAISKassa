@@ -81,6 +81,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.NameEmpl = new System.Windows.Forms.ToolStripStatusLabel();
             this.SummainKassa = new System.Windows.Forms.ToolStripStatusLabel();
+            this.CountTik = new System.Windows.Forms.ToolStripStatusLabel();
             this.NowTimeDate = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ListCli = new System.Windows.Forms.DataGridView();
@@ -220,7 +221,6 @@
             // 
             // DoubTikBT
             // 
-            this.DoubTikBT.Enabled = false;
             this.DoubTikBT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.DoubTikBT.Image = global::LibARM_Operator.Properties.Resources.dubl;
             this.DoubTikBT.Location = new System.Drawing.Point(110, 21);
@@ -479,6 +479,7 @@
             this.спискиToolStripMenuItem.Name = "спискиToolStripMenuItem";
             this.спискиToolStripMenuItem.Size = new System.Drawing.Size(89, 23);
             this.спискиToolStripMenuItem.Text = "Списки";
+            this.спискиToolStripMenuItem.Click += new System.EventHandler(this.спискиToolStripMenuItem_Click);
             // 
             // управлениеToolStripMenuItem
             // 
@@ -518,12 +519,12 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NameEmpl,
             this.SummainKassa,
+            this.CountTik,
             this.NowTimeDate});
             this.statusStrip1.Location = new System.Drawing.Point(4, 504);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1196, 24);
             this.statusStrip1.TabIndex = 7;
-            this.statusStrip1.Text = "statusStrip1";
             // 
             // NameEmpl
             // 
@@ -534,6 +535,11 @@
             // 
             this.SummainKassa.Name = "SummainKassa";
             this.SummainKassa.Size = new System.Drawing.Size(0, 19);
+            // 
+            // CountTik
+            // 
+            this.CountTik.Name = "CountTik";
+            this.CountTik.Size = new System.Drawing.Size(0, 19);
             // 
             // NowTimeDate
             // 
@@ -705,5 +711,6 @@
         private System.Windows.Forms.ToolStripMenuItem InsertMoneyToKassa;
         private System.Windows.Forms.ToolStripMenuItem ReturnMoneyToKassa;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripStatusLabel CountTik;
     }
 }

@@ -9,6 +9,7 @@ using ConnectLib;
 using UtilDLL;
 using libCategory;
 
+
 namespace LibClient
 {
     public class clClient
@@ -25,6 +26,7 @@ namespace LibClient
         public string type { get; set; }
         public List<clColumns> DopInfo;
         public List<String> ListCategory;
+        public int TagTypeClient { get; set; }
 
         public clClient()
         {
@@ -170,6 +172,9 @@ namespace LibClient
             RedCli form = new RedCli(id);
             form.ShowDialog();
         }
+
+
+
         public static clClient GetSearchClient(int typeclient =1)
         {
            SearClient sea = new SearClient(typeclient);
@@ -309,6 +314,23 @@ namespace LibClient
             Command.ExecuteNonQuery();
             connection.Close();
         }
+        public DataTable GetListTickets(int indextable = 0)
+        {
+            SqlConnection connection = new SqlConnection(Connect.GetConn());
+            SqlCommand Command = new SqlCommand();
+            Command.Connection = connection;
+            Command.CommandType = CommandType.StoredProcedure;
+            Command.CommandText = "[SelectTicketsToClient]";
+            Command.Parameters.Add("@idClient", SqlDbType.UniqueIdentifier);
+            Command.Parameters["@idClient"].Value = new Guid(this.id);
+            SqlDataAdapter data = new SqlDataAdapter();
+            data.SelectCommand = Command;
+            DataSet ds = new DataSet();
+            data.Fill(ds);
+            return ds.Tables[indextable];
+        }
+
+
         // --------------------------------------------------------------------------------------------------------------------------------------
     }
 

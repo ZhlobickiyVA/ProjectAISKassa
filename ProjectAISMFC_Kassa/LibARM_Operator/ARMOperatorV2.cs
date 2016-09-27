@@ -13,6 +13,7 @@ using CashLib;
 using System.Data.SqlClient;
 using LibTickets;
 using ConnectLib;
+using ListAccess;
 
 namespace LibARM_Operator
 {
@@ -22,7 +23,7 @@ namespace LibARM_Operator
         clKassa Kas;
         string sea;
         int SelectRow;
-
+        int CountTikEmployees { get; set; }
         
         public ARMOperatorV2(string idEmpl)
         {
@@ -69,6 +70,7 @@ namespace LibARM_Operator
         {
             SelectRow = ListCli.CurrentRow.Index;
             clClient.OpenClient(ListCli.CurrentRow.Cells[0].Value.ToString());
+
             ListCli.DataSource = clClient.GetListClient(sea);
             ListCli.Rows[SelectRow].Selected = true;
             ListCli.CurrentCell = ListCli[1, SelectRow];
@@ -77,16 +79,21 @@ namespace LibARM_Operator
 
         private void PriceTIkBT_Click(object sender, EventArgs e)
         {
-            clOperation.RunPriceTik(empl,ListCli.CurrentRow.Cells[0].Value.ToString());
+            //clOperation.RunPriceTik(empl,ListCli.CurrentRow.Cells[0].Value.ToString());
+            clPriceControlOperation.RunPrice(ListCli.CurrentRow.Cells[0].Value.ToString(), empl.id);
         }
 
         private void DoubTikBT_Click(object sender, EventArgs e)
         {
-            clDoubPriceTik.RunDoubPriceTik(empl.id, ListCli.CurrentRow.Cells[0].Value.ToString());
+            clClient cli = new clClient();
+            RedCli form = new RedCli(ListCli.CurrentRow.Cells[0].Value.ToString(),true);
+            form.onRunDoubPrice += clPriceControlOperation.RunDoub;
+            form.ShowDialog();
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            CountTikEmployees = 0;
             DataTable table = new DataTable();
             table = clControlSer.GetListSerPrice(empl.id);
             DG.Rows.Clear();
@@ -103,27 +110,13 @@ namespace LibARM_Operator
                     DG.Rows[DG.Rows.Count - 1].Cells[j].Style.SelectionBackColor = col;
                     DG.Rows[DG.Rows.Count - 1].Cells[j].Style.SelectionForeColor = Color.Black;
                 }
-
+                CountTikEmployees += Convert.ToInt32(count);
             }
-            
+            // TODO: Исправить. Неверный подсчет количества билетов.
+            CountTik.Text = "Количество доступных билетов: " + CountTikEmployees.ToString() + " шт.";
             NowTimeDate.Text =  Connect.GetDateServer().ToString();
             SummainKassa.Text = "Сумма в Кассе: "+ String.Format("{0:C2}", Kas.SummaInKassa);
 
-
-
-            //if (myCommand.Parameters["@ret"].Value.ToString() != "")
-            //    return String.Format("{0:C2}",Convert.ToDouble( myCommand.Parameters["@ret"].Value.ToString()));
-            //else return String.Format("{0:C2}",0.00);
-
-
-            //clControlSer con = new clControlSer();
-            //con.GetListSerPrice(ParentLAbel, this.Tag.ToString(), DateTime.Now.Date);
-
-            //clKassa kas = new clKassa();
-            //decimal summma = 0;
-            //SumKas.Text = kas.GetMoneyToKassa(this.Tag.ToString(), ref summma);
-            //SumKas.Tag = summma;
-            //con.GetListSerPrice(ParentLAbel, this.Tag.ToString(), Convert.ToDateTime("16.02.2016"));
         }
 
         private void DG_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -178,6 +171,11 @@ namespace LibARM_Operator
         private void ShowKassaOperItem_Click(object sender, EventArgs e)
         {
             Kas.RunSpKassa();
+        }
+
+        private void спискиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clListAccess.RunListAccess();
         }
     }
 }

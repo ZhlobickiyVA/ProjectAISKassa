@@ -12,6 +12,9 @@ using UtilDLL;
 using libCategory;
 using LibDataFile;
 using System.Diagnostics;
+using LibTickets;
+
+
 
 namespace LibClient
 
@@ -19,6 +22,10 @@ namespace LibClient
     public partial class RedCli : Form
     {
         clClient cli;
+        public delegate void RunDoubPrice(string idBilet);
+        public event RunDoubPrice onRunDoubPrice;
+
+        bool DoubFlag { get; set; }
 
         public RedCli()
         {
@@ -26,15 +33,17 @@ namespace LibClient
             cli = new clClient();
         }
 
-        public RedCli(string id)
+        public RedCli(string id,bool Doub = false)
         {
             InitializeComponent();
+            DoubFlag = Doub;
             cli = new clClient(id);
             LastNameTB.Text = cli.lasname;
             FirstNameTB.Text = cli.firstname;
             MIddleNameTB.Text = cli.middlename;
             DateRtb.Value = Convert.ToDateTime( cli.DateR).Date;
             NoteTB.Text = cli.note;
+
         }
 
         public clClient GetData() { return cli; }
@@ -77,11 +86,23 @@ namespace LibClient
             listDov.Columns[7].HeaderText = "Имя";
             listDov.Columns[8].HeaderText = "Отчество";
             listDov.Columns[9].HeaderText = "Паспорт";
+            listDov.Columns[12].Visible = false;
             // загружаем список файлов
             ListFile.DataSource = clDataFile.GetListDataFile(cli.id);
             ListFile.Columns[0].Visible = false;
             ListFile.Columns[1].Width = 200;
             ListFile.Columns[2].Width = 200;
+
+            ListTickets.DataSource = cli.GetListTickets();
+            ListTickets.Columns[0].Visible = false;
+            ListTickets.Columns[1].Visible = false;
+            ListTickets.Columns[2].Width = 50;
+            ListTickets.Columns[3].Width = 110;
+            ListTickets.Columns[4].Width = 80;
+            ListTickets.Columns[5].Width = 50;
+            ListTickets.Columns[6].Width = 70;
+            ViewTicket.SelectedIndex = 0;
+
 
         }
 
@@ -166,6 +187,39 @@ namespace LibClient
         {
             clDataFile dat = new clDataFile(ListFile.CurrentRow.Cells[0].Value.ToString());
             Process.Start(dat.GetFileToArrayByte());
+        }
+
+        private void ViewTicket_Click(object sender, EventArgs e)
+        {
+            if (ViewTicket.SelectedIndex == 1)
+            {
+                this.DoubPrice.Visible = true;
+                ListTickets.DataSource = cli.GetListTickets(1);
+            }
+            else
+            {
+                this.DoubPrice.Visible = false;
+                ListTickets.DataSource = cli.GetListTickets();
+            }
+        }
+
+        private void DoubPrice_Click(object sender, EventArgs e)
+        {
+            if (onRunDoubPrice != null) onRunDoubPrice.Invoke(ListTickets.CurrentRow.Cells[0].Value.ToString());
+        }
+
+        private void RedCli_Shown(object sender, EventArgs e)
+        {
+
+            if (this.DoubFlag)
+            {
+                tabControl.SelectedIndex = 5;
+                ViewTicket.SelectedIndex = 1;
+            }
+            else
+            {
+                ViewTicket.SelectedIndex = 0;
+            }
         }
     }
 }

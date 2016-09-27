@@ -57,7 +57,8 @@
     <Compile Include="ARMOperatorV2.Designer.cs">
       <DependentUpon>ARMOperatorV2.cs</DependentUpon>
     </Compile>
-    <Compile Include="clOperation.cs" />
+    <Compile Include="Operation\clOperation.cs" />
+    <Compile Include="Operation\clPriceControlOperation.cs" />
     <Compile Include="Operation\Doub.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,16 +88,16 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Operation\UPanel.cs">
+    <Compile Include="Operation\Panel\UPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Operation\UPanel.Designer.cs">
+    <Compile Include="Operation\Panel\UPanel.Designer.cs">
       <DependentUpon>UPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operation\UpanelService.cs">
+    <Compile Include="Operation\Panel\UpanelService.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Operation\UpanelService.Designer.cs">
+    <Compile Include="Operation\Panel\UpanelService.Designer.cs">
       <DependentUpon>UpanelService.cs</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -117,10 +118,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operation\UPanel.resx">
+    <EmbeddedResource Include="Operation\Panel\UPanel.resx">
       <DependentUpon>UPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operation\UpanelService.resx">
+    <EmbeddedResource Include="Operation\Panel\UpanelService.resx">
       <DependentUpon>UpanelService.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
@@ -230,6 +231,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\button_cancel_6569.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Operation\sqlListTickets.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

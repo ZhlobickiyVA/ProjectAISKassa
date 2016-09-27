@@ -35,7 +35,7 @@
             this.OkBT = new System.Windows.Forms.Button();
             this.panel10 = new System.Windows.Forms.Panel();
             this.CancelBT = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.First = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
             this.NoteTB = new System.Windows.Forms.TextBox();
@@ -72,10 +72,13 @@
             this.InfoView = new System.Windows.Forms.ListView();
             this.NameCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ValueCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.TikToClient = new System.Windows.Forms.TabPage();
-            this.ListTikClient = new System.Windows.Forms.DataGridView();
+            this.ListTicketsClient = new System.Windows.Forms.TabPage();
+            this.ListTickets = new System.Windows.Forms.DataGridView();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.ViewTicket = new System.Windows.Forms.ToolStripComboBox();
+            this.DoubPrice = new System.Windows.Forms.ToolStripButton();
             this.panel9.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.First.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -91,8 +94,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.listDov)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.DopInfo.SuspendLayout();
-            this.TikToClient.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ListTikClient)).BeginInit();
+            this.ListTicketsClient.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ListTickets)).BeginInit();
+            this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel9
@@ -150,22 +154,22 @@
             this.CancelBT.UseVisualStyleBackColor = true;
             this.CancelBT.Click += new System.EventHandler(this.CancelBT_Click);
             // 
-            // tabControl1
+            // tabControl
             // 
-            this.tabControl1.Controls.Add(this.First);
-            this.tabControl1.Controls.Add(this.Cat);
-            this.tabControl1.Controls.Add(this.File);
-            this.tabControl1.Controls.Add(this.Sopr);
-            this.tabControl1.Controls.Add(this.DopInfo);
-            this.tabControl1.Controls.Add(this.TikToClient);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(710, 412);
-            this.tabControl1.TabIndex = 60;
+            this.tabControl.Controls.Add(this.First);
+            this.tabControl.Controls.Add(this.Cat);
+            this.tabControl.Controls.Add(this.File);
+            this.tabControl.Controls.Add(this.Sopr);
+            this.tabControl.Controls.Add(this.DopInfo);
+            this.tabControl.Controls.Add(this.ListTicketsClient);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tabControl.Location = new System.Drawing.Point(0, 0);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(4);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(710, 412);
+            this.tabControl.TabIndex = 60;
             // 
             // First
             // 
@@ -582,35 +586,70 @@
             this.ValueCol.Text = "Значение";
             this.ValueCol.Width = 200;
             // 
-            // TikToClient
+            // ListTicketsClient
             // 
-            this.TikToClient.Controls.Add(this.ListTikClient);
-            this.TikToClient.Location = new System.Drawing.Point(4, 28);
-            this.TikToClient.Name = "TikToClient";
-            this.TikToClient.Size = new System.Drawing.Size(702, 380);
-            this.TikToClient.TabIndex = 5;
-            this.TikToClient.Text = "Билеты";
-            this.TikToClient.UseVisualStyleBackColor = true;
+            this.ListTicketsClient.Controls.Add(this.ListTickets);
+            this.ListTicketsClient.Controls.Add(this.toolStrip2);
+            this.ListTicketsClient.Location = new System.Drawing.Point(4, 28);
+            this.ListTicketsClient.Name = "ListTicketsClient";
+            this.ListTicketsClient.Padding = new System.Windows.Forms.Padding(3);
+            this.ListTicketsClient.Size = new System.Drawing.Size(702, 380);
+            this.ListTicketsClient.TabIndex = 5;
+            this.ListTicketsClient.Text = "Билеты";
+            this.ListTicketsClient.UseVisualStyleBackColor = true;
             // 
-            // ListTikClient
+            // ListTickets
             // 
-            this.ListTikClient.AllowUserToAddRows = false;
-            this.ListTikClient.AllowUserToDeleteRows = false;
-            this.ListTikClient.AllowUserToOrderColumns = true;
-            this.ListTikClient.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.ListTikClient.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.ListTikClient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ListTikClient.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ListTikClient.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ListTikClient.Location = new System.Drawing.Point(0, 0);
-            this.ListTikClient.Margin = new System.Windows.Forms.Padding(4);
-            this.ListTikClient.MultiSelect = false;
-            this.ListTikClient.Name = "ListTikClient";
-            this.ListTikClient.ReadOnly = true;
-            this.ListTikClient.RowTemplate.ReadOnly = true;
-            this.ListTikClient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ListTikClient.Size = new System.Drawing.Size(702, 380);
-            this.ListTikClient.TabIndex = 16;
+            this.ListTickets.AllowUserToAddRows = false;
+            this.ListTickets.AllowUserToDeleteRows = false;
+            this.ListTickets.AllowUserToOrderColumns = true;
+            this.ListTickets.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.ListTickets.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.ListTickets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ListTickets.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ListTickets.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ListTickets.Location = new System.Drawing.Point(3, 28);
+            this.ListTickets.Margin = new System.Windows.Forms.Padding(4);
+            this.ListTickets.MultiSelect = false;
+            this.ListTickets.Name = "ListTickets";
+            this.ListTickets.ReadOnly = true;
+            this.ListTickets.RowTemplate.ReadOnly = true;
+            this.ListTickets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ListTickets.Size = new System.Drawing.Size(696, 349);
+            this.ListTickets.TabIndex = 17;
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ViewTicket,
+            this.DoubPrice});
+            this.toolStrip2.Location = new System.Drawing.Point(3, 3);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(696, 25);
+            this.toolStrip2.TabIndex = 16;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // ViewTicket
+            // 
+            this.ViewTicket.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ViewTicket.Items.AddRange(new object[] {
+            "Все билеты",
+            "Доступные для выдачи дубликата"});
+            this.ViewTicket.Name = "ViewTicket";
+            this.ViewTicket.Size = new System.Drawing.Size(250, 25);
+            this.ViewTicket.SelectedIndexChanged += new System.EventHandler(this.ViewTicket_Click);
+            // 
+            // DoubPrice
+            // 
+            this.DoubPrice.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.DoubPrice.Image = global::LibClient.Properties.Resources.ticket__pencil_6730;
+            this.DoubPrice.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DoubPrice.Name = "DoubPrice";
+            this.DoubPrice.Size = new System.Drawing.Size(144, 23);
+            this.DoubPrice.Text = "Выдать дубликат";
+            this.DoubPrice.Visible = false;
+            this.DoubPrice.Click += new System.EventHandler(this.DoubPrice_Click);
             // 
             // RedCli
             // 
@@ -619,7 +658,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelBT;
             this.ClientSize = new System.Drawing.Size(710, 462);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.panel9);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -629,8 +668,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Карточка клиента";
             this.Load += new System.EventHandler(this.RedCli_Load);
+            this.Shown += new System.EventHandler(this.RedCli_Shown);
             this.panel9.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.First.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
@@ -654,8 +694,11 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.DopInfo.ResumeLayout(false);
-            this.TikToClient.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ListTikClient)).EndInit();
+            this.ListTicketsClient.ResumeLayout(false);
+            this.ListTicketsClient.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ListTickets)).EndInit();
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -666,7 +709,7 @@
         private System.Windows.Forms.Button OkBT;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Button CancelBT;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage First;
         private System.Windows.Forms.Panel panel7;
         public System.Windows.Forms.TextBox NoteTB;
@@ -703,7 +746,10 @@
         private System.Windows.Forms.ToolStripButton DeleteBTWar;
         private System.Windows.Forms.ToolStripButton ScanButton;
         private System.Windows.Forms.ToolStripButton OpenFileBT;
-        private System.Windows.Forms.TabPage TikToClient;
-        public System.Windows.Forms.DataGridView ListTikClient;
+        private System.Windows.Forms.TabPage ListTicketsClient;
+        public System.Windows.Forms.DataGridView ListTickets;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripComboBox ViewTicket;
+        private System.Windows.Forms.ToolStripButton DoubPrice;
     }
 }

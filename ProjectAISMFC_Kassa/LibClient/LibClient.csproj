@@ -181,6 +181,10 @@
       <Project>{bda7639c-ff0c-4648-bd4a-c4655d00f351}</Project>
       <Name>LibReport</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LibTickets\LibTickets.csproj">
+      <Project>{ef603015-e974-4b72-906e-52191af18ba9}</Project>
+      <Name>LibTickets</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UtilDLL\UtilDLL.csproj">
       <Project>{74e01662-9099-4b97-8bf2-4695035f4af7}</Project>
       <Name>UtilDLL</Name>

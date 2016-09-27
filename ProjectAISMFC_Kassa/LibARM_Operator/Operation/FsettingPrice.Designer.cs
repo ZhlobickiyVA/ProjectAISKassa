@@ -31,16 +31,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FsettingPrice));
             this.DoubTikPan = new System.Windows.Forms.GroupBox();
             this.DoubCB = new System.Windows.Forms.CheckBox();
-            this.ListTikPan = new System.Windows.Forms.GroupBox();
-            this.ListSubCli = new System.Windows.Forms.ListView();
-            this.NAme = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
             this.OkBT = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.CancelBT = new System.Windows.Forms.Button();
+            this.ListTikPan = new System.Windows.Forms.GroupBox();
+            this.ListSubCli = new System.Windows.Forms.ListView();
+            this.NAme = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DoubTikPan.SuspendLayout();
-            this.ListTikPan.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.ListTikPan.SuspendLayout();
             this.SuspendLayout();
             // 
             // DoubTikPan
@@ -67,38 +67,6 @@
             this.DoubCB.Text = "Дополнительный билет";
             this.DoubCB.UseVisualStyleBackColor = true;
             // 
-            // ListTikPan
-            // 
-            this.ListTikPan.Controls.Add(this.ListSubCli);
-            this.ListTikPan.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ListTikPan.Location = new System.Drawing.Point(0, 81);
-            this.ListTikPan.Name = "ListTikPan";
-            this.ListTikPan.Padding = new System.Windows.Forms.Padding(5);
-            this.ListTikPan.Size = new System.Drawing.Size(414, 233);
-            this.ListTikPan.TabIndex = 1;
-            this.ListTikPan.TabStop = false;
-            this.ListTikPan.Text = "Дополнительные параметры";
-            // 
-            // ListSubCli
-            // 
-            this.ListSubCli.CheckBoxes = true;
-            this.ListSubCli.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.NAme});
-            this.ListSubCli.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ListSubCli.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.ListSubCli.Location = new System.Drawing.Point(5, 24);
-            this.ListSubCli.Name = "ListSubCli";
-            this.ListSubCli.ShowGroups = false;
-            this.ListSubCli.Size = new System.Drawing.Size(404, 204);
-            this.ListSubCli.TabIndex = 0;
-            this.ListSubCli.UseCompatibleStateImageBehavior = false;
-            this.ListSubCli.View = System.Windows.Forms.View.Details;
-            // 
-            // NAme
-            // 
-            this.NAme.Text = "id";
-            this.NAme.Width = 400;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.OkBT);
@@ -106,7 +74,7 @@
             this.panel1.Controls.Add(this.CancelBT);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.panel1.Location = new System.Drawing.Point(0, 317);
+            this.panel1.Location = new System.Drawing.Point(0, 327);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(0, 5, 15, 5);
             this.panel1.Size = new System.Drawing.Size(414, 47);
@@ -154,14 +122,46 @@
             this.CancelBT.UseVisualStyleBackColor = true;
             this.CancelBT.Click += new System.EventHandler(this.CancelBT_Click);
             // 
+            // ListTikPan
+            // 
+            this.ListTikPan.Controls.Add(this.ListSubCli);
+            this.ListTikPan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ListTikPan.Location = new System.Drawing.Point(0, 81);
+            this.ListTikPan.Name = "ListTikPan";
+            this.ListTikPan.Padding = new System.Windows.Forms.Padding(5);
+            this.ListTikPan.Size = new System.Drawing.Size(414, 246);
+            this.ListTikPan.TabIndex = 54;
+            this.ListTikPan.TabStop = false;
+            this.ListTikPan.Text = "Дополнительные параметры";
+            // 
+            // ListSubCli
+            // 
+            this.ListSubCli.CheckBoxes = true;
+            this.ListSubCli.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.NAme});
+            this.ListSubCli.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ListSubCli.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.ListSubCli.Location = new System.Drawing.Point(5, 24);
+            this.ListSubCli.Name = "ListSubCli";
+            this.ListSubCli.ShowGroups = false;
+            this.ListSubCli.Size = new System.Drawing.Size(404, 217);
+            this.ListSubCli.TabIndex = 0;
+            this.ListSubCli.UseCompatibleStateImageBehavior = false;
+            this.ListSubCli.View = System.Windows.Forms.View.Details;
+            // 
+            // NAme
+            // 
+            this.NAme.Text = "id";
+            this.NAme.Width = 400;
+            // 
             // FsettingPrice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(414, 364);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(414, 374);
             this.Controls.Add(this.ListTikPan);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.DoubTikPan);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -176,8 +176,8 @@
             this.Shown += new System.EventHandler(this.FsettingPrice_Shown);
             this.DoubTikPan.ResumeLayout(false);
             this.DoubTikPan.PerformLayout();
-            this.ListTikPan.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.ListTikPan.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,10 +188,10 @@
         private System.Windows.Forms.Button OkBT;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button CancelBT;
-        private System.Windows.Forms.ColumnHeader NAme;
         public System.Windows.Forms.CheckBox DoubCB;
-        public System.Windows.Forms.ListView ListSubCli;
         public System.Windows.Forms.GroupBox DoubTikPan;
         public System.Windows.Forms.GroupBox ListTikPan;
+        public System.Windows.Forms.ListView ListSubCli;
+        private System.Windows.Forms.ColumnHeader NAme;
     }
 }

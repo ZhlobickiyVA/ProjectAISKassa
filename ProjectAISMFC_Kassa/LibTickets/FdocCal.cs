@@ -127,7 +127,7 @@ namespace LibTickets
 
 
             clTickeks tik = new clTickeks();
-            tik.GetListTickeksForCal(ListTik, 1, EmplCBFrom.SelectedValue.ToString(), status, indate, BdataTP.Value.Date, EdataTP.Value.Date);
+            //tik.GetListTickeksForCal(ListTik, 1, EmplCBFrom.SelectedValue.ToString(), status, indate, BdataTP.Value.Date, EdataTP.Value.Date);
         }
 
         private void btCancel_Click(object sender, EventArgs e)

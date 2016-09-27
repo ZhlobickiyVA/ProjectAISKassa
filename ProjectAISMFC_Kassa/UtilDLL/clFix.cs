@@ -13,7 +13,7 @@ namespace UtilDLL
 {
     public class clFix
     {
-        public static Decimal GetFix() // возвращает номер кассовой операции
+        public static long GetFix() // возвращает номер кассовой операции
         {
             SqlConnection connection = new SqlConnection(Connect.GetConn());
             SqlCommand Command = connection.CreateCommand();
@@ -27,7 +27,7 @@ namespace UtilDLL
             connection.Open();
             Command.ExecuteNonQuery();
             connection.Close();
-            return Convert.ToDecimal(Command.Parameters["@ret"].Value);
+            return Convert.ToInt64(Command.Parameters["@ret"].Value);
         }   
         public static Decimal GetTransferFIX() // возвращает номер операции передачи операции
         {
