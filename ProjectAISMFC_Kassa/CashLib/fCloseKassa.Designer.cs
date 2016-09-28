@@ -30,7 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fCloseKas));
             this.panel9 = new System.Windows.Forms.Panel();
+            this.ShowReport = new System.Windows.Forms.Button();
+            this.OkBT = new System.Windows.Forms.Button();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.CancelBT = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.SoldoBeginTB = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,15 +47,12 @@
             this.KlReestrTB = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.FioKomyTB = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.FioGLBuhTB = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.OkBT = new System.Windows.Forms.Button();
-            this.CancelBT = new System.Windows.Forms.Button();
-            this.ShowReport = new System.Windows.Forms.Button();
             this.Info = new System.Windows.Forms.Label();
+            this.EmplKomyCB = new System.Windows.Forms.ComboBox();
             this.panel9.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -76,6 +76,38 @@
             this.panel9.Size = new System.Drawing.Size(483, 50);
             this.panel9.TabIndex = 59;
             // 
+            // ShowReport
+            // 
+            this.ShowReport.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ShowReport.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ShowReport.Image = global::CashLib.Properties.Resources.image;
+            this.ShowReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ShowReport.Location = new System.Drawing.Point(6, 5);
+            this.ShowReport.Margin = new System.Windows.Forms.Padding(5, 5, 15, 5);
+            this.ShowReport.Name = "ShowReport";
+            this.ShowReport.Size = new System.Drawing.Size(194, 40);
+            this.ShowReport.TabIndex = 5;
+            this.ShowReport.Text = "Cформировать отчет";
+            this.ShowReport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ShowReport.UseVisualStyleBackColor = true;
+            this.ShowReport.Click += new System.EventHandler(this.ShowReport_Click);
+            // 
+            // OkBT
+            // 
+            this.OkBT.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.OkBT.Dock = System.Windows.Forms.DockStyle.Right;
+            this.OkBT.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.OkBT.Image = global::CashLib.Properties.Resources.camera_test_1751;
+            this.OkBT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.OkBT.Location = new System.Drawing.Point(200, 5);
+            this.OkBT.Margin = new System.Windows.Forms.Padding(5, 5, 15, 5);
+            this.OkBT.Name = "OkBT";
+            this.OkBT.Size = new System.Drawing.Size(142, 40);
+            this.OkBT.TabIndex = 4;
+            this.OkBT.Text = "Закрыть кассу";
+            this.OkBT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.OkBT.UseVisualStyleBackColor = true;
+            // 
             // panel10
             // 
             this.panel10.Dock = System.Windows.Forms.DockStyle.Right;
@@ -84,6 +116,21 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(15, 40);
             this.panel10.TabIndex = 3;
+            // 
+            // CancelBT
+            // 
+            this.CancelBT.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.CancelBT.Dock = System.Windows.Forms.DockStyle.Right;
+            this.CancelBT.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CancelBT.Image = global::CashLib.Properties.Resources.button_cancel_6569;
+            this.CancelBT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CancelBT.Location = new System.Drawing.Point(357, 5);
+            this.CancelBT.Name = "CancelBT";
+            this.CancelBT.Size = new System.Drawing.Size(111, 40);
+            this.CancelBT.TabIndex = 1;
+            this.CancelBT.Text = "Отмена";
+            this.CancelBT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CancelBT.UseVisualStyleBackColor = true;
             // 
             // panel6
             // 
@@ -225,7 +272,7 @@
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.FioKomyTB);
+            this.panel4.Controls.Add(this.EmplKomyCB);
             this.panel4.Controls.Add(this.label5);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -234,15 +281,6 @@
             this.panel4.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.panel4.Size = new System.Drawing.Size(483, 39);
             this.panel4.TabIndex = 64;
-            // 
-            // FioKomyTB
-            // 
-            this.FioKomyTB.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FioKomyTB.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FioKomyTB.Location = new System.Drawing.Point(271, 7);
-            this.FioKomyTB.Name = "FioKomyTB";
-            this.FioKomyTB.Size = new System.Drawing.Size(202, 26);
-            this.FioKomyTB.TabIndex = 44;
             // 
             // label5
             // 
@@ -289,54 +327,6 @@
             this.label6.Text = "Главный бухгалтер";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // OkBT
-            // 
-            this.OkBT.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.OkBT.Dock = System.Windows.Forms.DockStyle.Right;
-            this.OkBT.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.OkBT.Image = global::CashLib.Properties.Resources.camera_test_1751;
-            this.OkBT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.OkBT.Location = new System.Drawing.Point(200, 5);
-            this.OkBT.Margin = new System.Windows.Forms.Padding(5, 5, 15, 5);
-            this.OkBT.Name = "OkBT";
-            this.OkBT.Size = new System.Drawing.Size(142, 40);
-            this.OkBT.TabIndex = 4;
-            this.OkBT.Text = "Закрыть кассу";
-            this.OkBT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.OkBT.UseVisualStyleBackColor = true;
-            // 
-            // CancelBT
-            // 
-            this.CancelBT.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelBT.Dock = System.Windows.Forms.DockStyle.Right;
-            this.CancelBT.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CancelBT.Image = global::CashLib.Properties.Resources.button_cancel_6569;
-            this.CancelBT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.CancelBT.Location = new System.Drawing.Point(357, 5);
-            this.CancelBT.Name = "CancelBT";
-            this.CancelBT.Size = new System.Drawing.Size(111, 40);
-            this.CancelBT.TabIndex = 1;
-            this.CancelBT.Text = "Отмена";
-            this.CancelBT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CancelBT.UseVisualStyleBackColor = true;
-            // 
-            // ShowReport
-            // 
-            this.ShowReport.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.ShowReport.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ShowReport.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ShowReport.Image = global::CashLib.Properties.Resources.image;
-            this.ShowReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ShowReport.Location = new System.Drawing.Point(6, 5);
-            this.ShowReport.Margin = new System.Windows.Forms.Padding(5, 5, 15, 5);
-            this.ShowReport.Name = "ShowReport";
-            this.ShowReport.Size = new System.Drawing.Size(194, 40);
-            this.ShowReport.TabIndex = 5;
-            this.ShowReport.Text = "Cформировать отчет";
-            this.ShowReport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ShowReport.UseVisualStyleBackColor = true;
-            this.ShowReport.Click += new System.EventHandler(this.ShowReport_Click);
-            // 
             // Info
             // 
             this.Info.Dock = System.Windows.Forms.DockStyle.Top;
@@ -348,6 +338,16 @@
             this.Info.TabIndex = 66;
             this.Info.Text = "label7";
             this.Info.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // EmplKomyCB
+            // 
+            this.EmplKomyCB.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.EmplKomyCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.EmplKomyCB.FormattingEnabled = true;
+            this.EmplKomyCB.Location = new System.Drawing.Point(271, 7);
+            this.EmplKomyCB.Name = "EmplKomyCB";
+            this.EmplKomyCB.Size = new System.Drawing.Size(202, 27);
+            this.EmplKomyCB.TabIndex = 44;
             // 
             // fCloseKas
             // 
@@ -374,6 +374,8 @@
             this.Padding = new System.Windows.Forms.Padding(5, 10, 5, 0);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Закрытие кассы";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fCloseKas_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.fCloseKas_FormClosed);
             this.panel9.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
@@ -384,7 +386,6 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.ResumeLayout(false);
@@ -410,12 +411,12 @@
         private System.Windows.Forms.TextBox KlReestrTB;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.TextBox FioKomyTB;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TextBox FioGLBuhTB;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button ShowReport;
         private System.Windows.Forms.Label Info;
+        private System.Windows.Forms.ComboBox EmplKomyCB;
     }
 }

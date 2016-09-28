@@ -62,5 +62,24 @@ namespace UtilDLL
             return Convert.ToDecimal(Command.Parameters["@ret"].Value);
 
         }
+
+        public static Decimal GetCloseKasFIX() // возвращает номер операции списания операции
+        {
+            SqlConnection connection = new SqlConnection(Connect.GetConn());
+            SqlCommand Command = connection.CreateCommand();
+            Command.CommandType = CommandType.StoredProcedure;
+            Command.CommandText = "[GETFIXCLOSEKASSA]";
+            SqlParameter param = new SqlParameter();
+            param.ParameterName = "@ret";
+            param.SqlDbType = SqlDbType.BigInt;
+            param.Direction = ParameterDirection.Output;
+            Command.Parameters.Add(param);
+            connection.Open();
+            Command.ExecuteNonQuery();
+            connection.Close();
+            return Convert.ToDecimal(Command.Parameters["@ret"].Value);
+
+        }
+
     }
 }

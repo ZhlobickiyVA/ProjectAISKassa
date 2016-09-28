@@ -82,6 +82,12 @@ namespace LibEmployees
             return empl.GetSmallFIO().ToString();
         }
 
+        public static string GetBigFIO(string idEmpl) // Фамиля Имя Отчество
+        {
+            clEmployees empl = new clEmployees(idEmpl);
+            return empl.LastName + " " + empl.FirstName + " " + empl.MiddleName;
+        }
+
         public string GetBigFIO() // Фамиля Имя Отчество
         {
             return this.LastName + " " + this.FirstName + " " + this.MiddleName;

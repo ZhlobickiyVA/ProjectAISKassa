@@ -32,6 +32,7 @@ namespace LibDataFile
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             clDataFile.DeleteFile(this.ListFile.CurrentRow.Cells[0].Value.ToString());
+            this.ListFile.DataSource = clDataFile.GetListDataFile(clDataFile.ServiceIdClient);
         }
     }
 }

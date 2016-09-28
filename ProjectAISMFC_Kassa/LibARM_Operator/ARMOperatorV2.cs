@@ -35,8 +35,8 @@ namespace LibARM_Operator
             clClient.ActiveStyleDataGridViewToClient(ListCli);
             if (Kas.ActiveKassa == 0) { OpenKassaItem.Enabled = true; CloseKassaItem.Enabled = false; }
             if (Kas.ActiveKassa == 1) { OpenKassaItem.Enabled = false; CloseKassaItem.Enabled = true; }
-
-            timer.Enabled = true;
+            //TODO:Не забудь включить
+            //timer.Enabled = true;
 
         }
 

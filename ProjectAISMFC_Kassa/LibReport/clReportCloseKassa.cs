@@ -17,6 +17,7 @@ using LibDataFile;
 
 
 
+
 namespace LibReport
 {
     public class clReportCloseKassa
@@ -26,10 +27,13 @@ namespace LibReport
             public Double OstatikInKassa;
             public int KolVoReesstr;
             public string IdEmpl;
-            public string FioEmplKomy;
+            public string idEmplKomy;
             public string FioGlBuh;
+
+            public Decimal SolDoBegin;
         }
 
+        public ParCloseKassa Parametr;
 
         private Excel.Application ExcelAPP;
         private Excel.Sheets ExcelSheets;
@@ -38,8 +42,6 @@ namespace LibReport
         private Excel.Workbook ExcelAPpWorkBook;
         private Excel.Range ExcelCells;
         clORG org = new clORG();
-
-        public string IdEmpl;
 
         public DataGridView Data { get; set; }
         public string path = "";
@@ -65,10 +67,23 @@ namespace LibReport
 
 
 
-        public void GetReportCloseKassa(ParCloseKassa par)
+        public void GetReportCloseKassa()
         {
             try
             {
+                // Название организации
+                ExcelCells = ExcelWorkSheet.get_Range("A5", Type.Missing);
+                ExcelCells.Value2 = org.slName.ToString();
+                // Полное Имя сотрудника формирующий отчет
+                ExcelCells = ExcelWorkSheet.get_Range("A7", Type.Missing);
+                ExcelCells.Value2 = clEmployees.GetBigFIO(this.Parametr.IdEmpl);
+                // Номер документа
+                ExcelCells = ExcelWorkSheet.get_Range("F10", Type.Missing);
+                ExcelCells.Value2 = clFix.GetCloseKasFIX();
+                // Сальдо на начало дня
+                ExcelCells = ExcelWorkSheet.get_Range("F12", Type.Missing);
+                ExcelCells.Value2 = this.Parametr.SolDoBegin.ToString("C2");
+
                 //clEmployees emplkto = new clEmployees(this.Id_EmpMot);
                 //string FioMot = emplkto.GetSmallFIO();
                 //// Руководитель учереждения
@@ -146,10 +161,10 @@ namespace LibReport
                 //}
 
                 //// Сохраняем файл в темпе
-                //Random rnd = new Random();
-                //path = CLUtils.GetPathTemp() + "\\" + rnd.Next() + ".xls";
-                //ExcelAPpWorkBook.SaveAs(@path);
-                //ExcelAPpWorkBook.Saved = true;
+                Random rnd = new Random();
+                path = CLUtils.GetPathTemp() + "\\" + rnd.Next() + ".xls";
+                ExcelAPpWorkBook.SaveAs(@path);
+                ExcelAPpWorkBook.Saved = true;
 
             }
             finally
