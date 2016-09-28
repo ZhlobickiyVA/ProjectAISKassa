@@ -29,8 +29,8 @@ namespace LibReport
             public string IdEmpl;
             public string idEmplKomy;
             public string FioGlBuh;
-
             public Decimal SolDoBegin;
+            public DataTable DateItogClose;
         }
 
         public ParCloseKassa Parametr;
@@ -43,7 +43,7 @@ namespace LibReport
         private Excel.Range ExcelCells;
         clORG org = new clORG();
 
-        public DataGridView Data { get; set; }
+        //public DataGridView Data { get; set; }
         public string path = "";
 
         string EtalonCloseKassa = clDataFile.GetPathCloseKassaFile();
@@ -78,11 +78,45 @@ namespace LibReport
                 ExcelCells = ExcelWorkSheet.get_Range("A7", Type.Missing);
                 ExcelCells.Value2 = clEmployees.GetBigFIO(this.Parametr.IdEmpl);
                 // Номер документа
-                ExcelCells = ExcelWorkSheet.get_Range("F10", Type.Missing);
+                ExcelCells = ExcelWorkSheet.get_Range("E10", Type.Missing);
                 ExcelCells.Value2 = clFix.GetCloseKasFIX();
                 // Сальдо на начало дня
-                ExcelCells = ExcelWorkSheet.get_Range("F12", Type.Missing);
+                ExcelCells = ExcelWorkSheet.get_Range("E12", Type.Missing);
                 ExcelCells.Value2 = this.Parametr.SolDoBegin.ToString("C2");
+                // Кто принимает деньги
+                clEmployees Em = new clEmployees(this.Parametr.idEmplKomy);
+                ExcelCells = ExcelWorkSheet.get_Range("H25", Type.Missing);
+                ExcelCells.Value2 = Em.GetSmallFIO();
+                ExcelCells = ExcelWorkSheet.get_Range("B26", Type.Missing);
+                ExcelCells.Value2 = Em.GetPasportString();
+                // Главный бухгалтер
+                ExcelCells = ExcelWorkSheet.get_Range("H33", Type.Missing);
+                ExcelCells.Value2 = clORG.GetGlBuh();
+                // Кто сдал Деньги
+                ExcelCells = ExcelWorkSheet.get_Range("H29", Type.Missing);
+                ExcelCells.Value2 = clEmployees.GetSmallFIO(this.Parametr.IdEmpl);
+
+                for (int i = 0; i <= this.Parametr.DateItogClose.Rows.Count - 1; i++)
+                {
+                    string row = (i + 15).ToString();
+                    //Добавляем новую строку
+                    ExcelCells = ExcelWorkSheet.get_Range("A" + (Convert.ToInt32(row)).ToString(), "I" + (Convert.ToInt32(row)).ToString());          // Устанавливаем ссылку ячеек на ячейку A1
+                    ExcelCells.Insert(Type.Missing);
+
+                }
+
+                for (int i = 0; i <= this.Parametr.DateItogClose.Rows.Count - 1; i++)
+                {
+                    string row = (i + 15).ToString();
+                    ExcelCells = ExcelWorkSheet.get_Range("A" + row, Type.Missing);
+                    ExcelCells.Value2 = this.Parametr.DateItogClose.Rows[i].ItemArray[1].ToString();
+                    ExcelCells = ExcelWorkSheet.get_Range("B" + row, Type.Missing);
+                    ExcelCells.Value2 = this.Parametr.DateItogClose.Rows[i].ItemArray[2].ToString();
+                    ExcelCells = ExcelWorkSheet.get_Range("C" + row, Type.Missing);
+                    ExcelCells.Value2 = this.Parametr.DateItogClose.Rows[i].ItemArray[3].ToString();
+
+                }
+
 
                 //clEmployees emplkto = new clEmployees(this.Id_EmpMot);
                 //string FioMot = emplkto.GetSmallFIO();

@@ -26,14 +26,22 @@ namespace CashLib
             InitializeComponent();
             Kassa = kas;
             FioGLBuhTB.Text = kas.Par.FioGlBuh;
-            SoldoBeginTB.Text = kas.SolDoBegin.ToString();
-            SummaInKassa.Text = kas.SummaInKassa.ToString();
+            SoldoBeginTB.Text = kas.SolDoBegin.ToString("C2");
+            SummaInKassa.Text = kas.SummaInKassa.ToString("C2");
             Info.Text = "Разделитель дробной части: [ " + CLUtils.GetSep() + " ]";
 
             EmplKomyCB.DataSource = clEmployees.GetListEmployess(1);
             EmplKomyCB.DisplayMember = "SmallName";
             EmplKomyCB.ValueMember = "id";
 
+            this.OstInKassa.Text = kas.SoldoEnd.ToString();
+
+            ListItog.DataSource = kas.GetItogToPrice().DefaultView;
+            ListItog.Columns[0].Visible = false;
+            ListItog.Columns[1].Width = 200;
+            // TODO: Потом убрать
+            this.listBox1.Items.Add("Касса открыта:" + kas.SoldoBeginDate.ToShortDateString()+ " Сальдо начало: " + kas.SolDoBegin.ToString("C2"));
+            this.listBox1.Items.Add("Касса закрыта:" + kas.SoldoEndDate.ToShortDateString() + " Сальдо конец: " + kas.SoldoEnd.ToString("C2"));
 
 
         }
@@ -46,11 +54,10 @@ namespace CashLib
             CKas.Parametr.OstatikInKassa = Convert.ToDouble( this.OstInKassa.Text);
             CKas.Parametr.KolVoReesstr = Convert.ToInt32( this.KlReestrTB.Text);
             CKas.Parametr.IdEmpl = Kassa.idEmpl;
-
-
             CKas.Parametr.idEmplKomy = this.EmplKomyCB.SelectedValue.ToString();
             CKas.Parametr.FioGlBuh = this.FioGLBuhTB.Text;
             CKas.Parametr.SolDoBegin = (Decimal)Kassa.SolDoBegin;
+            CKas.Parametr.DateItogClose = Kassa.GetItogToPrice();
             CKas.GetReportCloseKassa();
     }
 

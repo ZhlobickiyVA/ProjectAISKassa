@@ -100,6 +100,10 @@ namespace LibEmployees
             return role.Name;
         }
 
+        public string GetPasportString()
+        {
+            return this.DocName + " " + this.DocSeria + this.DocNumber + " вд. " + this.DocDateRet.ToShortDateString() + "г. " + this.DocOrg;
+        }
 
         public static void RunSpEmployees() // Открытие справочника сотрудников
         {
@@ -196,7 +200,7 @@ namespace LibEmployees
                 Command.Parameters.Add("@DocNumber", SqlDbType.NVarChar, 7);
                 Command.Parameters["@DocNumber"].Value = this.DocNumber;
                 Command.Parameters.Add("@DocOrg", SqlDbType.NVarChar, 200);
-                Command.Parameters["@DocOrg"].Value = this.DocName;
+                Command.Parameters["@DocOrg"].Value = this.DocOrg;
                 Command.Parameters.Add("@DocDateRet", SqlDbType.Date, 10);
                 Command.Parameters["@DocDateRet"].Value = this.DateB.Date;
                 Command.Parameters.Add("@Flag", SqlDbType.Bit);
@@ -244,7 +248,7 @@ namespace LibEmployees
                 Command.Parameters.Add("@DocNumber", SqlDbType.NVarChar, 7);
                 Command.Parameters["@DocNumber"].Value = this.DocNumber;
                 Command.Parameters.Add("@DocOrg", SqlDbType.NVarChar, 200);
-                Command.Parameters["@DocOrg"].Value = this.DocName;
+                Command.Parameters["@DocOrg"].Value = this.DocOrg;
                 Command.Parameters.Add("@DocDateRet", SqlDbType.Date, 10);
                 Command.Parameters["@DocDateRet"].Value = this.DateB.Date;
                 Command.Parameters.Add("@Dolzh", SqlDbType.NVarChar, 300);

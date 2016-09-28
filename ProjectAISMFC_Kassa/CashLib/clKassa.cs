@@ -34,25 +34,16 @@ namespace CashLib
         {
             get { return GetMoneyToKassa();}
         }
-        public Double SolDoBegin
-        { 
-            get { return CashLib.Properties.Settings.Default.SoldoBegin; }
-            set
-            {
-                CashLib.Properties.Settings.Default.SoldoBegin = value;
-                CashLib.Properties.Settings.Default.Save();
-            }
-        }
-        public Double SoldoEnd
-        {
-            get { return CashLib.Properties.Settings.Default.SoldoEnd; }
-            set
-            {
-                CashLib.Properties.Settings.Default.SoldoEnd = value;
-                CashLib.Properties.Settings.Default.Save();
-            }
+        public Double SolDoBegin { get;set;}
+        public Double SoldoEnd { get; set; }
 
-        }
+        
+
+        public DateTime SoldoBeginDate { get; set; }
+
+        public DateTime SoldoEndDate { get; set; }
+
+
 
         public clReportCloseKassa.ParCloseKassa Par;
 
@@ -112,6 +103,9 @@ namespace CashLib
                 reader.Read();
                 this.NameKassa = reader["Name"].ToString();
                 this.ActiveKassa = Convert.ToInt32( reader["Active"].ToString());
+                this.SoldoBeginDate = Convert.ToDateTime(reader["DateOpen"].ToString()).Date;
+                this.SoldoEndDate = Convert.ToDateTime(reader["DateClose"].ToString()).Date;
+                this.SolDoBegin = Convert.ToDouble(reader["SoldoBegin"].ToString());
             }
             connection.Close();
             this.Par.FioGlBuh = clORG.GetGlBuh();
@@ -240,6 +234,29 @@ namespace CashLib
             spKassa Kassa = new spKassa(this);
             Kassa.Show();
         }
+
+        public DataTable GetItogToPrice()
+        {
+            Command = new SqlCommand();
+            Command.Connection = connection;
+            Command.CommandType = CommandType.StoredProcedure;
+            Command.CommandText = "[GetItogPrice]";
+            Command.Parameters.Add("@idempl", SqlDbType.UniqueIdentifier);
+            Command.Parameters["@idempl"].Value = new Guid(this.idEmpl);
+            Command.Parameters.Add("@DateBegin", SqlDbType.Date);
+            Command.Parameters["@DateBegin"].Value = SoldoBeginDate;
+            Command.Parameters.Add("@DateEnd", SqlDbType.Date);
+            Command.Parameters["@DateEnd"].Value = SoldoEndDate;
+            SqlDataAdapter data = new SqlDataAdapter();
+            data.SelectCommand = Command;
+            DataSet ds = new DataSet();
+            data.Fill(ds);
+            connection.Close();
+            return ds.Tables[0];
+
+        }
+
+
 
     }
 }

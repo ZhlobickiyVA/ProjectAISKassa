@@ -46,5 +46,27 @@ namespace CashLib.Properties {
                 this["SoldoEnd"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime SoldoBeginDate {
+            get {
+                return ((global::System.DateTime)(this["SoldoBeginDate"]));
+            }
+            set {
+                this["SoldoBeginDate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime SoldoEndDate {
+            get {
+                return ((global::System.DateTime)(this["SoldoEndDate"]));
+            }
+            set {
+                this["SoldoEndDate"] = value;
+            }
+        }
     }
 }
