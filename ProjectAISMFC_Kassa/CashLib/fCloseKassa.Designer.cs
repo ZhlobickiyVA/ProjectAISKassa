@@ -102,6 +102,7 @@
             // 
             this.OkBT.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.OkBT.Dock = System.Windows.Forms.DockStyle.Right;
+            this.OkBT.Enabled = false;
             this.OkBT.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.OkBT.Image = global::CashLib.Properties.Resources.camera_test_1751;
             this.OkBT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -113,6 +114,7 @@
             this.OkBT.Text = "Закрыть кассу";
             this.OkBT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.OkBT.UseVisualStyleBackColor = true;
+            this.OkBT.Click += new System.EventHandler(this.OkBT_Click);
             // 
             // panel10
             // 

@@ -24,13 +24,14 @@ namespace LibReport
     {
         public struct ParCloseKassa
         {
-            public Double OstatikInKassa;
+            public Decimal OstatikInKassa;
             public int KolVoReesstr;
             public string IdEmpl;
             public string idEmplKomy;
             public string FioGlBuh;
             public Decimal SolDoBegin;
             public DataTable DateItogClose;
+            public decimal SumInKassa;
         }
 
         public ParCloseKassa Parametr;
@@ -50,19 +51,28 @@ namespace LibReport
 
         public clReportCloseKassa()
         {
-            // Запускаем приложение
-            ExcelAPP = new Excel.Application();
-            // Открываем файл
-            ExcelAPP.Workbooks.Open(EtalonCloseKassa);
-            // Получаем ссылки на книги в файле
-            ExcelAPpWorkBooks = ExcelAPP.Workbooks;
-            // Получаем ссылку на первую книгу
-            ExcelAPpWorkBook = ExcelAPpWorkBooks[1];
-            // Получили список листов
-            ExcelSheets = ExcelAPpWorkBook.Worksheets;
-            // Получили ссылку на первый лист
-            ExcelWorkSheet = (Excel.Worksheet)ExcelSheets.get_Item(1);
-            // Выделение группы ячеек
+            try
+            {
+                // Запускаем приложение
+                ExcelAPP = new Excel.Application();
+                // Открываем файл
+                ExcelAPP.Workbooks.Open(EtalonCloseKassa);
+                // Получаем ссылки на книги в файле
+                ExcelAPpWorkBooks = ExcelAPP.Workbooks;
+                // Получаем ссылку на первую книгу
+                ExcelAPpWorkBook = ExcelAPpWorkBooks[1];
+                // Получили список листов
+                ExcelSheets = ExcelAPpWorkBook.Worksheets;
+                // Получили ссылку на первый лист
+                ExcelWorkSheet = (Excel.Worksheet)ExcelSheets.get_Item(1);
+                // Выделение группы ячеек
+            }
+            catch
+            {
+                ExcelAPP.Quit();
+                File.Delete(EtalonCloseKassa);
+                MessageBox.Show("Ошибка инициализации!!! Файла!");
+            }
         }
 
 
@@ -82,19 +92,35 @@ namespace LibReport
                 ExcelCells.Value2 = clFix.GetCloseKasFIX();
                 // Сальдо на начало дня
                 ExcelCells = ExcelWorkSheet.get_Range("E12", Type.Missing);
-                ExcelCells.Value2 = this.Parametr.SolDoBegin.ToString("C2");
+                ExcelCells.Value2 = this.Parametr.SolDoBegin.ToString("F2");
                 // Кто принимает деньги
                 clEmployees Em = new clEmployees(this.Parametr.idEmplKomy);
-                ExcelCells = ExcelWorkSheet.get_Range("H25", Type.Missing);
+                ExcelCells = ExcelWorkSheet.get_Range("H24", Type.Missing);
                 ExcelCells.Value2 = Em.GetSmallFIO();
-                ExcelCells = ExcelWorkSheet.get_Range("B26", Type.Missing);
+                ExcelCells = ExcelWorkSheet.get_Range("B25", Type.Missing);
                 ExcelCells.Value2 = Em.GetPasportString();
                 // Главный бухгалтер
-                ExcelCells = ExcelWorkSheet.get_Range("H33", Type.Missing);
+                ExcelCells = ExcelWorkSheet.get_Range("H32", Type.Missing);
                 ExcelCells.Value2 = clORG.GetGlBuh();
                 // Кто сдал Деньги
-                ExcelCells = ExcelWorkSheet.get_Range("H29", Type.Missing);
+                ExcelCells = ExcelWorkSheet.get_Range("H28", Type.Missing);
                 ExcelCells.Value2 = clEmployees.GetSmallFIO(this.Parametr.IdEmpl);
+
+                decimal sum = this.Parametr.SumInKassa - this.Parametr.OstatikInKassa;
+                                               
+                ExcelCells = ExcelWorkSheet.get_Range("C21", Type.Missing);
+                ExcelCells.Value2 = RuDateAndMoneyConverter.CurrencyToTxtNoRubNoKop((double)sum,true) + "  -----------------";
+                ExcelCells = ExcelWorkSheet.get_Range("H23", Type.Missing);
+
+                string kop = RuDateAndMoneyConverter.CurrencyToTxtKop((double)sum, true);
+                if (kop == "00") ExcelCells.Value2 = "-----";
+                else ExcelCells.Value2 = kop;
+
+                ExcelCells = ExcelWorkSheet.get_Range("A23", Type.Missing);
+                ExcelCells.Value2 = "--------------------------------------------------------------";
+
+                ExcelCells = ExcelWorkSheet.get_Range("E16", Type.Missing);
+                ExcelCells.Value2 = this.Parametr.OstatikInKassa.ToString("F2");
 
                 for (int i = 0; i <= this.Parametr.DateItogClose.Rows.Count - 1; i++)
                 {
@@ -110,89 +136,40 @@ namespace LibReport
                     string row = (i + 15).ToString();
                     ExcelCells = ExcelWorkSheet.get_Range("A" + row, Type.Missing);
                     ExcelCells.Value2 = this.Parametr.DateItogClose.Rows[i].ItemArray[1].ToString();
+                    ExcelCells = ExcelWorkSheet.get_Range("D" + row, Type.Missing);
+                    if (i == 0) ExcelCells.Value2 = this.Parametr.KolVoReesstr.ToString();
+                    else ExcelCells.Value2 = 0;
                     ExcelCells = ExcelWorkSheet.get_Range("B" + row, Type.Missing);
+                    ExcelCells.NumberFormat = "#,##0.00";
                     ExcelCells.Value2 = this.Parametr.DateItogClose.Rows[i].ItemArray[2].ToString();
                     ExcelCells = ExcelWorkSheet.get_Range("C" + row, Type.Missing);
+                    ExcelCells.NumberFormat = "#,##0.00";
                     ExcelCells.Value2 = this.Parametr.DateItogClose.Rows[i].ItemArray[3].ToString();
 
+                    ExcelCells = ExcelWorkSheet.get_Range("A" + (Convert.ToInt32(row)).ToString(), "I" + (Convert.ToInt32(row)).ToString()); 
+                    ExcelCells.HorizontalAlignment = Excel.Constants.xlCenter;
+                    ExcelCells.VerticalAlignment = Excel.Constants.xlCenter;
+                    ExcelCells.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                    ExcelCells.Borders.Weight = Excel.XlBorderWeight.xlThin;
                 }
 
+                ExcelCells = ExcelWorkSheet.get_Range("E15", "I" + (15+(this.Parametr.DateItogClose.Rows.Count - 1)).ToString());
+                ExcelCells.Merge(Type.Missing);
+                ExcelCells.HorizontalAlignment = Excel.Constants.xlCenter;
+                ExcelCells.VerticalAlignment = Excel.Constants.xlCenter;
+                ExcelCells.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                ExcelCells.Borders.Weight = Excel.XlBorderWeight.xlThin;
 
-                //clEmployees emplkto = new clEmployees(this.Id_EmpMot);
-                //string FioMot = emplkto.GetSmallFIO();
-                //// Руководитель учереждения
-                //ExcelCells = ExcelWorkSheet.get_Range("F2", Type.Missing);
-                //ExcelCells.Value2 = org.Director.Trim();
-                //// Номер Акта
-                //ExcelCells = ExcelWorkSheet.get_Range("A5", Type.Missing);
-                //ExcelCells.Value2 = "АКТ № " + clFix.GetCanceledFIX().ToString();
-                //// Комиссия в составе
-                //ExcelCells = ExcelWorkSheet.get_Range("B16", Type.Missing);
-                //ExcelCells.Value2 = org.GetCommisia().ToString();
-                //// НПА по комиммии
-                //ExcelCells = ExcelWorkSheet.get_Range("A18", Type.Missing);
-                //ExcelCells.Value2 = org.GetNPACommisia(BeginRange, EndRange).ToString();
-                //// МОЛ
-                //ExcelCells = ExcelWorkSheet.get_Range("B12", Type.Missing);
-                //ExcelCells.Value2 = FioMot;
-                //// Председатель коммисии
-                //ExcelCells = ExcelWorkSheet.get_Range("D24", Type.Missing);
-                //ExcelCells.Value2 = org.PredComDolzh;
-                //ExcelCells = ExcelWorkSheet.get_Range("F24", Type.Missing);
-                //ExcelCells.Value2 = org.PredComFio;
-                //// 1 член комисии
-                //ExcelCells = ExcelWorkSheet.get_Range("D27", Type.Missing);
-                //ExcelCells.Value2 = org.cl1ComDolzh;
-                //ExcelCells = ExcelWorkSheet.get_Range("F27", Type.Missing);
-                //ExcelCells.Value2 = org.cl1ComFIo;
-                //// 2 член комисии
-                //ExcelCells = ExcelWorkSheet.get_Range("30", Type.Missing);
-                //ExcelCells.Value2 = org.cl2ComDolzh;
-                //ExcelCells = ExcelWorkSheet.get_Range("30", Type.Missing);
-                //ExcelCells.Value2 = org.cl2ComFIo;
-                //// 3 член комисии
-                //ExcelCells = ExcelWorkSheet.get_Range("33", Type.Missing);
-                //ExcelCells.Value2 = org.cl3ComDolzh;
-                //ExcelCells = ExcelWorkSheet.get_Range("33", Type.Missing);
-                //ExcelCells.Value2 = org.cl3ComFIo;
-                //string row = "";
-                //for (int i = 0; i <= Data.RowCount - 1; i++)
-                //{
+                ExcelCells = ExcelWorkSheet.get_Range("E15", Type.Missing);
+                ExcelCells.NumberFormat = "#,##0.00";
+                ExcelCells.Value2 = sum.ToString("F2");
+                ExcelCells.Font.Size = 14;
+                
 
-                //    row = (23 + i).ToString();
-
-                //    string Name = "Социальные льготный проездной билет";
-                //    string Range = Data.Rows[i].Cells[3].Value.ToString() + " - " + Data.Rows[i].Cells[4].Value.ToString();
-                //    int RangeCount = Convert.ToInt32(Data.Rows[i].Cells[4].Value.ToString()) - Convert.ToInt32(Data.Rows[i].Cells[3].Value.ToString()) + 1;
-                //    // Наименование
-                //    ExcelCells = ExcelWorkSheet.get_Range("A" + row, Type.Missing);
-                //    ExcelCells.Value2 = Name;
-                //    // номер
-                //    ExcelCells = ExcelWorkSheet.get_Range("B" + row, Type.Missing);
-                //    ExcelCells.Value2 = Range;
-                //    // Серия
-                //    ExcelCells = ExcelWorkSheet.get_Range("C" + row, Type.Missing);
-                //    ExcelCells.Value2 = "ФС";
-                //    // Причина списания
-                //    ExcelCells = ExcelWorkSheet.get_Range("D" + row, Type.Missing);
-                //    ExcelCells.Value2 = "Испорчен";
-                //    // Количество
-                //    ExcelCells = ExcelWorkSheet.get_Range("E" + row, Type.Missing);
-                //    ExcelCells.Value2 = RangeCount;
-                //    // Дата уничтожения
-                //    ExcelCells = ExcelWorkSheet.get_Range("F" + row, Type.Missing);
-                //    ExcelCells.Value2 = System.DateTime.Now.Date.ToShortDateString();
-                //    // ----------------------------------------------------------------
-                //    ExcelCells = ExcelWorkSheet.get_Range("A" + row, "F" + row);
-                //    ExcelCells.HorizontalAlignment = Excel.Constants.xlCenter;
-                //    ExcelCells.VerticalAlignment = Excel.Constants.xlCenter;
-                //    //Устанавливаем стиль и толщину линии
-                //    ExcelCells.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-                //    ExcelCells.Borders.Weight = Excel.XlBorderWeight.xlThin;
-                //    //Добавляем новую строку
-                //    ExcelCells = ExcelWorkSheet.get_Range("A" + (Convert.ToInt32(row) + 1).ToString(), "F" + (Convert.ToInt32(row) + 1).ToString());          // Устанавливаем ссылку ячеек на ячейку A1
-                //    ExcelCells.Insert(Type.Missing);
-                //}
+                ExcelCells = ExcelWorkSheet.get_Range("E" + (15 + (this.Parametr.DateItogClose.Rows.Count)).ToString(), Type.Missing);
+                ExcelCells.RowHeight = 15;
+                ExcelCells = ExcelWorkSheet.get_Range("E" + (16 + (this.Parametr.DateItogClose.Rows.Count)).ToString(), Type.Missing);
+                ExcelCells.RowHeight = 23;
 
                 //// Сохраняем файл в темпе
                 Random rnd = new Random();

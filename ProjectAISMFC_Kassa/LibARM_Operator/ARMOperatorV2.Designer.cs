@@ -444,6 +444,7 @@
             this.InsertMoneyToKassa.Name = "InsertMoneyToKassa";
             this.InsertMoneyToKassa.Size = new System.Drawing.Size(314, 24);
             this.InsertMoneyToKassa.Text = "Внести денежные средства в кассу";
+            this.InsertMoneyToKassa.Visible = false;
             this.InsertMoneyToKassa.Click += new System.EventHandler(this.InsertMoneyToKassa_Click);
             // 
             // ReturnMoneyToKassa
@@ -451,6 +452,7 @@
             this.ReturnMoneyToKassa.Name = "ReturnMoneyToKassa";
             this.ReturnMoneyToKassa.Size = new System.Drawing.Size(314, 24);
             this.ReturnMoneyToKassa.Text = "Инкасация денежных средств";
+            this.ReturnMoneyToKassa.Visible = false;
             this.ReturnMoneyToKassa.Click += new System.EventHandler(this.ReturnMoneyToKassa_Click);
             // 
             // toolStripMenuItem5

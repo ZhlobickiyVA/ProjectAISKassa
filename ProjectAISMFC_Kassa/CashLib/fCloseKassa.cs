@@ -34,7 +34,7 @@ namespace CashLib
             EmplKomyCB.DisplayMember = "SmallName";
             EmplKomyCB.ValueMember = "id";
 
-            this.OstInKassa.Text = kas.SoldoEnd.ToString();
+            this.OstInKassa.Text = "0,00";
 
             ListItog.DataSource = kas.GetItogToPrice().DefaultView;
             ListItog.Columns[0].Visible = false;
@@ -51,14 +51,16 @@ namespace CashLib
             Bclose = true;
             clReportCloseKassa CKas = new clReportCloseKassa();
 
-            CKas.Parametr.OstatikInKassa = Convert.ToDouble( this.OstInKassa.Text);
+            CKas.Parametr.OstatikInKassa = (decimal)Convert.ToDouble( this.OstInKassa.Text);
             CKas.Parametr.KolVoReesstr = Convert.ToInt32( this.KlReestrTB.Text);
             CKas.Parametr.IdEmpl = Kassa.idEmpl;
             CKas.Parametr.idEmplKomy = this.EmplKomyCB.SelectedValue.ToString();
             CKas.Parametr.FioGlBuh = this.FioGLBuhTB.Text;
             CKas.Parametr.SolDoBegin = (Decimal)Kassa.SolDoBegin;
             CKas.Parametr.DateItogClose = Kassa.GetItogToPrice();
+            CKas.Parametr.SumInKassa = (Decimal)Kassa.SummaInKassa;
             CKas.GetReportCloseKassa();
+            OkBT.Enabled = true;
     }
 
         private void fCloseKas_FormClosing(object sender, FormClosingEventArgs e)
@@ -75,6 +77,11 @@ namespace CashLib
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void OkBT_Click(object sender, EventArgs e)
+        {
+            Kassa.SoldoEnd = Convert.ToDouble(OstInKassa.Text);
         }
     }
 }

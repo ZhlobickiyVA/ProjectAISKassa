@@ -70,11 +70,10 @@ namespace CashLib
                 fCloseKas fclose = new fCloseKas(this);
                 if (fclose.ShowDialog() == DialogResult.OK)
                 {
-
-                    //TODO: Тут будем запускать отчет по закрытию кассы.
                     
                     this.Operation_UpdateActive_spKassa();
                     ret = true;
+                    
                     MessageInfo info = new MessageInfo();
                     info.Lin.Add("Касса закрыта!");
                     info.Lin.Add("Сальдо на конец дня: " + String.Format("{0:C2}", this.SoldoEnd));

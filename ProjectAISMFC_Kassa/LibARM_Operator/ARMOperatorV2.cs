@@ -33,10 +33,22 @@ namespace LibARM_Operator
             NameEmpl.Text = clEmployees.GetNameRole(idEmpl) +": "+empl.GetSmallFIO().ToString();
             ListCli.DataSource = clClient.GetListClient("");
             clClient.ActiveStyleDataGridViewToClient(ListCli);
-            if (Kas.ActiveKassa == 0) { OpenKassaItem.Enabled = true; CloseKassaItem.Enabled = false; }
-            if (Kas.ActiveKassa == 1) { OpenKassaItem.Enabled = false; CloseKassaItem.Enabled = true; }
-            //TODO:Не забудь включить
-            //timer.Enabled = true;
+            if (Kas.ActiveKassa == 0)
+            {
+              OpenKassaItem.Enabled = true;
+              CloseKassaItem.Enabled = false;
+                PriceTIkBT.Enabled = false;
+                DoubTikBT.Enabled = false;
+            }
+            if (Kas.ActiveKassa == 1)
+            {
+                OpenKassaItem.Enabled = false;
+                CloseKassaItem.Enabled = true;
+                PriceTIkBT.Enabled = true;
+                DoubTikBT.Enabled = true;
+            }
+            
+            timer.Enabled = true;
 
         }
 
@@ -140,7 +152,8 @@ namespace LibARM_Operator
             {
                 OpenKassaItem.Enabled = false;
                 CloseKassaItem.Enabled = true;
-
+                PriceTIkBT.Enabled = true;
+                DoubTikBT.Enabled = true;
 
                 // открываем кассу
             }
@@ -153,6 +166,8 @@ namespace LibARM_Operator
             {
                 CloseKassaItem.Enabled = false;
                 OpenKassaItem.Enabled = true;
+                PriceTIkBT.Enabled = false;
+                DoubTikBT.Enabled = false;
                 //закрываем кассу
             }
             

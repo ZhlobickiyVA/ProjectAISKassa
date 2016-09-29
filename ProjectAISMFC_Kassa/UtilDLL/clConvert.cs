@@ -212,6 +212,72 @@ namespace UtilDLL
 
             return s.Trim();
         }
+
+        /// <summary>
+        /// Десять тысяч 
+        /// </summary>
+        /// <param name="_amount"></param>
+        /// <param name="_firstCapital"></param>
+        /// <returns></returns>
+        public static string CurrencyToTxtNoRubNoKop(double _amount, bool _firstCapital)
+        {
+            //Десять тысяч рублей 67 копеек
+            long rublesAmount = (long)Math.Floor(_amount);
+            long copecksAmount = ((long)Math.Round(_amount * 100)) % 100;
+            int lastRublesDigit = lastDigit(rublesAmount);
+            int lastCopecksDigit = lastDigit(copecksAmount);
+
+            string s = NumeralsToTxt(rublesAmount, TextCase.Nominative, true, _firstCapital) + " ";
+
+            //if (IsPluralGenitive(lastRublesDigit))
+            //{
+            //    s += rubles[3] + " ";
+            //}
+            //else if (IsSingularGenitive(lastRublesDigit))
+            //{
+            //    s += rubles[2] + " ";
+            //}
+            //else
+            //{
+            //    s += rubles[1] + " ";
+            //}
+
+            //s += String.Format("{0:00} ", copecksAmount);
+
+            //if (IsPluralGenitive(lastCopecksDigit))
+            //{
+            //    s += copecks[3] + " ";
+            //}
+            //else if (IsSingularGenitive(lastCopecksDigit))
+            //{
+            //    s += copecks[2] + " ";
+            //}
+            //else
+            //{
+            //    s += copecks[1] + " ";
+            //}
+
+            return s.Trim();
+        }
+
+        public static string CurrencyToTxtKop(double _amount, bool _firstCapital)
+        {
+            // 67 
+            long rublesAmount = (long)Math.Floor(_amount);
+            long copecksAmount = ((long)Math.Round(_amount * 100)) % 100;
+            int lastRublesDigit = lastDigit(rublesAmount);
+            int lastCopecksDigit = lastDigit(copecksAmount);
+
+
+
+            string s = String.Format("{0:00} ", copecksAmount);
+
+
+
+            return s.Trim();
+        }
+
+
         /// <summary>
         /// 10 000 (Десять тысяч) рублей 67 копеек
         /// </summary>
