@@ -32,6 +32,7 @@ namespace LibReport
             public Decimal SolDoBegin;
             public DataTable DateItogClose;
             public decimal SumInKassa;
+            public decimal SummaTransfer;
         }
 
         public ParCloseKassa Parametr;
@@ -106,13 +107,13 @@ namespace LibReport
                 ExcelCells = ExcelWorkSheet.get_Range("H28", Type.Missing);
                 ExcelCells.Value2 = clEmployees.GetSmallFIO(this.Parametr.IdEmpl);
 
-                decimal sum = this.Parametr.SumInKassa - this.Parametr.OstatikInKassa;
+                
                                                
                 ExcelCells = ExcelWorkSheet.get_Range("C21", Type.Missing);
-                ExcelCells.Value2 = RuDateAndMoneyConverter.CurrencyToTxtNoRubNoKop((double)sum,true) + "  -----------------";
+                ExcelCells.Value2 = RuDateAndMoneyConverter.CurrencyToTxtNoRubNoKop((double)this.Parametr.SummaTransfer,true) + "  -----------------";
                 ExcelCells = ExcelWorkSheet.get_Range("H23", Type.Missing);
 
-                string kop = RuDateAndMoneyConverter.CurrencyToTxtKop((double)sum, true);
+                string kop = RuDateAndMoneyConverter.CurrencyToTxtKop((double)this.Parametr.SummaTransfer, true);
                 if (kop == "00") ExcelCells.Value2 = "-----";
                 else ExcelCells.Value2 = kop;
 
@@ -135,16 +136,16 @@ namespace LibReport
                 {
                     string row = (i + 15).ToString();
                     ExcelCells = ExcelWorkSheet.get_Range("A" + row, Type.Missing);
-                    ExcelCells.Value2 = this.Parametr.DateItogClose.Rows[i].ItemArray[1].ToString();
+                    ExcelCells.Value2 = this.Parametr.DateItogClose.Rows[i].ItemArray[0].ToString();
                     ExcelCells = ExcelWorkSheet.get_Range("D" + row, Type.Missing);
                     if (i == 0) ExcelCells.Value2 = this.Parametr.KolVoReesstr.ToString();
                     else ExcelCells.Value2 = 0;
                     ExcelCells = ExcelWorkSheet.get_Range("B" + row, Type.Missing);
                     ExcelCells.NumberFormat = "#,##0.00";
-                    ExcelCells.Value2 = this.Parametr.DateItogClose.Rows[i].ItemArray[2].ToString();
+                    ExcelCells.Value2 = this.Parametr.DateItogClose.Rows[i].ItemArray[1].ToString();
                     ExcelCells = ExcelWorkSheet.get_Range("C" + row, Type.Missing);
                     ExcelCells.NumberFormat = "#,##0.00";
-                    ExcelCells.Value2 = this.Parametr.DateItogClose.Rows[i].ItemArray[3].ToString();
+                    ExcelCells.Value2 = this.Parametr.DateItogClose.Rows[i].ItemArray[2].ToString();
 
                     ExcelCells = ExcelWorkSheet.get_Range("A" + (Convert.ToInt32(row)).ToString(), "I" + (Convert.ToInt32(row)).ToString()); 
                     ExcelCells.HorizontalAlignment = Excel.Constants.xlCenter;
@@ -162,7 +163,7 @@ namespace LibReport
 
                 ExcelCells = ExcelWorkSheet.get_Range("E15", Type.Missing);
                 ExcelCells.NumberFormat = "#,##0.00";
-                ExcelCells.Value2 = sum.ToString("F2");
+                ExcelCells.Value2 = this.Parametr.SummaTransfer.ToString("F2");
                 ExcelCells.Font.Size = 14;
                 
 

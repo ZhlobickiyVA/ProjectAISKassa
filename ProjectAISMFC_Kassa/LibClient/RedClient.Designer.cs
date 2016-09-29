@@ -74,7 +74,7 @@
             this.ValueCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ListTicketsClient = new System.Windows.Forms.TabPage();
             this.ListTickets = new System.Windows.Forms.DataGridView();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.ViewTick = new System.Windows.Forms.ToolStrip();
             this.ViewTicket = new System.Windows.Forms.ToolStripComboBox();
             this.DoubPrice = new System.Windows.Forms.ToolStripButton();
             this.panel9.SuspendLayout();
@@ -96,7 +96,7 @@
             this.DopInfo.SuspendLayout();
             this.ListTicketsClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListTickets)).BeginInit();
-            this.toolStrip2.SuspendLayout();
+            this.ViewTick.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel9
@@ -589,7 +589,7 @@
             // ListTicketsClient
             // 
             this.ListTicketsClient.Controls.Add(this.ListTickets);
-            this.ListTicketsClient.Controls.Add(this.toolStrip2);
+            this.ListTicketsClient.Controls.Add(this.ViewTick);
             this.ListTicketsClient.Location = new System.Drawing.Point(4, 28);
             this.ListTicketsClient.Name = "ListTicketsClient";
             this.ListTicketsClient.Padding = new System.Windows.Forms.Padding(3);
@@ -618,17 +618,17 @@
             this.ListTickets.Size = new System.Drawing.Size(696, 349);
             this.ListTickets.TabIndex = 17;
             // 
-            // toolStrip2
+            // ViewTick
             // 
-            this.toolStrip2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ViewTick.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ViewTick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ViewTicket,
             this.DoubPrice});
-            this.toolStrip2.Location = new System.Drawing.Point(3, 3);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(696, 25);
-            this.toolStrip2.TabIndex = 16;
-            this.toolStrip2.Text = "toolStrip2";
+            this.ViewTick.Location = new System.Drawing.Point(3, 3);
+            this.ViewTick.Name = "ViewTick";
+            this.ViewTick.Size = new System.Drawing.Size(696, 25);
+            this.ViewTick.TabIndex = 16;
+            this.ViewTick.Text = "toolStrip2";
             // 
             // ViewTicket
             // 
@@ -697,8 +697,8 @@
             this.ListTicketsClient.ResumeLayout(false);
             this.ListTicketsClient.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListTickets)).EndInit();
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
+            this.ViewTick.ResumeLayout(false);
+            this.ViewTick.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -748,7 +748,7 @@
         private System.Windows.Forms.ToolStripButton OpenFileBT;
         private System.Windows.Forms.TabPage ListTicketsClient;
         public System.Windows.Forms.DataGridView ListTickets;
-        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStrip ViewTick;
         private System.Windows.Forms.ToolStripComboBox ViewTicket;
         private System.Windows.Forms.ToolStripButton DoubPrice;
     }

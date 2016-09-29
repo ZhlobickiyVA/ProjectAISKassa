@@ -26,6 +26,7 @@ namespace LibEmployees
         public string cl2ComFIo { get; set; }
         public string cl3ComDolzh { get; set; }
         public string cl3ComFIo { get; set; }
+        public Decimal MaxSumInKassa { get; set; }
 
         SqlConnection connection = new SqlConnection(Connect.GetConn());
         SqlCommand Command;
@@ -57,6 +58,7 @@ namespace LibEmployees
                 this.cl3ComDolzh = reader["cl3ComDolzh"].ToString();
                 this.cl3ComFIo = reader["cl3ComFio"].ToString();
                 this.Director = reader["Director"].ToString();
+                this.MaxSumInKassa = Convert.ToDecimal(reader["MaxSumInKassa"].ToString());
             }
             connection.Close();
 
@@ -68,6 +70,13 @@ namespace LibEmployees
                 + this.cl2ComDolzh + " " + this.cl2ComFIo + ", "
                 + this.cl3ComDolzh + " " + this.cl3ComFIo;
         }
+
+        public static decimal GetMaxSummaInKassa()
+        {
+            clORG o = new clORG();
+            return o.MaxSumInKassa;
+        }
+
 
         public string GetNPACommisia(DateTime Begin, DateTime End)
         {
@@ -117,6 +126,10 @@ namespace LibEmployees
 
                 Command.Parameters.Add("@Director", SqlDbType.NVarChar, 100);
                 Command.Parameters["@Director"].Value = this.Director.ToString();
+
+                Command.Parameters.Add("@MaxSum", SqlDbType.Money);
+                Command.Parameters["@MaxSum"].Value = this.MaxSumInKassa;
+
                 connection.Open();
                     Command.ExecuteNonQuery();
                 connection.Close();

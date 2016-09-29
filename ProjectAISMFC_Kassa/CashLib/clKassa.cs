@@ -56,6 +56,7 @@ namespace CashLib
             if (i == 1) // open
             {
                 this.SolDoBegin = this.SummaInKassa;
+                this.SoldoBeginDate = Connect.GetDateServer();
                 this.Operation_UpdateActive_spKassa();
                 MessageInfo info = new MessageInfo();
                 info.Lin.Add("Касса открыта!");
@@ -66,6 +67,7 @@ namespace CashLib
             if (i == 0) // close
             {
                 this.SoldoEnd = this.SummaInKassa;
+                this.SoldoEndDate = Connect.GetDateServer();
                 // запускаем форму настройки закрытия кассы.
                 fCloseKas fclose = new fCloseKas(this);
                 if (fclose.ShowDialog() == DialogResult.OK)
@@ -73,7 +75,9 @@ namespace CashLib
                     
                     this.Operation_UpdateActive_spKassa();
                     ret = true;
-                    
+                    // TODO: Надо вычесть из кассы деньги
+                    this.NomOper = clFix.GetFix();
+                    this.addEventMoneytoKass();
                     MessageInfo info = new MessageInfo();
                     info.Lin.Add("Касса закрыта!");
                     info.Lin.Add("Сальдо на конец дня: " + String.Format("{0:C2}", this.SoldoEnd));
@@ -102,8 +106,8 @@ namespace CashLib
                 reader.Read();
                 this.NameKassa = reader["Name"].ToString();
                 this.ActiveKassa = Convert.ToInt32( reader["Active"].ToString());
-                this.SoldoBeginDate = Convert.ToDateTime(reader["DateOpen"].ToString()).Date;
-                this.SoldoEndDate = Convert.ToDateTime(reader["DateClose"].ToString()).Date;
+                this.SoldoBeginDate = Convert.ToDateTime(reader["DateOpen"].ToString());
+                this.SoldoEndDate = Convert.ToDateTime(reader["DateClose"].ToString());
                 this.SolDoBegin = Convert.ToDouble(reader["SoldoBegin"].ToString());
             }
             connection.Close();
@@ -242,16 +246,22 @@ namespace CashLib
             Command.CommandText = "[GetItogPrice]";
             Command.Parameters.Add("@idempl", SqlDbType.UniqueIdentifier);
             Command.Parameters["@idempl"].Value = new Guid(this.idEmpl);
-            Command.Parameters.Add("@DateBegin", SqlDbType.Date);
+            Command.Parameters.Add("@DateBegin", SqlDbType.DateTime);
             Command.Parameters["@DateBegin"].Value = SoldoBeginDate;
-            Command.Parameters.Add("@DateEnd", SqlDbType.Date);
+            Command.Parameters.Add("@DateEnd", SqlDbType.DateTime);
             Command.Parameters["@DateEnd"].Value = SoldoEndDate;
             SqlDataAdapter data = new SqlDataAdapter();
             data.SelectCommand = Command;
             DataSet ds = new DataSet();
             data.Fill(ds);
             connection.Close();
+
+            
+
             return ds.Tables[0];
+
+
+
 
         }
 

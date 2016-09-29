@@ -43,7 +43,7 @@ namespace LibClient
             MIddleNameTB.Text = cli.middlename;
             DateRtb.Value = Convert.ToDateTime( cli.DateR).Date;
             NoteTB.Text = cli.note;
-
+            ViewTick.Enabled = DoubFlag;
         }
 
         public clClient GetData() { return cli; }

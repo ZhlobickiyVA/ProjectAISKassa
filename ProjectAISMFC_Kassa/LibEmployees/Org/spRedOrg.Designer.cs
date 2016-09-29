@@ -46,7 +46,6 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.DirectName = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -75,6 +74,10 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.DocKom = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.MaxSumInKassa = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -90,6 +93,7 @@
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel7.SuspendLayout();
+            this.panel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -99,7 +103,7 @@
             this.panel1.Controls.Add(this.CancelBT);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.panel1.Location = new System.Drawing.Point(0, 704);
+            this.panel1.Location = new System.Drawing.Point(0, 746);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(0, 5, 15, 5);
             this.panel1.Size = new System.Drawing.Size(891, 50);
@@ -288,15 +292,6 @@
             this.label13.Text = "Руководитель учреждения";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panel8
-            // 
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.panel8.Location = new System.Drawing.Point(0, 200);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(891, 26);
-            this.panel8.TabIndex = 58;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.groupBox5);
@@ -305,7 +300,7 @@
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.panel7);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 240);
+            this.groupBox1.Location = new System.Drawing.Point(0, 282);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
             this.groupBox1.Size = new System.Drawing.Size(891, 464);
@@ -630,15 +625,58 @@
             this.label4.Text = "Документ о назначении коммисии";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.MaxSumInKassa);
+            this.panel10.Controls.Add(this.label14);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel10.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.panel10.Location = new System.Drawing.Point(0, 200);
+            this.panel10.Name = "panel10";
+            this.panel10.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.panel10.Size = new System.Drawing.Size(891, 40);
+            this.panel10.TabIndex = 60;
+            // 
+            // MaxSumInKassa
+            // 
+            this.MaxSumInKassa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MaxSumInKassa.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MaxSumInKassa.Location = new System.Drawing.Point(418, 7);
+            this.MaxSumInKassa.Name = "MaxSumInKassa";
+            this.MaxSumInKassa.Size = new System.Drawing.Size(463, 26);
+            this.MaxSumInKassa.TabIndex = 44;
+            // 
+            // label14
+            // 
+            this.label14.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label14.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.Location = new System.Drawing.Point(10, 7);
+            this.label14.Margin = new System.Windows.Forms.Padding(3, 0, 10, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(408, 26);
+            this.label14.TabIndex = 43;
+            this.label14.Text = "Максимальная сумма в кассе";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel8
+            // 
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.panel8.Location = new System.Drawing.Point(0, 240);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(891, 26);
+            this.panel8.TabIndex = 61;
+            // 
             // spRedOrg
             // 
             this.AcceptButton = this.OkBT;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelBT;
-            this.ClientSize = new System.Drawing.Size(891, 754);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(891, 796);
             this.Controls.Add(this.panel8);
+            this.Controls.Add(this.panel10);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel9);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
@@ -651,6 +689,7 @@
             this.Name = "spRedOrg";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Карточка организации";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.spRedOrg_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
@@ -675,6 +714,8 @@
             this.tableLayoutPanel1.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -698,7 +739,6 @@
         private System.Windows.Forms.Panel panel9;
         public System.Windows.Forms.TextBox DirectName;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
@@ -727,5 +767,9 @@
         private System.Windows.Forms.Panel panel7;
         public System.Windows.Forms.TextBox DocKom;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel10;
+        public System.Windows.Forms.TextBox MaxSumInKassa;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Panel panel8;
     }
 }

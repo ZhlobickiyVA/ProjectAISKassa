@@ -13,7 +13,7 @@ namespace LibEmployees
     public partial class spRedOrg : Form
     {
         clORG org = new clORG();
-
+        bool flag = false;
         public spRedOrg()
         {
             InitializeComponent();
@@ -33,6 +33,8 @@ namespace LibEmployees
             this.cl3Fio.Text = org.cl3ComFIo.Trim();
 
             this.DirectName.Text = org.Director.Trim();
+
+            this.MaxSumInKassa.Text = org.MaxSumInKassa.ToString("F2");
         }
 
         public clORG Getdata() { return org; }
@@ -52,9 +54,20 @@ namespace LibEmployees
             org.cl3ComDolzh = this.cl3Dolzh.Text;
             org.cl3ComFIo = this.cl3Fio.Text;
             org.Director = this.DirectName.Text;
+            try
+            {
+                org.MaxSumInKassa = Convert.ToDecimal(this.MaxSumInKassa.Text.ToString());
+            }
+            catch
+            {
+                flag = true;
+            }
+
         }
 
-
-
+        private void spRedOrg_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = flag;
+        }
     }
 }

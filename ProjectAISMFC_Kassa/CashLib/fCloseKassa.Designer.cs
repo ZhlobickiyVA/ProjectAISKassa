@@ -46,25 +46,28 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.OstInKassa = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.KlReestrTB = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.EmplKomyCB = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.SumTransfer = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.FioGLBuhTB = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.EmplKomyCB = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.KlReestrTB = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.Info = new System.Windows.Forms.Label();
             this.ListItog = new System.Windows.Forms.DataGridView();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.panel9.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListItog)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,7 +79,7 @@
             this.panel9.Controls.Add(this.CancelBT);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.panel9.Location = new System.Drawing.Point(5, 501);
+            this.panel9.Location = new System.Drawing.Point(5, 457);
             this.panel9.Name = "panel9";
             this.panel9.Padding = new System.Windows.Forms.Padding(0, 5, 15, 5);
             this.panel9.Size = new System.Drawing.Size(483, 50);
@@ -172,7 +175,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(261, 25);
             this.label3.TabIndex = 43;
-            this.label3.Text = "Остаток на начало дня";
+            this.label3.Text = "Сальдо на начало дня";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel1
@@ -225,6 +228,7 @@
             // OstInKassa
             // 
             this.OstInKassa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OstInKassa.Enabled = false;
             this.OstInKassa.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.OstInKassa.Location = new System.Drawing.Point(271, 7);
             this.OstInKassa.Name = "OstInKassa";
@@ -244,39 +248,74 @@
             this.label2.Text = "Сальдо на конец дня";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panel3
+            // panel7
             // 
-            this.panel3.Controls.Add(this.KlReestrTB);
-            this.panel3.Controls.Add(this.label4);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.panel3.Location = new System.Drawing.Point(5, 127);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.panel3.Size = new System.Drawing.Size(483, 39);
-            this.panel3.TabIndex = 63;
+            this.panel7.Controls.Add(this.SumTransfer);
+            this.panel7.Controls.Add(this.label7);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.panel7.Location = new System.Drawing.Point(5, 127);
+            this.panel7.Name = "panel7";
+            this.panel7.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.panel7.Size = new System.Drawing.Size(483, 39);
+            this.panel7.TabIndex = 68;
             // 
-            // KlReestrTB
+            // SumTransfer
             // 
-            this.KlReestrTB.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.KlReestrTB.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.KlReestrTB.Location = new System.Drawing.Point(271, 7);
-            this.KlReestrTB.Name = "KlReestrTB";
-            this.KlReestrTB.Size = new System.Drawing.Size(202, 26);
-            this.KlReestrTB.TabIndex = 44;
-            this.KlReestrTB.Text = "0";
+            this.SumTransfer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SumTransfer.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SumTransfer.Location = new System.Drawing.Point(271, 7);
+            this.SumTransfer.Name = "SumTransfer";
+            this.SumTransfer.Size = new System.Drawing.Size(202, 26);
+            this.SumTransfer.TabIndex = 44;
+            this.SumTransfer.Text = "0,00";
+            this.SumTransfer.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SumTransfer_KeyUp);
             // 
-            // label4
+            // label7
             // 
-            this.label4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(10, 7);
-            this.label4.Margin = new System.Windows.Forms.Padding(3, 0, 10, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(261, 25);
-            this.label4.TabIndex = 43;
-            this.label4.Text = "Сдано в кассу реестров";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.ForeColor = System.Drawing.Color.DarkRed;
+            this.label7.Location = new System.Drawing.Point(10, 7);
+            this.label7.Margin = new System.Windows.Forms.Padding(3, 0, 10, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(261, 25);
+            this.label7.TabIndex = 43;
+            this.label7.Text = "Сумма для передачи";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.FioGLBuhTB);
+            this.panel5.Controls.Add(this.label6);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.panel5.Location = new System.Drawing.Point(5, 244);
+            this.panel5.Name = "panel5";
+            this.panel5.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.panel5.Size = new System.Drawing.Size(483, 39);
+            this.panel5.TabIndex = 71;
+            // 
+            // FioGLBuhTB
+            // 
+            this.FioGLBuhTB.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FioGLBuhTB.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FioGLBuhTB.Location = new System.Drawing.Point(271, 7);
+            this.FioGLBuhTB.Name = "FioGLBuhTB";
+            this.FioGLBuhTB.Size = new System.Drawing.Size(202, 26);
+            this.FioGLBuhTB.TabIndex = 44;
+            // 
+            // label6
+            // 
+            this.label6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(10, 7);
+            this.label6.Margin = new System.Windows.Forms.Padding(3, 0, 10, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(261, 25);
+            this.label6.TabIndex = 43;
+            this.label6.Text = "Главный бухгалтер";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel4
             // 
@@ -284,11 +323,11 @@
             this.panel4.Controls.Add(this.label5);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.panel4.Location = new System.Drawing.Point(5, 166);
+            this.panel4.Location = new System.Drawing.Point(5, 205);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.panel4.Size = new System.Drawing.Size(483, 39);
-            this.panel4.TabIndex = 64;
+            this.panel4.TabIndex = 70;
             // 
             // EmplKomyCB
             // 
@@ -312,48 +351,49 @@
             this.label5.Text = "Кому передаем денежные средства";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panel5
+            // panel3
             // 
-            this.panel5.Controls.Add(this.FioGLBuhTB);
-            this.panel5.Controls.Add(this.label6);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.panel5.Location = new System.Drawing.Point(5, 205);
-            this.panel5.Name = "panel5";
-            this.panel5.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.panel5.Size = new System.Drawing.Size(483, 39);
-            this.panel5.TabIndex = 65;
+            this.panel3.Controls.Add(this.KlReestrTB);
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.panel3.Location = new System.Drawing.Point(5, 166);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.panel3.Size = new System.Drawing.Size(483, 39);
+            this.panel3.TabIndex = 69;
             // 
-            // FioGLBuhTB
+            // KlReestrTB
             // 
-            this.FioGLBuhTB.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FioGLBuhTB.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FioGLBuhTB.Location = new System.Drawing.Point(271, 7);
-            this.FioGLBuhTB.Name = "FioGLBuhTB";
-            this.FioGLBuhTB.Size = new System.Drawing.Size(202, 26);
-            this.FioGLBuhTB.TabIndex = 44;
+            this.KlReestrTB.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.KlReestrTB.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.KlReestrTB.Location = new System.Drawing.Point(271, 7);
+            this.KlReestrTB.Name = "KlReestrTB";
+            this.KlReestrTB.Size = new System.Drawing.Size(202, 26);
+            this.KlReestrTB.TabIndex = 44;
+            this.KlReestrTB.Text = "0";
             // 
-            // label6
+            // label4
             // 
-            this.label6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(10, 7);
-            this.label6.Margin = new System.Windows.Forms.Padding(3, 0, 10, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(261, 25);
-            this.label6.TabIndex = 43;
-            this.label6.Text = "Главный бухгалтер";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(10, 7);
+            this.label4.Margin = new System.Windows.Forms.Padding(3, 0, 10, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(261, 25);
+            this.label4.TabIndex = 43;
+            this.label4.Text = "Сдано в кассу реестров";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Info
             // 
             this.Info.Dock = System.Windows.Forms.DockStyle.Top;
             this.Info.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Info.ForeColor = System.Drawing.Color.DarkRed;
-            this.Info.Location = new System.Drawing.Point(5, 244);
+            this.Info.Location = new System.Drawing.Point(5, 283);
             this.Info.Name = "Info";
             this.Info.Size = new System.Drawing.Size(483, 36);
-            this.Info.TabIndex = 66;
+            this.Info.TabIndex = 72;
             this.Info.Text = "label7";
             this.Info.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -374,9 +414,9 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.ListItog.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.ListItog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ListItog.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ListItog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListItog.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ListItog.Location = new System.Drawing.Point(5, 280);
+            this.ListItog.Location = new System.Drawing.Point(5, 319);
             this.ListItog.MultiSelect = false;
             this.ListItog.Name = "ListItog";
             this.ListItog.ReadOnly = true;
@@ -395,18 +435,8 @@
             this.ListItog.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.ListItog.RowTemplate.ReadOnly = true;
             this.ListItog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ListItog.Size = new System.Drawing.Size(483, 163);
-            this.ListItog.TabIndex = 67;
-            // 
-            // listBox1
-            // 
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 19;
-            this.listBox1.Location = new System.Drawing.Point(5, 443);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(483, 58);
-            this.listBox1.TabIndex = 68;
+            this.ListItog.Size = new System.Drawing.Size(483, 138);
+            this.ListItog.TabIndex = 73;
             // 
             // fCloseKas
             // 
@@ -414,13 +444,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelBT;
-            this.ClientSize = new System.Drawing.Size(493, 551);
-            this.Controls.Add(this.listBox1);
+            this.ClientSize = new System.Drawing.Size(493, 507);
             this.Controls.Add(this.ListItog);
             this.Controls.Add(this.Info);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel6);
@@ -444,11 +474,13 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListItog)).EndInit();
             this.ResumeLayout(false);
 
@@ -469,18 +501,20 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox OstInKassa;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox KlReestrTB;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button ShowReport;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.TextBox SumTransfer;
+        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TextBox FioGLBuhTB;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button ShowReport;
-        private System.Windows.Forms.Label Info;
+        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.ComboBox EmplKomyCB;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TextBox KlReestrTB;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label Info;
         public System.Windows.Forms.DataGridView ListItog;
-        private System.Windows.Forms.ListBox listBox1;
     }
 }
