@@ -87,7 +87,7 @@ namespace GeneralMidule
 
         private void button9_Click(object sender, EventArgs e)
         {
-            clARM_Buhgalter.Run_ARM("2BA2A578-A7B0-47C4-98EC-0DFFCD52734F");
+            clARM_Buhgalter.Run_ARM("0FE342D2-B667-4706-BCD8-51BA63864A19");
         }
 
         private void button10_Click(object sender, EventArgs e)

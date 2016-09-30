@@ -30,7 +30,7 @@ namespace LibTickets
             KomuCB.ValueMember = "id";
             KomuCB.BeginUpdate(); KomuCB.SelectedIndex = 1; KomuCB.SelectedIndex = 0; KomuCB.EndUpdate();
             view.idEmpl = even.id_Empl;
-
+            view.status = 0;
             table = new DataTable();
             table = view.GetGroupViewGrid();
 
