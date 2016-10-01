@@ -84,6 +84,8 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.btSearch = new System.Windows.Forms.Button();
             this.btClear = new System.Windows.Forms.Button();
+            this.CanceledPanel = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
@@ -101,6 +103,7 @@
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.CanceledPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -222,7 +225,7 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 640);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 740);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(970, 22);
             this.statusStrip1.TabIndex = 2;
@@ -236,7 +239,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(300, 24);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(670, 616);
+            this.panel3.Size = new System.Drawing.Size(670, 716);
             this.panel3.TabIndex = 4;
             // 
             // splitter1
@@ -281,7 +284,7 @@
             this.grid.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.grid.RowTemplate.ReadOnly = true;
             this.grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grid.Size = new System.Drawing.Size(482, 616);
+            this.grid.Size = new System.Drawing.Size(482, 716);
             this.grid.TabIndex = 11;
             this.grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellContentClick);
             this.grid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellContentClick);
@@ -321,7 +324,7 @@
             this.ListTik.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.ListTik.RowTemplate.ReadOnly = true;
             this.ListTik.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ListTik.Size = new System.Drawing.Size(566, 616);
+            this.ListTik.Size = new System.Drawing.Size(566, 716);
             this.ListTik.TabIndex = 10;
             this.ListTik.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListTik_CellContentClick_1);
             this.ListTik.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListTik_CellContentClick_1);
@@ -331,6 +334,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Cornsilk;
+            this.panel2.Controls.Add(this.CanceledPanel);
             this.panel2.Controls.Add(this.groupBox8);
             this.panel2.Controls.Add(this.groupBox7);
             this.panel2.Controls.Add(this.groupBox2);
@@ -342,7 +346,7 @@
             this.panel2.MinimumSize = new System.Drawing.Size(300, 0);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.panel2.Size = new System.Drawing.Size(300, 616);
+            this.panel2.Size = new System.Drawing.Size(300, 716);
             this.panel2.TabIndex = 3;
             // 
             // groupBox8
@@ -395,7 +399,7 @@
             this.groupBox7.Controls.Add(this.panel9);
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox7.Font = new System.Drawing.Font("Times New Roman", 12.25F, System.Drawing.FontStyle.Bold);
-            this.groupBox7.Location = new System.Drawing.Point(5, 338);
+            this.groupBox7.Location = new System.Drawing.Point(5, 438);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(10, 3, 5, 3);
@@ -515,7 +519,7 @@
             this.groupBox2.Controls.Add(this.panel6);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 12.25F, System.Drawing.FontStyle.Bold);
-            this.groupBox2.Location = new System.Drawing.Point(5, 452);
+            this.groupBox2.Location = new System.Drawing.Point(5, 552);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(10, 3, 5, 3);
@@ -723,7 +727,7 @@
             this.panel4.Controls.Add(this.btSearch);
             this.panel4.Controls.Add(this.btClear);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(5, 566);
+            this.panel4.Location = new System.Drawing.Point(5, 666);
             this.panel4.MinimumSize = new System.Drawing.Size(300, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(300, 50);
@@ -748,11 +752,37 @@
             this.btClear.Text = "Очистить";
             this.btClear.UseVisualStyleBackColor = true;
             // 
+            // CanceledPanel
+            // 
+            this.CanceledPanel.Controls.Add(this.button1);
+            this.CanceledPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.CanceledPanel.Font = new System.Drawing.Font("Times New Roman", 12.25F, System.Drawing.FontStyle.Bold);
+            this.CanceledPanel.Location = new System.Drawing.Point(5, 333);
+            this.CanceledPanel.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.CanceledPanel.Name = "CanceledPanel";
+            this.CanceledPanel.Padding = new System.Windows.Forms.Padding(10, 3, 5, 3);
+            this.CanceledPanel.Size = new System.Drawing.Size(290, 64);
+            this.CanceledPanel.TabIndex = 11;
+            this.CanceledPanel.TabStop = false;
+            this.CanceledPanel.Text = "Списание";
+            this.CanceledPanel.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 12.25F);
+            this.button1.Location = new System.Drawing.Point(10, 22);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(275, 39);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Отметить список для списания";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // ARMBuh2v
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(970, 662);
+            this.ClientSize = new System.Drawing.Size(970, 762);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.statusStrip1);
@@ -785,6 +815,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.panel4.ResumeLayout(false);
+            this.CanceledPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -843,5 +874,7 @@
         private System.Windows.Forms.ToolStripMenuItem CartOrg;
         private System.Windows.Forms.ToolStripMenuItem SP;
         private System.Windows.Forms.ToolStripMenuItem RunSPser;
+        private System.Windows.Forms.GroupBox CanceledPanel;
+        private System.Windows.Forms.Button button1;
     }
 }

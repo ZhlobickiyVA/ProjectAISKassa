@@ -21,6 +21,7 @@ namespace LibTickets
         public DateTime DateB { get; set; }
         public DateTime DateE { get; set; }
         public int Level { get; set; }
+        public bool isCancel { get; set; }
 
 
         SqlConnection connection = new SqlConnection(Connect.GetConn());
@@ -35,7 +36,8 @@ namespace LibTickets
             this.month = 0;
             this.year = 0;
             this.status = -1;
-        } //Пустой конструктор
+            this.isCancel = false;
+        } 
 
 
 
@@ -135,6 +137,8 @@ namespace LibTickets
             Command.Parameters["@month"].Value = this.month;
             Command.Parameters.Add("@year", SqlDbType.Int);
             Command.Parameters["@year"].Value = this.year;
+            Command.Parameters.Add("@isCancel", SqlDbType.Bit);
+            Command.Parameters["@isCancel"].Value = Convert.ToInt32(this.isCancel);
             SqlDataAdapter data = new SqlDataAdapter();
             data.SelectCommand = Command;
             DataSet ds = new DataSet();

@@ -89,6 +89,14 @@ namespace LibARM_Buhgalter
         private void btSearch_Click(object sender, EventArgs e)
         {
             GetData();
+            switch (StatCB.SelectedIndex)
+            {
+                case 2:{ CanceledPanel.Visible = true; break; }
+                case 3: { CanceledPanel.Visible = true; break; }
+                case 4: { CanceledPanel.Visible = true; break; }
+                default: CanceledPanel.Visible = false; break;
+            };
+            
         }
         private void SerCB_SelectedIndexChanged(object sender, EventArgs e)
         {

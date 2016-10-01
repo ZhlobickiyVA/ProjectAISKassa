@@ -50,12 +50,6 @@
   <ItemGroup>
     <Compile Include="clGetViewTickets.cs" />
     <Compile Include="ControlPrice\clControlSer.cs" />
-    <Compile Include="FdocCal.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FdocCal.Designer.cs">
-      <DependentUpon>FdocCal.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -122,9 +116,6 @@
   <ItemGroup>
     <EmbeddedResource Include="ControlPrice\ContPriceSer.resx">
       <DependentUpon>ContPriceSer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FdocCal.resx">
-      <DependentUpon>FdocCal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

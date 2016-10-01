@@ -161,7 +161,39 @@ namespace LibTickets
         }
 
     }
+    public class clCanceledTickets
+    {
+        public string idEvent { get; set; }
+        public bool isCancel { get; set; }
 
+        void Operation_Update_EventTickets()
+        {
+            SqlConnection connection = new SqlConnection(Connect.GetConn());
+            SqlCommand Command;
+            Command = connection.CreateCommand();
+            Command.CommandType = CommandType.StoredProcedure;
+            Command.CommandText = "[UpdateIsCancelToEvent]";
+            Command.Parameters.Add("@idEvent", SqlDbType.UniqueIdentifier);
+            Command.Parameters["@idEvent"].Value = new Guid(this.idEvent);
+            Command.Parameters.Add("@isCancel", SqlDbType.Bit);
+            Command.Parameters["@isCancel"].Value = Convert.ToInt32(this.isCancel);
+            connection.Open();
+                Command.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        void UpdateIsCanceledToTickets(string idEven,bool isCancel)
+        {
+            clCanceledTickets tik = new clCanceledTickets();
+            tik.idEvent = idEven;
+            tik.isCancel = isCancel;
+            tik.Operation_Update_EventTickets();
+        }
+
+
+
+
+    }
 
 
 

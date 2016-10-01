@@ -56,7 +56,7 @@ namespace LibReport
 
 
 
-        public void GetReportTransferTickets()
+        public void GetReportCanceledTickets()
         {
             try
             {
