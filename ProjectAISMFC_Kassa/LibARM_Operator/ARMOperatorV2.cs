@@ -35,8 +35,8 @@ namespace LibARM_Operator
             clClient.ActiveStyleDataGridViewToClient(ListCli);
             if (Kas.ActiveKassa == 0)
             {
-              OpenKassaItem.Enabled = true;
-              CloseKassaItem.Enabled = false;
+                OpenKassaItem.Enabled = true;
+                CloseKassaItem.Enabled = false;
                 PriceTIkBT.Enabled = false;
                 DoubTikBT.Enabled = false;
             }
@@ -47,9 +47,7 @@ namespace LibARM_Operator
                 PriceTIkBT.Enabled = true;
                 DoubTikBT.Enabled = true;
             }
-            
             timer.Enabled = true;
-
         }
 
         private void SearchTB_KeyUp(object sender, KeyEventArgs e)
@@ -82,7 +80,6 @@ namespace LibARM_Operator
         {
             SelectRow = ListCli.CurrentRow.Index;
             clClient.OpenClient(ListCli.CurrentRow.Cells[0].Value.ToString());
-
             ListCli.DataSource = clClient.GetListClient(sea);
             ListCli.Rows[SelectRow].Selected = true;
             ListCli.CurrentCell = ListCli[1, SelectRow];
@@ -105,9 +102,10 @@ namespace LibARM_Operator
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            int CountT = 0;
             CountTikEmployees = 0;
             DataTable table = new DataTable();
-            table = clControlSer.GetListSerPrice(empl.id);
+            table = clControlSer.GetListSerPrice(empl.id, out CountT);
             DG.Rows.Clear();
             for (int i = 0; i <= table.Rows.Count - 1; i++)
             {
@@ -115,20 +113,19 @@ namespace LibARM_Operator
                 string nameSer = table.Rows[i].ItemArray[2].ToString();
                 string count = table.Rows[i].ItemArray[3].ToString();
                 DG.Rows.Add(nameSer,name,count);
-                for (int j = 0; j <= DG.Columns.Count - 1; j++)
+                for (int j = 0; j <= DG.Columns.Count - 1; j++)  //Привевт
                 {
                     Color col = clSeries.getColorFromChar(table.Rows[i].ItemArray[0].ToString());
                     DG.Rows[DG.Rows.Count - 1].Cells[j].Style.BackColor = col;
                     DG.Rows[DG.Rows.Count - 1].Cells[j].Style.SelectionBackColor = col;
                     DG.Rows[DG.Rows.Count - 1].Cells[j].Style.SelectionForeColor = Color.Black;
                 }
-                CountTikEmployees += Convert.ToInt32(count);
+                CountTikEmployees = CountT;
             }
             // TODO: Исправить. Неверный подсчет количества билетов.
-            CountTik.Text = "Количество доступных билетов: " + CountTikEmployees.ToString() + " шт.";
+            CountTik.Text = "Количество доступных билетов: " + CountTikEmployees.ToString() + " шт. ";
             NowTimeDate.Text =  Connect.GetDateServer().ToString();
-            SummainKassa.Text = "Сумма в Кассе: "+ String.Format("{0:C2}", Kas.SummaInKassa);
-
+            SummainKassa.Text = "Сумма в Кассе: " + String.Format("{0:C2}", Kas.SummaInKassa);
         }
 
         private void DG_CellContentClick(object sender, DataGridViewCellEventArgs e)
