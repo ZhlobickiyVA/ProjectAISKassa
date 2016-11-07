@@ -16,6 +16,7 @@ using ListAccess;
 using LibDataFile;
 using UtilDLL;
 using LibARM_Operator;
+using LibSecurity;
 
 namespace GeneralMidule
 {
@@ -152,6 +153,16 @@ namespace GeneralMidule
         {
             MessageBox.Show(clORG.GetGlBuh());
 
+        }
+
+        private void button17_Click_2(object sender, EventArgs e)
+        {
+            string idEmplValid = "";
+            if (clAut.RunAuto(out idEmplValid))
+            {
+                MessageBox.Show("Отлично!" + idEmplValid);
+            }
+            else MessageBox.Show("Плохо!" + idEmplValid);
         }
     }
 }

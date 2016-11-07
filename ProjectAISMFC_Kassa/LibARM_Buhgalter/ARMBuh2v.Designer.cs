@@ -54,6 +54,8 @@
             this.grid = new System.Windows.Forms.DataGridView();
             this.ListTik = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.CanceledPanel = new System.Windows.Forms.GroupBox();
+            this.ClearTikBT = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.GroupViewRB = new System.Windows.Forms.RadioButton();
             this.AllViewRB = new System.Windows.Forms.RadioButton();
@@ -84,13 +86,12 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.btSearch = new System.Windows.Forms.Button();
             this.btClear = new System.Windows.Forms.Button();
-            this.CanceledPanel = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ListTik)).BeginInit();
             this.panel2.SuspendLayout();
+            this.CanceledPanel.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -103,7 +104,6 @@
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.CanceledPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -348,6 +348,33 @@
             this.panel2.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.panel2.Size = new System.Drawing.Size(300, 716);
             this.panel2.TabIndex = 3;
+            // 
+            // CanceledPanel
+            // 
+            this.CanceledPanel.Controls.Add(this.ClearTikBT);
+            this.CanceledPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.CanceledPanel.Font = new System.Drawing.Font("Times New Roman", 12.25F, System.Drawing.FontStyle.Bold);
+            this.CanceledPanel.Location = new System.Drawing.Point(5, 333);
+            this.CanceledPanel.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.CanceledPanel.Name = "CanceledPanel";
+            this.CanceledPanel.Padding = new System.Windows.Forms.Padding(10, 3, 5, 3);
+            this.CanceledPanel.Size = new System.Drawing.Size(290, 64);
+            this.CanceledPanel.TabIndex = 11;
+            this.CanceledPanel.TabStop = false;
+            this.CanceledPanel.Text = "Списание";
+            this.CanceledPanel.Visible = false;
+            // 
+            // ClearTikBT
+            // 
+            this.ClearTikBT.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ClearTikBT.Font = new System.Drawing.Font("Times New Roman", 12.25F);
+            this.ClearTikBT.Location = new System.Drawing.Point(10, 22);
+            this.ClearTikBT.Name = "ClearTikBT";
+            this.ClearTikBT.Size = new System.Drawing.Size(275, 39);
+            this.ClearTikBT.TabIndex = 2;
+            this.ClearTikBT.Text = "Отметить список для списания";
+            this.ClearTikBT.UseVisualStyleBackColor = true;
+            this.ClearTikBT.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // groupBox8
             // 
@@ -752,32 +779,6 @@
             this.btClear.Text = "Очистить";
             this.btClear.UseVisualStyleBackColor = true;
             // 
-            // CanceledPanel
-            // 
-            this.CanceledPanel.Controls.Add(this.button1);
-            this.CanceledPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.CanceledPanel.Font = new System.Drawing.Font("Times New Roman", 12.25F, System.Drawing.FontStyle.Bold);
-            this.CanceledPanel.Location = new System.Drawing.Point(5, 333);
-            this.CanceledPanel.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
-            this.CanceledPanel.Name = "CanceledPanel";
-            this.CanceledPanel.Padding = new System.Windows.Forms.Padding(10, 3, 5, 3);
-            this.CanceledPanel.Size = new System.Drawing.Size(290, 64);
-            this.CanceledPanel.TabIndex = 11;
-            this.CanceledPanel.TabStop = false;
-            this.CanceledPanel.Text = "Списание";
-            this.CanceledPanel.Visible = false;
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 12.25F);
-            this.button1.Location = new System.Drawing.Point(10, 22);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(275, 39);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Отметить список для списания";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // ARMBuh2v
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -800,6 +801,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ListTik)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.CanceledPanel.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             this.groupBox7.ResumeLayout(false);
@@ -815,7 +817,6 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.panel4.ResumeLayout(false);
-            this.CanceledPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -875,6 +876,6 @@
         private System.Windows.Forms.ToolStripMenuItem SP;
         private System.Windows.Forms.ToolStripMenuItem RunSPser;
         private System.Windows.Forms.GroupBox CanceledPanel;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ClearTikBT;
     }
 }

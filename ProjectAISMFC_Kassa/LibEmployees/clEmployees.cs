@@ -124,16 +124,22 @@ namespace LibEmployees
             data.Fill(ds);
             connection.Close();
 
-            if (flag != 0)
+
+            if (flag == 1 || flag == 2)
             {
                 DataColumn SmallName = new DataColumn("SmallName", typeof(string), "Фамилия +' '+ SUBSTRING(Имя,1,1) +'.'+ SUBSTRING(Отчество,1,1)+'.'");
                 ds.Tables[0].Columns.Add(SmallName);
+            }
+
+            if (flag == 1)
+            {
+
                 EnumerableRowCollection<DataRow> query = from table in ds.Tables[0].AsEnumerable()
-                                                         where table.Field<bool>("Flag") == Convert.ToBoolean( flag)
+                                                         where table.Field<bool>("Flag") == Convert.ToBoolean(flag)
                                                          select table;
                 return query.AsDataView();
             }
-            else return ds.Tables[0].DefaultView;
+            else return ds.Tables[0].AsDataView();
         }
 
         public static void UpdateEmployees(string id)

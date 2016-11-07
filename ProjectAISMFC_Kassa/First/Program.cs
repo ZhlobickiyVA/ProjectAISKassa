@@ -8,6 +8,7 @@ using LibARM_Operator;
 using LibARM_Buhgalter;
 using LibSecurity;
 using UtilDLL;
+using LibEmployees;
 
 
 namespace GeneralMidule
@@ -36,22 +37,21 @@ namespace GeneralMidule
             //Application.Run(new ARMBuh2v("2BA2A578-A7B0-47C4-98EC-0DFFCD52734F"));
             Application.Run(new Form1());
 
-
-
-            //FormControlUser Aut = new FormControlUser();
-            //if (Aut.ShowDialog() == DialogResult.OK)
+            //string idEmpl = "";
+            //if (clAut.RunAuto(out idEmpl))
             //{
-            //    if (Aut.Tag.ToString() == "-1") MessageBox.Show("Сотруднику, не назначена роль!!! Обратитесь к Администратору.");
-            //    if (Aut.Tag.ToString() == "0") Application.Run(new OperARM(Aut.comboBox1.SelectedValue.ToString(), 1));
-            //    if (Aut.Tag.ToString() == "1") Application.Run(new ARMBuh2v());
-            //    if (Aut.Tag.ToString() == "3") MessageBox.Show("Форма в разработке");
+            //    clEmployees empl = new clEmployees(idEmpl);
+            //    int level = clRole.GetLevel(empl.idRole);
 
-            //    clLog log = new clLog();
-            //    log.InsertLog(Aut.comboBox1.SelectedValue.ToString(), 100);
 
+            //    switch (level)
+            //    {
+            //        case 0: Application.Run(new ARMOperatorV2(idEmpl)); break;
+            //        case 1: Application.Run(new ARMBuh2v(idEmpl)); break;
+            //        case 2: Application.Run(new Form1()); break;
+            //        default: MessageBox.Show("Ошибка инициализации!");  break;
+            //    }
             //}
-
-
 
 
             try

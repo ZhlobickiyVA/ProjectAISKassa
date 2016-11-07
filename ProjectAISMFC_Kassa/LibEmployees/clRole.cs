@@ -139,5 +139,13 @@ namespace LibEmployees
 
             }
         }
+
+        public static int GetLevel(string id)
+        {
+            clRole ro = new clRole(id);
+            return ro.Level;
+        }
+
     }
+
 }

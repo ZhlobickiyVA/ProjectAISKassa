@@ -122,7 +122,7 @@ namespace LibARM_Operator
                 }
                 CountTikEmployees = CountT;
             }
-            // TODO: Исправить. Неверный подсчет количества билетов.
+            
             CountTik.Text = "Количество доступных билетов: " + CountTikEmployees.ToString() + " шт. ";
             NowTimeDate.Text =  Connect.GetDateServer().ToString();
             SummainKassa.Text = "Сумма в Кассе: " + String.Format("{0:C2}", Kas.SummaInKassa);

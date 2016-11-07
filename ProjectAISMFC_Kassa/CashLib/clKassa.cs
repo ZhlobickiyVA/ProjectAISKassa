@@ -75,7 +75,7 @@ namespace CashLib
                     
                     this.Operation_UpdateActive_spKassa();
                     ret = true;
-                    // TODO: Надо вычесть из кассы деньги
+                    
                     this.NomOper = clFix.GetFix();
                     this.addEventMoneytoKass();
                     MessageInfo info = new MessageInfo();

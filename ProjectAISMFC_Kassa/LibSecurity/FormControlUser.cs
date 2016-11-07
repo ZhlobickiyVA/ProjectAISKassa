@@ -19,8 +19,10 @@ namespace LibSecurity
         public FormControlUser()
         {
             InitializeComponent();
-            clEmployees ListEmplo = new clEmployees();
-            ListEmplo.GetListEmployess(this.comboBox1);
+            
+            this.ListEmpl.DataSource = clEmployees.GetListEmployess(2).ToTable().DefaultView;
+            this.ListEmpl.DisplayMember = "SmallName";
+            this.ListEmpl.ValueMember = "id";
                         
         }
 
@@ -34,38 +36,25 @@ namespace LibSecurity
             
         }
 
-        private void btOK_Click(object sender, EventArgs e)
+        private void OkBT_Click(object sender, EventArgs e)
         {
-            this.Tag = 0;
-
-            clAut avtor = new clAut();
-
-            int lev = 0;
-            this.comboBox1.Select();
-            int ret = avtor.ValudEmpl(this.comboBox1.SelectedValue.ToString(), this.textBox1.Text.ToString(),ref lev);
-
-            
-
-            if (ret == 0) MessageBox.Show("Неверный пароль!");
-            else
-            {
-                this.Tag = lev;
-                this.DialogResult = DialogResult.OK;
-                Close();
-
-
-            }
-
-            // select pwdcompare('qwerty', 0x01001A050E12BCCAF8A10EAC067AC1E0963669A213CBD5170177)
-
-
 
         }
 
-        private void btCancel_Click(object sender, EventArgs e)
+        public bool GetData(out string ide)
         {
-            this.DialogResult = DialogResult.Cancel;
+            ide = ListEmpl.SelectedValue.ToString();
+            return clAut.ValudEmpl(ListEmpl.SelectedValue.ToString(), Password.Text.Trim());
+        }
+
+        private void CancelBT_Click(object sender, EventArgs e)
+        {
             Close();
+        }
+
+        private void FormControlUser_Shown(object sender, EventArgs e)
+        {
+            Password.Focus();
         }
     }
 }
