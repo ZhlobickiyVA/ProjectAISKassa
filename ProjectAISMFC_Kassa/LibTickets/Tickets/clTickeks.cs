@@ -163,8 +163,8 @@ namespace LibTickets
     }
     public class clCanceledTickets
     {
-        public string idEvent { get; set; }
-        public bool isCancel { get; set; }
+        string idEvent { get; set; }
+        bool isCancel { get; set; }
 
         void Operation_Update_EventTickets()
         {
@@ -182,7 +182,7 @@ namespace LibTickets
             connection.Close();
         }
 
-        void UpdateIsCanceledToTickets(string idEven,bool isCancel)
+        public static void UpdateIsCanceledToTickets(string idEven,bool isCancel)
         {
             clCanceledTickets tik = new clCanceledTickets();
             tik.idEvent = idEven;

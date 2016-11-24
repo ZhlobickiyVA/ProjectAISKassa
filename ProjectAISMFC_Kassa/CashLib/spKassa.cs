@@ -40,11 +40,14 @@ namespace CashLib
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            int i = ListKassa.CurrentRow.Index;
-            ListKassa.DataSource = kassa.GetListKassa().DefaultView;
-            ListKassa.Rows[i].Selected = true;
-            ListKassa.CurrentCell = ListKassa[1, i];
-            ListKassa.Select();
+            if (ListKassa.Rows.Count != 0)
+            {
+                int i = ListKassa.CurrentRow.Index;
+                ListKassa.DataSource = kassa.GetListKassa().DefaultView;
+                ListKassa.Rows[i].Selected = true;
+                ListKassa.CurrentCell = ListKassa[1, i];
+                ListKassa.Select();
+            }
         }
     }
 }

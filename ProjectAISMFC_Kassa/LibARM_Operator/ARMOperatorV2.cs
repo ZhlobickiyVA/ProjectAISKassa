@@ -27,6 +27,10 @@ namespace LibARM_Operator
         
         public ARMOperatorV2(string idEmpl)
         {
+            int CountT = 0;
+            clControlSer.GetListSerPrice(idEmpl, out CountT);
+            CountTikEmployees = CountT;
+
             InitializeComponent();
             empl = new clEmployees(idEmpl);
             Kas = new clKassa(idEmpl);
@@ -47,7 +51,11 @@ namespace LibARM_Operator
                 PriceTIkBT.Enabled = true;
                 DoubTikBT.Enabled = true;
             }
-            timer.Enabled = true;
+
+             timer.Enabled = true;
+            
+
+
         }
 
         private void SearchTB_KeyUp(object sender, KeyEventArgs e)
@@ -103,26 +111,27 @@ namespace LibARM_Operator
         private void timer_Tick(object sender, EventArgs e)
         {
             int CountT = 0;
-            CountTikEmployees = 0;
-            DataTable table = new DataTable();
-            table = clControlSer.GetListSerPrice(empl.id, out CountT);
-            DG.Rows.Clear();
-            for (int i = 0; i <= table.Rows.Count - 1; i++)
+            if (CountTikEmployees != 0)
             {
-                string name = table.Rows[i].ItemArray[1].ToString();
-                string nameSer = table.Rows[i].ItemArray[2].ToString();
-                string count = table.Rows[i].ItemArray[3].ToString();
-                DG.Rows.Add(nameSer,name,count);
-                for (int j = 0; j <= DG.Columns.Count - 1; j++)  //Привевт
+                DataTable table = new DataTable();
+                table = clControlSer.GetListSerPrice(empl.id, out CountT);
+                DG.Rows.Clear();
+                for (int i = 0; i <= table.Rows.Count - 1; i++)
                 {
-                    Color col = clSeries.getColorFromChar(table.Rows[i].ItemArray[0].ToString());
-                    DG.Rows[DG.Rows.Count - 1].Cells[j].Style.BackColor = col;
-                    DG.Rows[DG.Rows.Count - 1].Cells[j].Style.SelectionBackColor = col;
-                    DG.Rows[DG.Rows.Count - 1].Cells[j].Style.SelectionForeColor = Color.Black;
+                    string name = table.Rows[i].ItemArray[1].ToString();
+                    string nameSer = table.Rows[i].ItemArray[2].ToString();
+                    string count = table.Rows[i].ItemArray[3].ToString();
+                    DG.Rows.Add(nameSer, name, count);
+                    for (int j = 0; j <= DG.Columns.Count - 1; j++)  //Привевт
+                    {
+                        Color col = clSeries.getColorFromChar(table.Rows[i].ItemArray[0].ToString());
+                        DG.Rows[DG.Rows.Count - 1].Cells[j].Style.BackColor = col;
+                        DG.Rows[DG.Rows.Count - 1].Cells[j].Style.SelectionBackColor = col;
+                        DG.Rows[DG.Rows.Count - 1].Cells[j].Style.SelectionForeColor = Color.Black;
+                    }
+                    CountTikEmployees = CountT;
                 }
-                CountTikEmployees = CountT;
             }
-            
             CountTik.Text = "Количество доступных билетов: " + CountTikEmployees.ToString() + " шт. ";
             NowTimeDate.Text =  Connect.GetDateServer().ToString();
             SummainKassa.Text = "Сумма в Кассе: " + String.Format("{0:C2}", Kas.SummaInKassa);
@@ -145,15 +154,19 @@ namespace LibARM_Operator
 
         private void OpenKassaItem_Click(object sender, EventArgs e)
         {
-            if (Kas.ControlActiveKassa(1))
+            if (this.CountTikEmployees != 0)
             {
-                OpenKassaItem.Enabled = false;
-                CloseKassaItem.Enabled = true;
-                PriceTIkBT.Enabled = true;
-                DoubTikBT.Enabled = true;
+                if (Kas.ControlActiveKassa(1))
+                {
+                    OpenKassaItem.Enabled = false;
+                    CloseKassaItem.Enabled = true;
+                    PriceTIkBT.Enabled = true;
+                    DoubTikBT.Enabled = true;
 
-                // открываем кассу
+                    // открываем кассу
+                }
             }
+            else MessageBox.Show("Невозможно открыть кассу, нет доступных билетов для продажи!!!");
             
         }
 
@@ -188,6 +201,21 @@ namespace LibARM_Operator
         private void спискиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clListAccess.RunListAccess();
+        }
+
+        private void закрытьПрограммуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectRow = ListCli.CurrentRow.Index;
+            clClient.DeleteClient(ListCli.CurrentRow.Cells[0].Value.ToString());
+            ListCli.DataSource = clClient.GetListClient(sea);
+            ListCli.Rows[SelectRow].Selected = true;
+            ListCli.CurrentCell = ListCli[1, SelectRow];
+            ListCli.Select();
         }
     }
 }

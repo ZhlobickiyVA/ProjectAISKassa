@@ -58,9 +58,6 @@
             this.редактироватьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.SaleTicket = new System.Windows.Forms.ToolStripMenuItem();
-            this.выдатьДубликатToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.открытьКарточкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.закрытьПрограммуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -322,9 +319,6 @@
             this.редактироватьToolStripMenuItem,
             this.удалитьToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.SaleTicket,
-            this.выдатьДубликатToolStripMenuItem,
-            this.toolStripMenuItem3,
             this.открытьКарточкуToolStripMenuItem,
             this.toolStripMenuItem2,
             this.закрытьПрограммуToolStripMenuItem});
@@ -340,6 +334,7 @@
             this.добавитьToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
             this.добавитьToolStripMenuItem.Size = new System.Drawing.Size(258, 24);
             this.добавитьToolStripMenuItem.Text = "Добавить";
+            this.добавитьToolStripMenuItem.Click += new System.EventHandler(this.AddClient_Click);
             // 
             // редактироватьToolStripMenuItem
             // 
@@ -348,6 +343,7 @@
             this.редактироватьToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
             this.редактироватьToolStripMenuItem.Size = new System.Drawing.Size(258, 24);
             this.редактироватьToolStripMenuItem.Text = "Редактировать";
+            this.редактироватьToolStripMenuItem.Click += new System.EventHandler(this.EditClient_Click);
             // 
             // удалитьToolStripMenuItem
             // 
@@ -356,32 +352,12 @@
             this.удалитьToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F12;
             this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(258, 24);
             this.удалитьToolStripMenuItem.Text = "Удалить";
+            this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(255, 6);
-            // 
-            // SaleTicket
-            // 
-            this.SaleTicket.Image = global::LibARM_Operator.Properties.Resources.ticket_6351;
-            this.SaleTicket.Name = "SaleTicket";
-            this.SaleTicket.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.SaleTicket.Size = new System.Drawing.Size(258, 24);
-            this.SaleTicket.Text = "Продать билет";
-            // 
-            // выдатьДубликатToolStripMenuItem
-            // 
-            this.выдатьДубликатToolStripMenuItem.Image = global::LibARM_Operator.Properties.Resources.dubl;
-            this.выдатьДубликатToolStripMenuItem.Name = "выдатьДубликатToolStripMenuItem";
-            this.выдатьДубликатToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.выдатьДубликатToolStripMenuItem.Size = new System.Drawing.Size(258, 24);
-            this.выдатьДубликатToolStripMenuItem.Text = "Выдать дубликат";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(255, 6);
             // 
             // открытьКарточкуToolStripMenuItem
             // 
@@ -390,6 +366,7 @@
             this.открытьКарточкуToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F3)));
             this.открытьКарточкуToolStripMenuItem.Size = new System.Drawing.Size(258, 24);
             this.открытьКарточкуToolStripMenuItem.Text = "Открыть карточку";
+            this.открытьКарточкуToolStripMenuItem.Click += new System.EventHandler(this.OpenClient_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -403,6 +380,7 @@
             this.закрытьПрограммуToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F10;
             this.закрытьПрограммуToolStripMenuItem.Size = new System.Drawing.Size(258, 24);
             this.закрытьПрограммуToolStripMenuItem.Text = "Закрыть программу";
+            this.закрытьПрограммуToolStripMenuItem.Click += new System.EventHandler(this.закрытьПрограммуToolStripMenuItem_Click);
             // 
             // кассаToolStripMenuItem
             // 
@@ -474,6 +452,7 @@
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
             this.справкаToolStripMenuItem.Size = new System.Drawing.Size(94, 23);
             this.справкаToolStripMenuItem.Text = "Справка";
+            this.справкаToolStripMenuItem.Visible = false;
             // 
             // спискиToolStripMenuItem
             // 
@@ -508,6 +487,7 @@
             this.отчетыToolStripMenuItem.Name = "отчетыToolStripMenuItem";
             this.отчетыToolStripMenuItem.Size = new System.Drawing.Size(89, 23);
             this.отчетыToolStripMenuItem.Text = "Отчеты";
+            this.отчетыToolStripMenuItem.Visible = false;
             // 
             // отчетПоНаличнымДенежнымСредствамToolStripMenuItem
             // 
@@ -683,9 +663,6 @@
         private System.Windows.Forms.ToolStripMenuItem редактироватьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem SaleTicket;
-        private System.Windows.Forms.ToolStripMenuItem выдатьДубликатToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem открытьКарточкуToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem закрытьПрограммуToolStripMenuItem;

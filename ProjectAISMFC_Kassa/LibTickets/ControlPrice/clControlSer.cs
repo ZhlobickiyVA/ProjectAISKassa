@@ -163,26 +163,34 @@ namespace LibTickets
 
         public static DataTable GetListSerPrice(string idempl, out int CountTik) // для панели отображающая информацию о возможности продажи
         {
-            CountTik = 0;
-            SqlConnection connection = new SqlConnection(Connect.GetConn());
-            SqlCommand Command = new SqlCommand();
-            Command.Connection = connection;
-            Command.CommandType = CommandType.StoredProcedure;
-            Command.CommandText = "[SelectTikAccessToPrice]";
-            Command.Parameters.Add("@empl", SqlDbType.UniqueIdentifier);
-            Command.Parameters["@empl"].Value = new Guid(idempl);
-            SqlParameter param = new SqlParameter();
-            param.ParameterName = "@ret";
-            param.SqlDbType = SqlDbType.Int;
-            param.Direction = ParameterDirection.Output;
-            Command.Parameters.Add(param);
-            
-            SqlDataAdapter data = new SqlDataAdapter();
-            data.SelectCommand = Command;
-            DataSet ds = new DataSet();
-            data.Fill(ds);
-            CountTik = Convert.ToInt32(Command.Parameters["@ret"].Value.ToString());
-            return ds.Tables[0];
+            try
+            {
+                CountTik = 0;
+                SqlConnection connection = new SqlConnection(Connect.GetConn());
+                SqlCommand Command = new SqlCommand();
+                Command.Connection = connection;
+                Command.CommandType = CommandType.StoredProcedure;
+                Command.CommandText = "[SelectTikAccessToPrice]";
+                Command.Parameters.Add("@empl", SqlDbType.UniqueIdentifier);
+                Command.Parameters["@empl"].Value = new Guid(idempl);
+                SqlParameter param = new SqlParameter();
+                param.ParameterName = "@ret";
+                param.SqlDbType = SqlDbType.Int;
+                param.Direction = ParameterDirection.Output;
+                Command.Parameters.Add(param);
+
+                SqlDataAdapter data = new SqlDataAdapter();
+                data.SelectCommand = Command;
+                DataSet ds = new DataSet();
+                data.Fill(ds);
+                CountTik = Convert.ToInt32(Command.Parameters["@ret"].Value.ToString());
+                return ds.Tables[0];
+            }
+            catch
+            {
+                CountTik = 0;
+                return null;
+            }
         }
     }
 }

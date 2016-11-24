@@ -91,7 +91,7 @@ namespace LibARM_Buhgalter
             GetData();
             switch (StatCB.SelectedIndex)
             {
-                case 2:{ CanceledPanel.Visible = true; break; }
+                case 2:{ CanceledPanel.Visible = true;  break; }
                 case 3: { CanceledPanel.Visible = true; break; }
                 case 4: { CanceledPanel.Visible = true; break; }
                 default: CanceledPanel.Visible = false; break;
@@ -243,6 +243,33 @@ namespace LibARM_Buhgalter
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            
+            for (int i = 0; i < ListTik.Rows.Count; i++)
+            {
+                clCanceledTickets.UpdateIsCanceledToTickets(ListTik.Rows[i].Cells[0].Value.ToString(), true);
+            }
+            GetData();
+            MessageBox.Show("Список успешно отмечен, на списание!");
+
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            GetView.isCancel = CkearTikChB.Checked;
+        }
+
+        private void ListTik_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (StatCB.SelectedIndex != 0 || StatCB.SelectedIndex != 1)
+            { 
+            if (ListTik.Columns[ListTik.CurrentCell.ColumnIndex].DataPropertyName == "На списании")
+            {
+
+                clCanceledTickets.UpdateIsCanceledToTickets(ListTik.CurrentRow.Cells[0].Value.ToString(), !Convert.ToBoolean(ListTik.CurrentRow.Cells[ListTik.CurrentCell.ColumnIndex].Value.ToString()));
+                    StatLabel.Text = "Оп!";
+                    GetData();
+            }
+        }
 
         }
     }

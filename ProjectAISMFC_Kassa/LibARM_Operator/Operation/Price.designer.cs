@@ -78,6 +78,7 @@
             this.toolStrip1.Size = new System.Drawing.Size(854, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.Visible = false;
             // 
             // OpenClient
             // 
@@ -369,6 +370,7 @@
             this.button1.Text = "Отмена операции";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Price
             // 

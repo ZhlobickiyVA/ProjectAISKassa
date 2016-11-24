@@ -49,6 +49,7 @@
             this.SP = new System.Windows.Forms.ToolStripMenuItem();
             this.RunSPser = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.StatLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.grid = new System.Windows.Forms.DataGridView();
@@ -57,6 +58,7 @@
             this.CanceledPanel = new System.Windows.Forms.GroupBox();
             this.ClearTikBT = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.CkearTikChB = new System.Windows.Forms.CheckBox();
             this.GroupViewRB = new System.Windows.Forms.RadioButton();
             this.AllViewRB = new System.Windows.Forms.RadioButton();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -87,6 +89,7 @@
             this.btSearch = new System.Windows.Forms.Button();
             this.btClear = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ListTik)).BeginInit();
@@ -225,11 +228,19 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StatLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 740);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(970, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // StatLabel
+            // 
+            this.StatLabel.Name = "StatLabel";
+            this.StatLabel.Size = new System.Drawing.Size(118, 17);
+            this.StatLabel.Text = "toolStripStatusLabel1";
             // 
             // panel3
             // 
@@ -329,6 +340,7 @@
             this.ListTik.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListTik_CellContentClick_1);
             this.ListTik.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListTik_CellContentClick_1);
             this.ListTik.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ListTik_CellMouseClick);
+            this.ListTik.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ListTik_CellMouseDoubleClick);
             this.ListTik.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ListTik_CellMouseClick);
             // 
             // panel2
@@ -354,7 +366,7 @@
             this.CanceledPanel.Controls.Add(this.ClearTikBT);
             this.CanceledPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.CanceledPanel.Font = new System.Drawing.Font("Times New Roman", 12.25F, System.Drawing.FontStyle.Bold);
-            this.CanceledPanel.Location = new System.Drawing.Point(5, 333);
+            this.CanceledPanel.Location = new System.Drawing.Point(5, 362);
             this.CanceledPanel.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.CanceledPanel.Name = "CanceledPanel";
             this.CanceledPanel.Padding = new System.Windows.Forms.Padding(10, 3, 5, 3);
@@ -378,6 +390,7 @@
             // 
             // groupBox8
             // 
+            this.groupBox8.Controls.Add(this.CkearTikChB);
             this.groupBox8.Controls.Add(this.GroupViewRB);
             this.groupBox8.Controls.Add(this.AllViewRB);
             this.groupBox8.Dock = System.Windows.Forms.DockStyle.Top;
@@ -386,10 +399,24 @@
             this.groupBox8.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Padding = new System.Windows.Forms.Padding(10, 3, 5, 3);
-            this.groupBox8.Size = new System.Drawing.Size(290, 102);
+            this.groupBox8.Size = new System.Drawing.Size(290, 131);
             this.groupBox8.TabIndex = 10;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Вид представления";
+            // 
+            // CkearTikChB
+            // 
+            this.CkearTikChB.AutoSize = true;
+            this.CkearTikChB.Dock = System.Windows.Forms.DockStyle.Left;
+            this.CkearTikChB.Font = new System.Drawing.Font("Times New Roman", 12.25F);
+            this.CkearTikChB.Location = new System.Drawing.Point(10, 88);
+            this.CkearTikChB.Name = "CkearTikChB";
+            this.CkearTikChB.Padding = new System.Windows.Forms.Padding(2);
+            this.CkearTikChB.Size = new System.Drawing.Size(118, 40);
+            this.CkearTikChB.TabIndex = 5;
+            this.CkearTikChB.Text = "На списании";
+            this.CkearTikChB.UseVisualStyleBackColor = true;
+            this.CkearTikChB.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // GroupViewRB
             // 
@@ -797,6 +824,8 @@
             this.Shown += new System.EventHandler(this.ARMBuh2v_Shown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ListTik)).EndInit();
@@ -877,5 +906,7 @@
         private System.Windows.Forms.ToolStripMenuItem RunSPser;
         private System.Windows.Forms.GroupBox CanceledPanel;
         private System.Windows.Forms.Button ClearTikBT;
+        private System.Windows.Forms.CheckBox CkearTikChB;
+        private System.Windows.Forms.ToolStripStatusLabel StatLabel;
     }
 }

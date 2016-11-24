@@ -78,6 +78,11 @@ namespace LibARM_Operator
         {
             Operation.PriceTik();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 
 
