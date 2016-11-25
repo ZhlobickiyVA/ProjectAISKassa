@@ -70,6 +70,8 @@ namespace LibTickets
                 grid.Columns.Add("Ser");
                 grid.Columns.Add("S");
                 grid.Columns.Add("PO");
+
+
                 for (int i = 0; i <= sender.Rows.Count - 1; i++)
                 {
                     string ser = getseria(sender.Rows[i].ItemArray[3].ToString());
@@ -77,6 +79,8 @@ namespace LibTickets
                     MasTik mas = new MasTik(ser, tiks);
                     list.Add(mas);
                 }
+
+
                 int start, stop;
                 string startser, stopser;
                 start = list[0].tik;
@@ -193,6 +197,48 @@ namespace LibTickets
             data.Fill(ds);
             return ds.Tables[0];
         }
+
+
+
+        public DataTable GetGroupViewGridVer2()
+        {
+
+            return null;
+        }
+
+
+        public static DataTable GetDiapazonToArray(DataTable mas, int indCol)
+        {
+            DataTable Table = new DataTable();
+            Table.Columns.Add("S");
+            Table.Columns.Add("PO");
+            int S, PO;
+            int MaxValue = Convert.ToInt32(mas.Rows[mas.Rows.Count - 1].ItemArray[indCol].ToString());
+            int MinValue = Convert.ToInt32(mas.Rows[0].ItemArray[indCol].ToString());
+            int Pos = MinValue;
+            int index = 0;
+            S = Convert.ToInt32(mas.Rows[0].ItemArray[indCol]);
+            while (Pos <= MaxValue)
+            {
+                if ((Pos != Convert.ToInt32(mas.Rows[index].ItemArray[indCol].ToString())))
+                {
+                    PO = Convert.ToInt32(mas.Rows[index - 1].ItemArray[indCol].ToString());
+                    Table.Rows.Add(S, PO);
+                    Pos = Convert.ToInt32(mas.Rows[index].ItemArray[indCol].ToString());
+                    S = Convert.ToInt32(mas.Rows[index].ItemArray[indCol].ToString()); ;
+                }
+                Pos++;
+                index++;
+                if (!(Pos <= MaxValue))
+                {
+                    PO = Convert.ToInt32(mas.Rows[mas.Rows.Count - 1].ItemArray[indCol].ToString()); ;
+                    Table.Rows.Add(S, PO);
+                }
+            }
+            return Table;
+        }
+
+
 
 
     }
